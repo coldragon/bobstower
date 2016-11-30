@@ -15,6 +15,7 @@
 int main(int argc, char* args[])
 { leMap MAP0, MAP1, MAP2;
   leBob BOB0;
+  leJeu JEU;
   int continuer = 1;
 
   // Variable de SDL
@@ -48,9 +49,11 @@ int main(int argc, char* args[])
   tileset=TextureCreate(render, "res/tileset.png", 255, 0, 255, 255);
   objset=TextureCreate(render, "res/objset.png", 255, 0, 255, 255);
 
-  // Affichage
+  Mix_AllocateChannels(10);
   musique = Mix_LoadMUS("snd/music.mp3");
+  JEU.son1 = Mix_LoadWAV("snd/loot1.wav");
   Mix_PlayMusic(musique, -1);
+  Mix_VolumeMusic(MIX_MAX_VOLUME / 2);
   CleanScreen(render, 0, 0, 0);
   SDL_RenderPresent(render);
   SDL_Delay(500);
@@ -59,7 +62,7 @@ int main(int argc, char* args[])
   {
     mouvement(event, &BOB0, &continuer);
     collision(&BOB0, &MAP1);
-    objetcollision(&MAP1, &BOB0);
+    objetcollision(&MAP1, &BOB0, &JEU);
     AfficherMap(render, tileset, MAP1);
     AfficherObj(render, objset, MAP1);
     AfficherBob(render, BOB0);

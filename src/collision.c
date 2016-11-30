@@ -23,10 +23,10 @@ void collision(leBob *BOB, leMap *MAP)
   }
 }
 
-void objetcollision(leMap *MAP, leBob *BOB)
+void objetcollision(leMap *MAP, leBob *BOB, leJeu *JEU)
 {
   if (BOB->pos.x != BOB->posTemp.x || BOB->pos.y != BOB->posTemp.y)
   {
-    checkObject(BOB, MAP);
+    checkObject(BOB, MAP, JEU);
   }
 }
