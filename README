@@ -1,0 +1,26 @@
+		Readme... Bob's Tower
+	
+	dependency : 
+	
+	SDL2/
+	..SDL
+	..SDL_image
+	..SDL_ttf
+	..SDL_mixer
+	
+	made on :
+	
+	Xubuntu 16.04
+	
+	with :
+
+	gcc
+	NetBeans IDE 8.2 for dbg, git gui, managing project, linker etc ...
+	Atom (With the help of pkg linter, linter-gcc) for coding
+	Gimp
+	sfxr
+	Audacity
+
+	build tryed on :
+
+	Xubuntu 16.04

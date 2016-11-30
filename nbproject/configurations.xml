@@ -1,0 +1,539 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configurationDescriptor version="100">
+  <logicalFolder name="root" displayName="root" projectFiles="true" kind="ROOT">
+    <logicalFolder name="res" displayName="res" projectFiles="true">
+      <logicalFolder name="trash" displayName="trash" projectFiles="true">
+        <logicalFolder name="40x40" displayName="40x40" projectFiles="true">
+          <itemPath>res/trash/40x40/bob_down.bmp</itemPath>
+          <itemPath>res/trash/40x40/bob_left.bmp</itemPath>
+          <itemPath>res/trash/40x40/bob_right.bmp</itemPath>
+          <itemPath>res/trash/40x40/bob_up.bmp</itemPath>
+          <itemPath>res/trash/40x40/obj1.bmp</itemPath>
+        </logicalFolder>
+        <logicalFolder name="old" displayName="old" projectFiles="true">
+          <itemPath>res/trash/old/bob_down.bmp</itemPath>
+          <itemPath>res/trash/old/bob_left.bmp</itemPath>
+          <itemPath>res/trash/old/bob_right.bmp</itemPath>
+          <itemPath>res/trash/old/bob_up.bmp</itemPath>
+          <itemPath>res/trash/old/chest.bmp</itemPath>
+          <itemPath>res/trash/old/escape.bmp</itemPath>
+          <itemPath>res/trash/old/fond1.bmp</itemPath>
+          <itemPath>res/trash/old/hp_bar.bmp</itemPath>
+          <itemPath>res/trash/old/hp_bar2.bmp</itemPath>
+          <itemPath>res/trash/old/hp_gui.bmp</itemPath>
+          <itemPath>res/trash/old/hp_hide.bmp</itemPath>
+          <itemPath>res/trash/old/life.xcf</itemPath>
+          <itemPath>res/trash/old/loose.bmp</itemPath>
+          <itemPath>res/trash/old/obj1.bmp</itemPath>
+          <itemPath>res/trash/old/obj2.bmp</itemPath>
+          <itemPath>res/trash/old/obj2S.bmp</itemPath>
+          <itemPath>res/trash/old/shop.bmp</itemPath>
+          <itemPath>res/trash/old/sol0.bmp</itemPath>
+          <itemPath>res/trash/old/sol1.bmp</itemPath>
+          <itemPath>res/trash/old/sol1old.bmp</itemPath>
+          <itemPath>res/trash/old/sol2.bmp</itemPath>
+          <itemPath>res/trash/old/sol3.bmp</itemPath>
+          <itemPath>res/trash/old/sol4.bmp</itemPath>
+          <itemPath>res/trash/old/sol5.bmp</itemPath>
+          <itemPath>res/trash/old/sol5old.bmp</itemPath>
+          <itemPath>res/trash/old/soul.bmp</itemPath>
+          <itemPath>res/trash/old/stair_down.bmp</itemPath>
+          <itemPath>res/trash/old/stair_up.bmp</itemPath>
+          <itemPath>res/trash/old/tileset.bmp</itemPath>
+        </logicalFolder>
+        <itemPath>res/trash/ALL_32x32.xcf</itemPath>
+        <itemPath>res/trash/bob_down.bmp</itemPath>
+        <itemPath>res/trash/bob_left.bmp</itemPath>
+        <itemPath>res/trash/bob_right.bmp</itemPath>
+        <itemPath>res/trash/bob_up.bmp</itemPath>
+        <itemPath>res/trash/escape.bmp</itemPath>
+        <itemPath>res/trash/escape_title.xcf</itemPath>
+        <itemPath>res/trash/fond1.bmp</itemPath>
+        <itemPath>res/trash/life.xcf</itemPath>
+        <itemPath>res/trash/life_bar.xcf</itemPath>
+        <itemPath>res/trash/obj1.bmp</itemPath>
+        <itemPath>res/trash/obj2.bmp</itemPath>
+        <itemPath>res/trash/objset.xcf</itemPath>
+        <itemPath>res/trash/sol1.bmp</itemPath>
+        <itemPath>res/trash/sol1.xcf</itemPath>
+        <itemPath>res/trash/sol1ss.bmp</itemPath>
+        <itemPath>res/trash/sol2.bmp</itemPath>
+        <itemPath>res/trash/sol2.xcf</itemPath>
+        <itemPath>res/trash/sol2ss.bmp</itemPath>
+        <itemPath>res/trash/sol2sss.bmp</itemPath>
+        <itemPath>res/trash/sol3.bmp</itemPath>
+        <itemPath>res/trash/sol3.xcf</itemPath>
+        <itemPath>res/trash/tileset.xcf</itemPath>
+      </logicalFolder>
+      <itemPath>res/bob.png</itemPath>
+      <itemPath>res/bob2.png</itemPath>
+      <itemPath>res/objset.png</itemPath>
+      <itemPath>res/tileset.png</itemPath>
+    </logicalFolder>
+    <logicalFolder name="snd" displayName="snd" projectFiles="true">
+      <itemPath>snd/loot1.wav</itemPath>
+      <itemPath>snd/music.mp3</itemPath>
+      <itemPath>snd/spell1.wav</itemPath>
+      <itemPath>snd/spell2.wav</itemPath>
+    </logicalFolder>
+    <logicalFolder name="src" displayName="src" projectFiles="true">
+      <logicalFolder name="hdr" displayName="hdr" projectFiles="true">
+        <itemPath>src/hdr/affichage.h</itemPath>
+        <itemPath>src/hdr/collision.h</itemPath>
+        <itemPath>src/hdr/define.h</itemPath>
+        <itemPath>src/hdr/event.h</itemPath>
+        <itemPath>src/hdr/init.h</itemPath>
+        <itemPath>src/hdr/object_power.h</itemPath>
+        <itemPath>src/hdr/other_screen.h</itemPath>
+        <itemPath>src/hdr/struct.h</itemPath>
+        <itemPath>src/hdr/texture.h</itemPath>
+      </logicalFolder>
+      <itemPath>src/affichage.c</itemPath>
+      <itemPath>src/collision.c</itemPath>
+      <itemPath>src/event.c</itemPath>
+      <itemPath>src/init.c</itemPath>
+      <itemPath>src/main.c</itemPath>
+      <itemPath>src/object_power.c</itemPath>
+      <itemPath>src/other_screen.c</itemPath>
+      <itemPath>src/texture.c</itemPath>
+    </logicalFolder>
+    <logicalFolder name="ttf" displayName="ttf" projectFiles="true">
+      <itemPath>ttf/OpenSans-Bold.ttf</itemPath>
+      <itemPath>ttf/OpenSans-BoldItalic.ttf</itemPath>
+      <itemPath>ttf/OpenSans-ExtraBold.ttf</itemPath>
+      <itemPath>ttf/OpenSans-ExtraBoldItalic.ttf</itemPath>
+      <itemPath>ttf/OpenSans-Italic.ttf</itemPath>
+      <itemPath>ttf/OpenSans-Light.ttf</itemPath>
+      <itemPath>ttf/OpenSans-LightItalic.ttf</itemPath>
+      <itemPath>ttf/OpenSans-Regular.ttf</itemPath>
+      <itemPath>ttf/OpenSans-Semibold.ttf</itemPath>
+      <itemPath>ttf/OpenSans-SemiboldItalic.ttf</itemPath>
+    </logicalFolder>
+    <logicalFolder name="ExternalFiles"
+                   displayName="Important Files"
+                   projectFiles="false"
+                   kind="IMPORTANT_FILES_FOLDER">
+      <itemPath>Makefile</itemPath>
+    </logicalFolder>
+  </logicalFolder>
+  <sourceRootList>
+    <Elem>../Test1</Elem>
+    <Elem>src</Elem>
+    <Elem>snd</Elem>
+    <Elem>ttf</Elem>
+    <Elem>res</Elem>
+  </sourceRootList>
+  <projectmakefile>Makefile</projectmakefile>
+  <confs>
+    <conf name="Debug" type="1">
+      <toolsSet>
+        <compilerSet>default</compilerSet>
+        <dependencyChecking>true</dependencyChecking>
+        <rebuildPropChanged>false</rebuildPropChanged>
+      </toolsSet>
+      <compileType>
+        <cTool>
+          <standard>10</standard>
+          <incDir>
+            <pElem>/usr/include/SDL</pElem>
+          </incDir>
+        </cTool>
+        <linkerTool>
+          <linkerLibItems>
+            <linkerOptionItem>-lSDL2 -lSDL2_image -lSDL2_ttf -lSDL2_mixer</linkerOptionItem>
+          </linkerLibItems>
+        </linkerTool>
+      </compileType>
+      <item path="res/bob.png" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="res/bob2.png" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="res/objset.png" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="res/tileset.png" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="res/trash/40x40/bob_down.bmp" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="res/trash/40x40/bob_left.bmp" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="res/trash/40x40/bob_right.bmp" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="res/trash/40x40/bob_up.bmp" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="res/trash/40x40/obj1.bmp" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="res/trash/ALL_32x32.xcf" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="res/trash/bob_down.bmp" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="res/trash/bob_left.bmp" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="res/trash/bob_right.bmp" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="res/trash/bob_up.bmp" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="res/trash/escape.bmp" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="res/trash/escape_title.xcf" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="res/trash/fond1.bmp" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="res/trash/life.xcf" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="res/trash/life_bar.xcf" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="res/trash/obj1.bmp" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="res/trash/obj2.bmp" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="res/trash/objset.xcf" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="res/trash/old/bob_down.bmp" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="res/trash/old/bob_left.bmp" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="res/trash/old/bob_right.bmp" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="res/trash/old/bob_up.bmp" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="res/trash/old/chest.bmp" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="res/trash/old/escape.bmp" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="res/trash/old/fond1.bmp" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="res/trash/old/hp_bar.bmp" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="res/trash/old/hp_bar2.bmp" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="res/trash/old/hp_gui.bmp" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="res/trash/old/hp_hide.bmp" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="res/trash/old/life.xcf" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="res/trash/old/loose.bmp" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="res/trash/old/obj1.bmp" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="res/trash/old/obj2.bmp" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="res/trash/old/obj2S.bmp" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="res/trash/old/shop.bmp" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="res/trash/old/sol0.bmp" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="res/trash/old/sol1.bmp" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="res/trash/old/sol1old.bmp" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="res/trash/old/sol2.bmp" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="res/trash/old/sol3.bmp" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="res/trash/old/sol4.bmp" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="res/trash/old/sol5.bmp" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="res/trash/old/sol5old.bmp" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="res/trash/old/soul.bmp" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="res/trash/old/stair_down.bmp" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="res/trash/old/stair_up.bmp" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="res/trash/old/tileset.bmp" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="res/trash/sol1.bmp" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="res/trash/sol1.xcf" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="res/trash/sol1ss.bmp" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="res/trash/sol2.bmp" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="res/trash/sol2.xcf" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="res/trash/sol2ss.bmp" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="res/trash/sol2sss.bmp" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="res/trash/sol3.bmp" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="res/trash/sol3.xcf" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="res/trash/tileset.xcf" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="snd/loot1.wav" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="snd/music.mp3" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="snd/spell1.wav" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="snd/spell2.wav" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="src/affichage.c" ex="false" tool="0" flavor2="0">
+      </item>
+      <item path="src/collision.c" ex="false" tool="0" flavor2="0">
+      </item>
+      <item path="src/event.c" ex="false" tool="0" flavor2="0">
+      </item>
+      <item path="src/hdr/affichage.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="src/hdr/collision.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="src/hdr/define.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="src/hdr/event.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="src/hdr/init.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="src/hdr/object_power.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="src/hdr/other_screen.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="src/hdr/struct.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="src/hdr/texture.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="src/init.c" ex="false" tool="0" flavor2="0">
+      </item>
+      <item path="src/main.c" ex="false" tool="0" flavor2="0">
+      </item>
+      <item path="src/object_power.c" ex="false" tool="0" flavor2="0">
+      </item>
+      <item path="src/other_screen.c" ex="false" tool="0" flavor2="0">
+      </item>
+      <item path="src/texture.c" ex="false" tool="0" flavor2="0">
+      </item>
+      <item path="ttf/OpenSans-Bold.ttf" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="ttf/OpenSans-BoldItalic.ttf" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="ttf/OpenSans-ExtraBold.ttf" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="ttf/OpenSans-ExtraBoldItalic.ttf" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="ttf/OpenSans-Italic.ttf" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="ttf/OpenSans-Light.ttf" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="ttf/OpenSans-LightItalic.ttf" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="ttf/OpenSans-Regular.ttf" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="ttf/OpenSans-Semibold.ttf" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="ttf/OpenSans-SemiboldItalic.ttf" ex="false" tool="3" flavor2="0">
+      </item>
+    </conf>
+    <conf name="Release" type="1">
+      <toolsSet>
+        <compilerSet>default</compilerSet>
+        <dependencyChecking>true</dependencyChecking>
+        <rebuildPropChanged>false</rebuildPropChanged>
+      </toolsSet>
+      <compileType>
+        <cTool>
+          <developmentMode>5</developmentMode>
+          <standard>10</standard>
+        </cTool>
+        <ccTool>
+          <developmentMode>5</developmentMode>
+        </ccTool>
+        <fortranCompilerTool>
+          <developmentMode>5</developmentMode>
+        </fortranCompilerTool>
+        <asmTool>
+          <developmentMode>5</developmentMode>
+        </asmTool>
+      </compileType>
+      <item path="res/bob.png" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="res/bob2.png" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="res/objset.png" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="res/tileset.png" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="res/trash/40x40/bob_down.bmp" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="res/trash/40x40/bob_left.bmp" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="res/trash/40x40/bob_right.bmp" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="res/trash/40x40/bob_up.bmp" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="res/trash/40x40/obj1.bmp" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="res/trash/ALL_32x32.xcf" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="res/trash/bob_down.bmp" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="res/trash/bob_left.bmp" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="res/trash/bob_right.bmp" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="res/trash/bob_up.bmp" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="res/trash/escape.bmp" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="res/trash/escape_title.xcf" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="res/trash/fond1.bmp" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="res/trash/life.xcf" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="res/trash/life_bar.xcf" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="res/trash/obj1.bmp" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="res/trash/obj2.bmp" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="res/trash/objset.xcf" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="res/trash/old/bob_down.bmp" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="res/trash/old/bob_left.bmp" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="res/trash/old/bob_right.bmp" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="res/trash/old/bob_up.bmp" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="res/trash/old/chest.bmp" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="res/trash/old/escape.bmp" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="res/trash/old/fond1.bmp" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="res/trash/old/hp_bar.bmp" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="res/trash/old/hp_bar2.bmp" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="res/trash/old/hp_gui.bmp" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="res/trash/old/hp_hide.bmp" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="res/trash/old/life.xcf" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="res/trash/old/loose.bmp" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="res/trash/old/obj1.bmp" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="res/trash/old/obj2.bmp" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="res/trash/old/obj2S.bmp" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="res/trash/old/shop.bmp" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="res/trash/old/sol0.bmp" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="res/trash/old/sol1.bmp" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="res/trash/old/sol1old.bmp" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="res/trash/old/sol2.bmp" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="res/trash/old/sol3.bmp" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="res/trash/old/sol4.bmp" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="res/trash/old/sol5.bmp" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="res/trash/old/sol5old.bmp" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="res/trash/old/soul.bmp" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="res/trash/old/stair_down.bmp" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="res/trash/old/stair_up.bmp" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="res/trash/old/tileset.bmp" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="res/trash/sol1.bmp" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="res/trash/sol1.xcf" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="res/trash/sol1ss.bmp" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="res/trash/sol2.bmp" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="res/trash/sol2.xcf" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="res/trash/sol2ss.bmp" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="res/trash/sol2sss.bmp" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="res/trash/sol3.bmp" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="res/trash/sol3.xcf" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="res/trash/tileset.xcf" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="snd/loot1.wav" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="snd/music.mp3" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="snd/spell1.wav" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="snd/spell2.wav" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="src/affichage.c" ex="false" tool="0" flavor2="0">
+      </item>
+      <item path="src/collision.c" ex="false" tool="0" flavor2="0">
+      </item>
+      <item path="src/event.c" ex="false" tool="0" flavor2="0">
+      </item>
+      <item path="src/hdr/affichage.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="src/hdr/collision.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="src/hdr/define.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="src/hdr/event.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="src/hdr/init.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="src/hdr/object_power.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="src/hdr/other_screen.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="src/hdr/struct.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="src/hdr/texture.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="src/init.c" ex="false" tool="0" flavor2="0">
+      </item>
+      <item path="src/main.c" ex="false" tool="0" flavor2="0">
+      </item>
+      <item path="src/object_power.c" ex="false" tool="0" flavor2="0">
+      </item>
+      <item path="src/other_screen.c" ex="false" tool="0" flavor2="0">
+      </item>
+      <item path="src/texture.c" ex="false" tool="0" flavor2="0">
+      </item>
+      <item path="ttf/OpenSans-Bold.ttf" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="ttf/OpenSans-BoldItalic.ttf" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="ttf/OpenSans-ExtraBold.ttf" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="ttf/OpenSans-ExtraBoldItalic.ttf" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="ttf/OpenSans-Italic.ttf" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="ttf/OpenSans-Light.ttf" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="ttf/OpenSans-LightItalic.ttf" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="ttf/OpenSans-Regular.ttf" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="ttf/OpenSans-Semibold.ttf" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="ttf/OpenSans-SemiboldItalic.ttf" ex="false" tool="3" flavor2="0">
+      </item>
+    </conf>
+  </confs>
+</configurationDescriptor>
