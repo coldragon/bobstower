@@ -20,7 +20,7 @@ void AfficherMap_layer1(SDL_Renderer* render, Texture* tileset, leMap MAP)
   posTile.w=TCASE; posTile.h=TCASE;
   int i, j;
   const int wtileset = tileset->w/TCASE;
-  for (i=0; i<HCASE; i++)
+  for (i=1; i<HCASE; i++)
   {
     for (j=0; j<WCASE; j++)
     {
@@ -39,7 +39,7 @@ void AfficherMap_layer2(SDL_Renderer* render, Texture* tileset, leMap MAP)
   posTile.w=TCASE; posTile.h=TCASE;
   int i, j;
   const int wtileset = tileset->w/TCASE;
-  for (i=0; i<HCASE; i++)
+  for (i=1; i<HCASE; i++)
   {
     for (j=0; j<WCASE; j++)
     {
@@ -59,7 +59,7 @@ void AfficherObj(SDL_Renderer* render, Texture* objset, leMap MAP)
   posObj.w=TCASE; posObj.h=TCASE;
   int i, j;
   const int wobjset = objset->w/TCASE;
-  for (i=0; i<HCASE; i++)
+  for (i=1; i<HCASE; i++)
   {
     for (j=0; j<WCASE; j++)
     {
@@ -70,4 +70,13 @@ void AfficherObj(SDL_Renderer* render, Texture* objset, leMap MAP)
       TextureRender(render, objset, pos.x, pos.y, &posObj);
     }
   }
+}
+
+void AfficherGui(SDL_Renderer* render, Texture* guiset, leBob *BOB)
+{
+  SDL_Rect rect;
+  rect.h=TCASE; rect.w=211;
+  TextureRender(render, guiset, 0, 0, &rect);
+  rect.y=TCASE; rect.h=10; rect.w=4+(BOB->hp*(201/BOB->hpMax));
+  TextureRender(render, guiset, 0, 16, &rect);
 }

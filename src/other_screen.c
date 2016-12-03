@@ -12,6 +12,7 @@ int menu_escape(SDL_Renderer *render)
   img=TextureCreate(render, "res/escapetitle.png", 255, 0, 255, 255);
   TextureRender(render, img, 0, 0, NULL);
   SDL_RenderPresent(render);
+  Mix_PauseMusic();
   SDL_Delay(150);
   while(boucle)
   {
@@ -34,5 +35,6 @@ int menu_escape(SDL_Renderer *render)
       //Fin switch
     }
   }
+  Mix_ResumeMusic();
   return action;
 }

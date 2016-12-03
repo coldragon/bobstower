@@ -26,7 +26,6 @@ void callbackActionObject(int* objectType, leBob* BOB, leMap* MAP, leJeu* JEU)
     case 3:
       BOB->money+=50;
       printf("money :%i \n", BOB->money);
-      Mix_Volume(1, 50);
       Mix_PlayChannel(1, JEU->son1, 0);
       *objectType = 4;
     break;

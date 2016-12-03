@@ -23,9 +23,10 @@ int main(int argc, char* args[])
   // Variable de SDL
   SDL_Window *window;
   SDL_Renderer* render;
-  Mix_Music *musique;
+  Mix_Music *musique, *musique2;
   Texture *tileset;
   Texture *objset;
+  Texture *guiset;
   Texture *screentitle;
   SDL_Event event;
 
@@ -48,7 +49,9 @@ int main(int argc, char* args[])
   tileset=TextureCreate(render, "res/tileset.png", 255, 0, 255, 255);
   objset=TextureCreate(render, "res/objset.png", 255, 0, 255, 255);
   screentitle=TextureCreate(render, "res/screentitle.png", 255, 0, 255, 255);
+  guiset=TextureCreate(render, "res/guiset.png", 255, 0, 255, 255);
   musique = Mix_LoadMUS("snd/music.mp3");
+  musique2 = Mix_LoadMUS("snd/music2.mp3");
 
   while(restartgame)
   {
@@ -70,7 +73,10 @@ int main(int argc, char* args[])
       JEU.son1 = Mix_LoadWAV("snd/loot1.wav"); // loot1
       JEU.son2 = Mix_LoadWAV("snd/loot2.wav");  // loot2
       JEU.son3 = Mix_LoadWAV("snd/loot3.wav"); // loot3
-    Mix_PauseMusic();
+      Mix_Volume(1, 50);
+
+      Mix_PlayMusic(musique2, -1);
+      Mix_VolumeMusic(65);
 
     while (continuer)
     {
@@ -81,6 +87,7 @@ int main(int argc, char* args[])
       AfficherObj(render, objset, MAP1);
       AfficherBob(render, BOB0);
       AfficherMap_layer2(render, tileset, MAP1);
+      AfficherGui(render, guiset, &BOB0);
       SDL_RenderPresent(render);
     }
   }
