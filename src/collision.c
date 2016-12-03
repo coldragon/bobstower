@@ -14,8 +14,8 @@ void collision(leBob *BOB, leMap *MAP)
     }
     //
 //
-    if (MAP->col[(BOB->pos.y+23)/32][(BOB->pos.x+4)/32]== 2 || MAP->col[(BOB->pos.y+23)/32][(BOB->pos.x+28)/32]== 2 ||
-    MAP->col[(BOB->pos.y+32)/32][(BOB->pos.x+4)/32]== 2 || MAP->col[(BOB->pos.y+32)/32][(BOB->pos.x+28)/32]== 2)
+    if (MAP->col[(BOB->pos.y)/32][(BOB->pos.x+4)/32]== 2 || MAP->col[(BOB->pos.y)/32][(BOB->pos.x+28)/32]== 2 ||
+    MAP->col[(BOB->pos.y+10)/32][(BOB->pos.x+4)/32]== 2 || MAP->col[(BOB->pos.y+10)/32][(BOB->pos.x+28)/32]== 2)
     {
       BOB->pos.x=BOB->posTemp.x;
       BOB->pos.y=BOB->posTemp.y;

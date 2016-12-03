@@ -21,6 +21,7 @@ typedef struct leBob leBob;
 struct leMap
 {
   int tile[HCASE][WCASE];
+  int tile2[HCASE][WCASE];
   int col[HCASE][WCASE];
   int obj[HCASE][WCASE];
   int tpin[HCASE][WCASE];

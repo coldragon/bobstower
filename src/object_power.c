@@ -10,7 +10,7 @@ void callbackActionObject(int* objectType, leBob* BOB, leMap* MAP, leJeu* JEU)
     {
       BOB->hp+=5;
       *objectType = 0;
-
+      Mix_PlayChannel(1, JEU->son2, 0);
       printf("\n vie : %i / %i \n", BOB->hp, BOB->hpMax);
     }
     break;
@@ -20,6 +20,7 @@ void callbackActionObject(int* objectType, leBob* BOB, leMap* MAP, leJeu* JEU)
       BOB->hp++;
       *objectType = 0;
       printf("\n vie : %i / %i \n", BOB->hp, BOB->hpMax);
+      Mix_PlayChannel(1, JEU->son3, 0);
     break;
 
     case 3:

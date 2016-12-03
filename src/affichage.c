@@ -14,7 +14,7 @@ void CleanScreen(SDL_Renderer* render, int r, int g, int b)
   SDL_RenderClear(render);
 }
 
-void AfficherMap(SDL_Renderer* render, Texture* tileset, leMap MAP)
+void AfficherMap_layer1(SDL_Renderer* render, Texture* tileset, leMap MAP)
 {
   SDL_Rect pos, posTile;
   posTile.w=TCASE; posTile.h=TCASE;
@@ -28,6 +28,26 @@ void AfficherMap(SDL_Renderer* render, Texture* tileset, leMap MAP)
         pos.y=i*TCASE;
         posTile.x=TCASE*(MAP.tile[i][j]%(wtileset));
         posTile.y=TCASE*(MAP.tile[i][j]/(wtileset));
+        TextureRender(render, tileset, pos.x, pos.y, &posTile);
+    }
+  }
+}
+
+void AfficherMap_layer2(SDL_Renderer* render, Texture* tileset, leMap MAP)
+{
+  SDL_Rect pos, posTile;
+  posTile.w=TCASE; posTile.h=TCASE;
+  int i, j;
+  const int wtileset = tileset->w/TCASE;
+  for (i=0; i<HCASE; i++)
+  {
+    for (j=0; j<WCASE; j++)
+    {
+        pos.x=j*TCASE;
+        pos.y=i*TCASE;
+        posTile.x=TCASE*(MAP.tile2[i][j]%(wtileset));
+        posTile.y=TCASE*(MAP.tile2[i][j]/(wtileset));
+        if (MAP.tile2[i][j])
         TextureRender(render, tileset, pos.x, pos.y, &posTile);
     }
   }
