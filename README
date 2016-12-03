@@ -17,7 +17,7 @@
 	with :
 
 	gcc
-	NetBeans IDE 8.2 for dbg, git gui, managing project, linker etc ...
+	NetBeans IDE 8.2 for dbg, git gui, managing project, linker, onclick run etc ...
 	Atom (With the help of pkg linter, linter-gcc) for coding
 	Gimp
 	sfxr
@@ -26,3 +26,13 @@
 	build tryed on :
 
 	Xubuntu 16.04
+
+
+	credit :
+	music : openning screen :: Rolemu - Neoakushon
+		ambient 1 :: Visager - Inside the Tower [Loop] from "Songs From An Unmade World 2"
+	
+	tileset : from http://opengameart.org/content/dungeon-crawl-32x32-tiles I edited it a bit
+
+	thank's to Scorbutics for the help in dev!
+	

@@ -54,6 +54,18 @@ void mouvement(SDL_Event event, SDL_Renderer *render ,leBob *BOB0, int *continue
         *restartgame = 0;
       }
       break;
+
+      case SDLK_a:
+      if (BOB0->hp<BOB0->hpMax)
+      BOB0->hp+=5;
+      printf("hp++ :: Hp = %i / %i \n", BOB0->hp, BOB0->hpMax);
+      break;
+
+      case SDLK_z:
+      if (BOB0->hp>0)
+      BOB0->hp-=5;
+      printf("hp-- :: Hp = %i / %i \n", BOB0->hp, BOB0->hpMax);
+      break;
     }
 
     break;

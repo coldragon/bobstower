@@ -8,9 +8,10 @@ leBob bob_init(leBob BOB, SDL_Renderer *render)
   BOB.skinPos.x=0; BOB.skinPos.y=0;
   BOB.skinPos.w=TCASE; BOB.skinPos.h=TCASE;
   BOB.level = 1;
-  BOB.hp = 50;
-  BOB.hpMax = 100;
-  BOB.speed = 16;
+  BOB.hp = 200;
+  BOB.hpMax = 200;
+  BOB.speed = 8;
+  BOB.money = 0;
   BOB.pos.x = WWIN / 2 - BOB.skin->w / 2;
   BOB.pos.y = HWIN / 2 - BOB.skin->h / 2;
   BOB.pos.w = BOB.skin->w;
@@ -19,12 +20,12 @@ leBob bob_init(leBob BOB, SDL_Renderer *render)
   return BOB;
 }
 
-leMap map_init(leMap MAP)
+void map_init(leMap *MAP)
 {
   int i, j;
   int initTile[HCASE][WCASE] =
   {
-    {3, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 3},
+    {7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7},
     {3, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 3},
     {3, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 3},
     {3, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 3},
@@ -40,7 +41,7 @@ leMap map_init(leMap MAP)
     {3, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 3},
     {3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3},
   };
-  for (i=0; i<HCASE; i++){for (j=0; j<WCASE; j++){MAP.tile[i][j]=initTile[i][j];}}
+  for (i=0; i<HCASE; i++){for (j=0; j<WCASE; j++){MAP->tile[i][j]=initTile[i][j];}}
 
   int initTile2[HCASE][WCASE] =
   {
@@ -60,7 +61,7 @@ leMap map_init(leMap MAP)
     {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
     {0, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 0},
   };
-  for (i=0; i<HCASE; i++){for (j=0; j<WCASE; j++){MAP.tile2[i][j]=initTile2[i][j];}}
+  for (i=0; i<HCASE; i++){for (j=0; j<WCASE; j++){MAP->tile2[i][j]=initTile2[i][j];}}
 
   int initObj[HCASE][WCASE] =
   {
@@ -80,7 +81,7 @@ leMap map_init(leMap MAP)
     {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
     {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
   };
-  for (i=0; i<HCASE; i++){for (j=0; j<WCASE; j++){MAP.obj[i][j]=initObj[i][j];}}
+  for (i=0; i<HCASE; i++){for (j=0; j<WCASE; j++){MAP->obj[i][j]=initObj[i][j];}}
 
   int initCol[HCASE][WCASE] =
   {
@@ -100,7 +101,5 @@ leMap map_init(leMap MAP)
     {1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1},
     {1, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 1},
   };
-  for (i=0; i<HCASE; i++){for (j=0; j<WCASE; j++){MAP.col[i][j]=initCol[i][j];}}
-
-  return MAP;
+  for (i=0; i<HCASE; i++){for (j=0; j<WCASE; j++){MAP->col[i][j]=initCol[i][j];}}
 }
