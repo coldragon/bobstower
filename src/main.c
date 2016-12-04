@@ -12,6 +12,8 @@
 #include "hdr/event.h"
 #include "hdr/collision.h"
 
+const SDL_Color WHITE = {255,255,255};
+
 int main(int argc, char* args[])
 { leMap MAP0, MAP1, MAP2;
   leBob BOB0;
@@ -54,7 +56,6 @@ int main(int argc, char* args[])
   musique = Mix_LoadMUS("snd/music.mp3");
   musique2 = Mix_LoadMUS("snd/music2.mp3");
   police = TTF_OpenFont("ttf/FiraSans-Medium.ttf", 14);
-
   while(restartgame)
   {
     startmenu=1;
@@ -75,10 +76,12 @@ int main(int argc, char* args[])
       JEU.son1 = Mix_LoadWAV("snd/loot1.wav"); // loot1
       JEU.son2 = Mix_LoadWAV("snd/loot2.wav");  // loot2
       JEU.son3 = Mix_LoadWAV("snd/loot3.wav"); // loot3
-      Mix_Volume(1, 50);
+      JEU.son4 = Mix_LoadWAV("snd/hit1.wav"); // hit1
+
+      Mix_Volume(1, 65);
 
       Mix_PlayMusic(musique2, -1);
-      Mix_VolumeMusic(45);
+      Mix_VolumeMusic(30);
 
     while (continuer)
     {
@@ -91,7 +94,7 @@ int main(int argc, char* args[])
       AfficherMap_layer2(render, tileset, MAP1);
       AfficherGui(render, guiset, &BOB0, police);
       SDL_RenderPresent(render);
-      if(!BOB0.hp)
+      if(BOB0.hp<1)
       continuer=0;
     }
   }

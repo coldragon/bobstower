@@ -5,6 +5,9 @@
 #include "hdr/texture.h"
 #include "hdr/struct.h"
 
+extern const SDL_Color WHITE;
+
+
 void AfficherBob(SDL_Renderer* render, leBob *BOB)
 {
   TextureRender(render, BOB->skin, BOB->pos.x, BOB->pos.y, &BOB->skinPos);
@@ -87,24 +90,20 @@ void AfficherGui(SDL_Renderer* render, Texture* guiset, leBob *BOB, TTF_Font *po
   TextureRender(render, guiset, 0, 0, &rect);
   rect.y=TCASE; rect.h=10; rect.x=0; rect.w=4+((BOB->hp*201)/BOB->hpMax);
   TextureRender(render, guiset, 0, 16, &rect);
-
-  SDL_Color colwhite= {255, 255, 255, 0};
-
   // HP / HPMAX
-  sprintf(&charTemp, "lvl:%d hp:%d/%d", BOB->level, BOB->hp, BOB->hpMax);
-  hpTxt = TTF_RenderText_Blended(police, &charTemp, colwhite);
+  sprintf(&charTemp, "LVL : %d -- HP : %d/%d", BOB->level, BOB->hp, BOB->hpMax);
+  hpTxt = TTF_RenderText_Blended(police, &charTemp, WHITE);
   rect.x=10; rect.y=-1;
   rect.h=hpTxt->h; rect.w=hpTxt->w;
   hpTexture = SDL_CreateTextureFromSurface(render, hpTxt);
   SDL_RenderCopy(render, hpTexture, NULL, &rect);
+  SDL_FreeSurface(hpTxt);
 
-  sprintf(&charTemp, "gold : %d", BOB->money);
+  sprintf(&charTemp, "Gold : %d", BOB->money);
   rect.x=230; rect.y=1;
-  hpTxt = TTF_RenderText_Blended(police, &charTemp, colwhite);
+  hpTxt = TTF_RenderText_Blended(police, &charTemp, WHITE);
   rect.h=hpTxt->h; rect.w=hpTxt->w;
   hpTexture = SDL_CreateTextureFromSurface(render, hpTxt);
   SDL_RenderCopy(render, hpTexture, NULL, &rect);
-
   SDL_FreeSurface(hpTxt);
-
 }
