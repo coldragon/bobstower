@@ -64,39 +64,58 @@ int main(int argc, char* args[])
     SDL_RenderPresent(render);
     Mix_PlayMusic(musique, -1);
     Mix_VolumeMusic(MIX_MAX_VOLUME / 2);
+
     while (startmenu)
     {
       menuavantjeux(event, &startmenu, &restartgame, &continuer);
     }
 
-      map_init(&MAP0);
-      map_init(&MAP1);
-      map_init(&MAP2);
-      BOB0=bob_init(BOB0, render);
-      JEU.son1 = Mix_LoadWAV("snd/loot1.wav"); // loot1
-      JEU.son2 = Mix_LoadWAV("snd/loot2.wav");  // loot2
-      JEU.son3 = Mix_LoadWAV("snd/loot3.wav"); // loot3
-      JEU.son4 = Mix_LoadWAV("snd/hit1.wav"); // hit1
+    map_init(&MAP0);
+    map_init(&MAP1);
+    map_init(&MAP2);
+    BOB0=bob_init(BOB0, render);
+    JEU.son1 = Mix_LoadWAV("snd/loot1.wav"); // loot1
+    JEU.son2 = Mix_LoadWAV("snd/loot2.wav");  // loot2
+    JEU.son3 = Mix_LoadWAV("snd/loot3.wav"); // loot3
+    JEU.son4 = Mix_LoadWAV("snd/hit1.wav"); // hit1
 
-      Mix_Volume(1, 65);
+    Mix_Volume(1, 65);
 
-      Mix_PlayMusic(musique2, -1);
-      Mix_VolumeMusic(30);
+    Mix_PlayMusic(musique2, -1);
+    Mix_VolumeMusic(30);
+
+    long
+    t = 0,
+    t0 = 0;
+
+    static const int FPS = 60;
+    int TICKS = 1000 / FPS;
 
     while (continuer)
     {
-      mouvement(event, render, &BOB0, &continuer, &restartgame);
-      collision(&BOB0, &MAP1);
-      objetcollision(&MAP1, &BOB0, &JEU);
-      AfficherMap_layer1(render, tileset, MAP1);
-      AfficherObj(render, objset, MAP1);
-      AfficherBob(render, &BOB0);
-      AfficherMap_layer2(render, tileset, MAP1);
-      AfficherGui(render, guiset, &BOB0, police);
-      SDL_RenderPresent(render);
-      if(BOB0.hp<1)
-      continuer=0;
+      t=SDL_GetTicks();
+      //t et t0 sont les temps pour la gestion des fp
+      if(t-t0>TICKS)
+      {
+        mouvement(event, render, &BOB0, &continuer, &restartgame);
+        collision(&BOB0, &MAP1);
+        objetcollision(&MAP1, &BOB0, &JEU);
+        AfficherMap_layer1(render, tileset, MAP1);
+        AfficherObj(render, objset, MAP1);
+        AfficherBob(render, &BOB0);
+        AfficherMap_layer2(render, tileset, MAP1);
+        AfficherGui(render, guiset, &BOB0, police);
+        SDL_RenderPresent(render);
+        if(BOB0.hp<1)
+        continuer=0;
+        t0=t;
+      }
+      else
+      {
+        SDL_Delay(TICKS-(t-t0));
+      }
     }
+    Mix_PauseMusic();
   }
   // Closing
   TTF_Quit();
