@@ -1,0 +1,142 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<CodeBlocks_project_file>
+	<FileVersion major="1" minor="6" />
+	<Project>
+		<Option title="Bobs_Tower" />
+		<Option pch_mode="2" />
+		<Option compiler="gcc" />
+		<Build>
+			<Target title="Release">
+				<Option output="bin/Release/Bobs_Tower" prefix_auto="1" extension_auto="1" />
+				<Option working_dir="/home/coldragon/Documents/Programmation/Bobs_tower_cb" />
+				<Option object_output="obj/Release/" />
+				<Option type="0" />
+				<Option compiler="gcc" />
+				<Compiler>
+					<Add option="-O2" />
+				</Compiler>
+				<Linker>
+					<Add option="-s" />
+					<Add option="-lSDL2" />
+					<Add option="-lSDL2_image" />
+					<Add option="-lSDL2_ttf" />
+					<Add option="-lSDL2_mixer" />
+				</Linker>
+			</Target>
+		</Build>
+		<Compiler>
+			<Add option="-Wall" />
+		</Compiler>
+		<Unit filename="res/bob.png" />
+		<Unit filename="res/bob2.png" />
+		<Unit filename="res/escapetitle.png" />
+		<Unit filename="res/guiset.png" />
+		<Unit filename="res/objset.png" />
+		<Unit filename="res/screentitle.png" />
+		<Unit filename="res/tileset.png" />
+		<Unit filename="res/trash/40x40/bob_down.bmp" />
+		<Unit filename="res/trash/40x40/bob_left.bmp" />
+		<Unit filename="res/trash/40x40/bob_right.bmp" />
+		<Unit filename="res/trash/40x40/bob_up.bmp" />
+		<Unit filename="res/trash/40x40/obj1.bmp" />
+		<Unit filename="res/trash/ALL_32x32.xcf" />
+		<Unit filename="res/trash/bob_down.bmp" />
+		<Unit filename="res/trash/bob_left.bmp" />
+		<Unit filename="res/trash/bob_right.bmp" />
+		<Unit filename="res/trash/bob_up.bmp" />
+		<Unit filename="res/trash/escape.bmp" />
+		<Unit filename="res/trash/escape_title.xcf" />
+		<Unit filename="res/trash/fond1.bmp" />
+		<Unit filename="res/trash/gui.xcf" />
+		<Unit filename="res/trash/guiset.xcf" />
+		<Unit filename="res/trash/life.xcf" />
+		<Unit filename="res/trash/life_bar.xcf" />
+		<Unit filename="res/trash/obj1.bmp" />
+		<Unit filename="res/trash/obj2.bmp" />
+		<Unit filename="res/trash/objset.xcf" />
+		<Unit filename="res/trash/objset2.xcf" />
+		<Unit filename="res/trash/old/bob_down.bmp" />
+		<Unit filename="res/trash/old/bob_left.bmp" />
+		<Unit filename="res/trash/old/bob_right.bmp" />
+		<Unit filename="res/trash/old/bob_up.bmp" />
+		<Unit filename="res/trash/old/chest.bmp" />
+		<Unit filename="res/trash/old/escape.bmp" />
+		<Unit filename="res/trash/old/fond1.bmp" />
+		<Unit filename="res/trash/old/hp_bar.bmp" />
+		<Unit filename="res/trash/old/hp_bar2.bmp" />
+		<Unit filename="res/trash/old/hp_gui.bmp" />
+		<Unit filename="res/trash/old/hp_hide.bmp" />
+		<Unit filename="res/trash/old/life.xcf" />
+		<Unit filename="res/trash/old/loose.bmp" />
+		<Unit filename="res/trash/old/obj1.bmp" />
+		<Unit filename="res/trash/old/obj2.bmp" />
+		<Unit filename="res/trash/old/obj2S.bmp" />
+		<Unit filename="res/trash/old/shop.bmp" />
+		<Unit filename="res/trash/old/sol0.bmp" />
+		<Unit filename="res/trash/old/sol1.bmp" />
+		<Unit filename="res/trash/old/sol1old.bmp" />
+		<Unit filename="res/trash/old/sol2.bmp" />
+		<Unit filename="res/trash/old/sol3.bmp" />
+		<Unit filename="res/trash/old/sol4.bmp" />
+		<Unit filename="res/trash/old/sol5.bmp" />
+		<Unit filename="res/trash/old/sol5old.bmp" />
+		<Unit filename="res/trash/old/soul.bmp" />
+		<Unit filename="res/trash/old/stair_down.bmp" />
+		<Unit filename="res/trash/old/stair_up.bmp" />
+		<Unit filename="res/trash/old/tileset.bmp" />
+		<Unit filename="res/trash/sol1.bmp" />
+		<Unit filename="res/trash/sol1.xcf" />
+		<Unit filename="res/trash/sol1ss.bmp" />
+		<Unit filename="res/trash/sol2.bmp" />
+		<Unit filename="res/trash/sol2.xcf" />
+		<Unit filename="res/trash/sol2ss.bmp" />
+		<Unit filename="res/trash/sol2sss.bmp" />
+		<Unit filename="res/trash/sol3.bmp" />
+		<Unit filename="res/trash/sol3.xcf" />
+		<Unit filename="res/trash/tileset.xcf" />
+		<Unit filename="snd/hit1.wav" />
+		<Unit filename="snd/loot1.wav" />
+		<Unit filename="snd/loot2.wav" />
+		<Unit filename="snd/loot3.wav" />
+		<Unit filename="snd/music.mp3" />
+		<Unit filename="snd/music2.mp3" />
+		<Unit filename="snd/spell1.wav" />
+		<Unit filename="snd/spell2.wav" />
+		<Unit filename="src/affichage.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="src/collision.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="src/event.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="src/hdr/affichage.h" />
+		<Unit filename="src/hdr/collision.h" />
+		<Unit filename="src/hdr/define.h" />
+		<Unit filename="src/hdr/event.h" />
+		<Unit filename="src/hdr/init.h" />
+		<Unit filename="src/hdr/object_power.h" />
+		<Unit filename="src/hdr/other_screen.h" />
+		<Unit filename="src/hdr/struct.h" />
+		<Unit filename="src/init.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="src/main.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="src/object_power.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="src/other_screen.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="src/texture.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Extensions>
+			<code_completion />
+			<debugger />
+		</Extensions>
+	</Project>
+</CodeBlocks_project_file>

@@ -1,0 +1,74 @@
+# depslib dependency file v1.0
+1481292870 source:/home/coldragon/Documents/Programmation/Bobs_tower_cb/src/affichage.c
+	<SDL2/SDL.h>
+	<SDL2/SDL_ttf.h>
+	<SDL2/SDL_image.h>
+	"hdr/define.h"
+	"hdr/texture.h"
+	"hdr/struct.h"
+
+1481320008 /home/coldragon/Documents/Programmation/Bobs_tower_cb/src/hdr/define.h
+
+1480123758 /home/coldragon/Documents/Programmation/Bobs_tower_cb/src/hdr/texture.h
+	<SDL2/SDL.h>
+
+1481337057 /home/coldragon/Documents/Programmation/Bobs_tower_cb/src/hdr/struct.h
+	"define.h"
+	"texture.h"
+	<SDL2/SDL_mixer.h>
+
+1480730472 source:/home/coldragon/Documents/Programmation/Bobs_tower_cb/src/collision.c
+	"hdr/struct.h"
+	"hdr/object_power.h"
+
+1481336886 /home/coldragon/Documents/Programmation/Bobs_tower_cb/src/hdr/object_power.h
+
+1480889011 source:/home/coldragon/Documents/Programmation/Bobs_tower_cb/src/event.c
+	<SDL2/SDL.h>
+	"hdr/other_screen.h"
+	"hdr/struct.h"
+
+1481336826 /home/coldragon/Documents/Programmation/Bobs_tower_cb/src/hdr/other_screen.h
+
+1480819348 source:/home/coldragon/Documents/Programmation/Bobs_tower_cb/src/init.c
+	"hdr/texture.h"
+	"hdr/define.h"
+	"hdr/struct.h"
+
+1481328857 source:/home/coldragon/Documents/Programmation/Bobs_tower_cb/src/main.c
+	<stdio.h>
+	<stdlib.h>
+	<SDL2/SDL.h>
+	<SDL2/SDL_image.h>
+	<SDL2/SDL_mixer.h>
+	<SDL2/SDL_ttf.h>
+	"hdr/texture.h"
+	"hdr/struct.h"
+	"hdr/affichage.h"
+	"hdr/init.h"
+	"hdr/event.h"
+	"hdr/collision.h"
+	"hdr/define.h"
+
+1481336579 /home/coldragon/Documents/Programmation/Bobs_tower_cb/src/hdr/affichage.h
+
+1481336725 /home/coldragon/Documents/Programmation/Bobs_tower_cb/src/hdr/init.h
+
+1481336681 /home/coldragon/Documents/Programmation/Bobs_tower_cb/src/hdr/event.h
+
+1481336956 /home/coldragon/Documents/Programmation/Bobs_tower_cb/src/hdr/collision.h
+
+1480863649 source:/home/coldragon/Documents/Programmation/Bobs_tower_cb/src/object_power.c
+	"hdr/struct.h"
+	<SDL2/SDL_mixer.h>
+
+1480735713 source:/home/coldragon/Documents/Programmation/Bobs_tower_cb/src/other_screen.c
+	<SDL2/SDL.h>
+	"hdr/struct.h"
+	"hdr/texture.h"
+
+1480780934 source:/home/coldragon/Documents/Programmation/Bobs_tower_cb/src/texture.c
+	<stdio.h>
+	<SDL2/SDL_image.h>
+	"hdr/texture.h"
+

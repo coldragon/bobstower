@@ -5,12 +5,12 @@
 #include <SDL2/SDL_mixer.h>
 #include <SDL2/SDL_ttf.h>
 #include "hdr/texture.h"
-#include "hdr/define.h"
 #include "hdr/struct.h"
 #include "hdr/affichage.h"
 #include "hdr/init.h"
 #include "hdr/event.h"
 #include "hdr/collision.h"
+#include "hdr/define.h"
 
 const SDL_Color WHITE = {255,255,255};
 
@@ -84,6 +84,8 @@ int main(int argc, char* args[])
     Mix_PlayMusic(musique2, -1);
     Mix_VolumeMusic(30);
 
+    int hpTemp, moneyTemp;
+
     long
     t = 0,
     t0 = 0;
@@ -91,11 +93,11 @@ int main(int argc, char* args[])
     static const int FPS = 60;
     int TICKS = 1000 / FPS;
 
-    while (continuer)
+    while(continuer)
     {
       t=SDL_GetTicks();
-      //t et t0 sont les temps pour la gestion des fp
-      if(t-t0>TICKS)
+
+      if (t-t0>TICKS)
       {
         mouvement(event, render, &BOB0, &continuer, &restartgame);
         collision(&BOB0, &MAP1);
@@ -104,11 +106,14 @@ int main(int argc, char* args[])
         AfficherObj(render, objset, MAP1);
         AfficherBob(render, &BOB0);
         AfficherMap_layer2(render, tileset, MAP1);
+        if (moneyTemp!=BOB0.money || hpTemp!=BOB0.hp)
         AfficherGui(render, guiset, &BOB0, police);
         SDL_RenderPresent(render);
-        if(BOB0.hp<1)
+        if (BOB0.hp<1)
         continuer=0;
         t0=t;
+        hpTemp=BOB0.hp;
+        moneyTemp=BOB0.money;
       }
       else
       {
