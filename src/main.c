@@ -18,6 +18,7 @@ int main(int argc, char* args[])
 { leMap MAP0, MAP1, MAP2;
   leBob BOB0;
   leJeu JEU;
+  leInput input;
   int continuer = 1;
   int restartgame = 1;
   int startmenu =1;
@@ -99,8 +100,10 @@ int main(int argc, char* args[])
 
       if (t-t0>TICKS)
       {
-
-        mouvement(event, render, &BOB0, &continuer, &restartgame);
+        printf("test");
+        inputInit(&input);
+        inputReturn(event, &input);
+        mouvement(&input, event, render, &BOB0, &continuer, &restartgame);
         collision(&BOB0, &MAP1);
         objetcollision(&MAP1, &BOB0, &JEU);
         AfficherMap_layer1(render, tileset, MAP1);
