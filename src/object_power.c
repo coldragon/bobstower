@@ -1,5 +1,6 @@
 #include "hdr/struct.h"
 #include <SDL2/SDL_mixer.h>
+#include <time.h>
 
 void callbackActionObject(int* objectType, leBob* BOB, leMap* MAP, leJeu* JEU)
 {
@@ -8,35 +9,35 @@ void callbackActionObject(int* objectType, leBob* BOB, leMap* MAP, leJeu* JEU)
     case 1:
     if(BOB->hp < BOB->hpMax)
     {
-      BOB->hp+=5;
+      BOB->hp+=2+BOB->level;
       if(BOB->hp > BOB->hpMax)
       BOB->hp=BOB->hpMax;
 
       *objectType = 0;
       Mix_PlayChannel(1, JEU->son2, 0);
-      printf("\n vie : %i / %i \n", BOB->hp, BOB->hpMax);
     }
     break;
 
     case 2:
-    BOB->hpMax+=5;
-    BOB->hp+=5;
+    BOB->hpMax+=1+(BOB->level/2);
+    BOB->hp+=1+(BOB->level/2);
+
     *objectType = 0;
-    printf("\n vie : %i / %i \n", BOB->hp, BOB->hpMax);
     Mix_PlayChannel(1, JEU->son3, 0);
     break;
 
     case 3:
-    BOB->money+=50;
-    printf("money :%i \n", BOB->money);
-    Mix_PlayChannel(1, JEU->son1, 0);
+    BOB->money+=11+((BOB->level+BOB->luck)*7.2+BOB->luck);
+
     *objectType = 4;
+    Mix_PlayChannel(1, JEU->son1, 0);
     break;
 
     case 7:
-    BOB->hp-=5;
+    BOB->hp-=1;
+
+    *objectType = 8;
     Mix_PlayChannel(1, JEU->son4, 0);
-    *objectType = 0;
     break;
 
     default:

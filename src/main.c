@@ -55,7 +55,7 @@ int main(int argc, char* args[])
   guiset=TextureCreate(render, "res/guiset.png", 255, 0, 255, 255);
   musique = Mix_LoadMUS("snd/music.mp3");
   musique2 = Mix_LoadMUS("snd/music2.mp3");
-  police = TTF_OpenFont("ttf/FiraSans-Medium.ttf", 14);
+  police = TTF_OpenFont("ttf/FiraSans-Medium.ttf", 12);
   while(restartgame)
   {
     startmenu=1;
@@ -99,6 +99,7 @@ int main(int argc, char* args[])
 
       if (t-t0>TICKS)
       {
+
         mouvement(event, render, &BOB0, &continuer, &restartgame);
         collision(&BOB0, &MAP1);
         objetcollision(&MAP1, &BOB0, &JEU);

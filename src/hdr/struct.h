@@ -16,6 +16,7 @@ struct leBob
     int hpMax;
     int money;
     int level;
+    int luck;
 };
 typedef struct leBob leBob;
 
@@ -45,5 +46,10 @@ struct leJeu
 };
 typedef struct leJeu leJeu;
 
+struct leInput
+{
+    int haut, bas, gauche, droite, echap, espace, a, z, e, r, t, y, u, i, o, p, q, s, d, quitter;
+};
+typedef struct leInput leInput;
 
 #endif
