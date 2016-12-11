@@ -17,7 +17,7 @@ const SDL_Color WHITE = {255,255,255};
 int main(int argc, char* args[])
 {
     leMap MAP0, MAP1, MAP2;
-    leBob BOB0;
+	leBob BOB0 = { 0 };
     leJeu JEU;
     leInput INPUT = {0};
     int continuer = 1;
@@ -86,7 +86,7 @@ int main(int argc, char* args[])
         Mix_PlayMusic(musique2, -1);
         Mix_VolumeMusic(30);
 
-        int hpTemp, moneyTemp;
+        int hpTemp, moneyTemp = 0;
 
         long
         t = 0,

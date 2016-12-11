@@ -1,3 +1,4 @@
+#include <stdio.h>
 #include <SDL2/SDL.h>
 #include "hdr/struct.h"
 #include "hdr/texture.h"
