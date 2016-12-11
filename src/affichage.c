@@ -68,8 +68,8 @@ void AfficherObj(SDL_Renderer* render, Texture* objset, leMap MAP)
   {
     for (j=0; j<WCASE; j++)
     {
-      pos.x=j*TCASE;
-      pos.y=i*TCASE;
+      pos.x=j*TCASE+2;
+      pos.y=i*TCASE+1;
       posObj.x=TCASE*(MAP.obj[i][j]%(wobjset));
       posObj.y=TCASE*(MAP.obj[i][j]/(wobjset));
       TextureRender(render, objset, pos.x, pos.y, &posObj);

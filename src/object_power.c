@@ -5,7 +5,8 @@
 void callbackActionObject(int* objectType, leBob* BOB, leMap* MAP, leJeu* JEU)
 {
 
-  switch(*objectType) {
+  switch(*objectType)
+  {
     case 1:
     if(BOB->hp < BOB->hpMax)
     {

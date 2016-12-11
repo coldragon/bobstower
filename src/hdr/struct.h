@@ -4,6 +4,7 @@
 #include "define.h"
 #include "texture.h"
 #include <SDL2/SDL_mixer.h>
+#include <SDL2/SDL.h>
 
 struct leBob
 {
@@ -43,12 +44,16 @@ struct leJeu
     Mix_Chunk *son7;
     Mix_Chunk *son8;
     Mix_Chunk *son9;
+
+    // Etage
+    int etage;
 };
 typedef struct leJeu leJeu;
 
 struct leInput
 {
-    int haut, bas, gauche, droite, echap, espace, a, z, e, r, t, y, u, i, o, p, q, s, d, quitter;
+    char key[SDL_NUM_SCANCODES];
+    int quit;
 };
 typedef struct leInput leInput;
 
