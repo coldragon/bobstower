@@ -10,11 +10,30 @@ leBob bob_init(leBob BOB, SDL_Renderer *render)
   BOB.level = 1;
   BOB.hpMax = 10;
   BOB.hp = BOB.hpMax/2;
-  BOB.speed = 4;
+  BOB.speed = 3;
   BOB.money = 0;
   BOB.luck= 1;
   BOB.pos.x = WWIN / 2 - BOB.skin->w / 2;
   BOB.pos.y = HWIN / 2 - BOB.skin->h / 2;
+  BOB.pos.w = BOB.skin->w;
+  BOB.pos.h = BOB.skin->h;
+  BOB.posTemp=BOB.pos;
+  return BOB;
+}
+
+leBob enm_init(leBob BOB, SDL_Renderer *render)
+{
+  BOB.skin=TextureCreate(render, "res/bob2.png", 255, 0, 255, 255);
+  BOB.skinPos.x=0; BOB.skinPos.y=0;
+  BOB.skinPos.w=TCASE; BOB.skinPos.h=TCASE;
+  BOB.level = 1;
+  BOB.hpMax = 10;
+  BOB.hp = BOB.hpMax/2;
+  BOB.speed = 3;
+  BOB.money = 0;
+  BOB.luck= 1;
+  BOB.pos.x = aleatoire(TCASE, WWIN-TCASE);
+  BOB.pos.y = aleatoire(TCASE*3, HWIN-TCASE);
   BOB.pos.w = BOB.skin->w;
   BOB.pos.h = BOB.skin->h;
   BOB.posTemp=BOB.pos;

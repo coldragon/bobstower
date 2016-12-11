@@ -4,6 +4,7 @@
 #include <SDL2/SDL_image.h>
 #include <SDL2/SDL_mixer.h>
 #include <SDL2/SDL_ttf.h>
+#include <time.h>
 #include "hdr/texture.h"
 #include "hdr/struct.h"
 #include "hdr/affichage.h"
@@ -18,12 +19,16 @@ int main(int argc, char* args[])
 {
     leMap MAP0, MAP1, MAP2;
 	leBob BOB0 = { 0 };
+
+	leBob ENM[ENNEMY_MAX] = { 0 };
+
     leJeu JEU;
     leInput INPUT = {0};
     int continuer = 1;
     int restartgame = 1;
     int startmenu =1;
-
+    int i;
+    srand((unsigned int)time(NULL));
     // Variable de SDL
     SDL_Window *window;
     SDL_Renderer* render;
@@ -41,7 +46,7 @@ int main(int argc, char* args[])
     TTF_Init();
 
     window = SDL_CreateWindow(
-                 "Bob Adventure SDL2 Proto",      // window title
+                 "Bob's tower",      // window title
                  SDL_WINDOWPOS_UNDEFINED,   // initial x position
                  SDL_WINDOWPOS_UNDEFINED,   // initial y position
                  WWIN,                      // width, in pixels
@@ -57,6 +62,7 @@ int main(int argc, char* args[])
     musique = Mix_LoadMUS("snd/music.mp3");
     musique2 = Mix_LoadMUS("snd/music2.mp3");
     police = TTF_OpenFont("ttf/FiraSans-Medium.ttf", 12);
+
     while(restartgame)
     {
         startmenu=1;
@@ -75,6 +81,9 @@ int main(int argc, char* args[])
         map_init(&MAP1);
         map_init(&MAP2);
         BOB0=bob_init(BOB0, render);
+        for (i=0; i<ENNEMY_MAX; i++)
+        ENM[i]=enm_init(ENM[i], render);
+
         JEU.son1 = Mix_LoadWAV("snd/loot1.wav"); // loot1
         JEU.son2 = Mix_LoadWAV("snd/loot2.wav");  // loot2
         JEU.son3 = Mix_LoadWAV("snd/loot3.wav"); // loot3
@@ -86,7 +95,7 @@ int main(int argc, char* args[])
         Mix_PlayMusic(musique2, -1);
         Mix_VolumeMusic(30);
 
-        int hpTemp, moneyTemp = 0;
+        int hpTemp = 0, moneyTemp = 0;
 
         long
         t = 0,
@@ -103,11 +112,13 @@ int main(int argc, char* args[])
             {
                 inputReturn(&INPUT);
                 mouvement(&INPUT, render, &BOB0, &continuer, &restartgame);
+                mov_enm(render, ENM);
                 collision(&BOB0, &MAP1);
                 objetcollision(&MAP1, &BOB0, &JEU);
                 AfficherMap_layer1(render, tileset, MAP1);
                 AfficherObj(render, objset, MAP1);
                 AfficherBob(render, &BOB0);
+                AfficherEnm(render, ENM);
                 AfficherMap_layer2(render, tileset, MAP1);
                 if (moneyTemp!=BOB0.money || hpTemp!=BOB0.hp)
                     AfficherGui(render, guiset, &BOB0, police);

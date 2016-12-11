@@ -85,32 +85,16 @@ void mouvement(leInput *INPUT, SDL_Renderer *render,leBob *BOB0, int *continuer,
     {
         BOB0->hp-=5;
     }
+}
 
-    /*
-
-          case SDLK_ESCAPE:
-          if(menu_escape(render)==1)
-          {
-            *continuer = 0;
-            *restartgame = 0;
-          }
-          break;
-
-          case SDLK_a:
-          if (BOB0->hp<BOB0->hpMax)
-          BOB0->hp+=5;
-          printf("hp+5 :: Hp = %i / %i \n", BOB0->hp, BOB0->hpMax);
-          break;
-
-          case SDLK_z:
-          if (BOB0->hp>0)
-          BOB0->hp-=5;
-          printf("hp-5 :: Hp = %i / %i \n", BOB0->hp, BOB0->hpMax);
-          break;
-        }
-
-        break;
-      }*/
+void mov_enm(SDL_Renderer *render, leBob *ENM)
+{
+    int i;
+    for (i=0; i<ENNEMY_MAX; i++)
+    {
+        ENM[i].pos.x+=(aleatoire(0, 2)-1)*ENM[i].speed;
+        ENM[i].pos.y+=(aleatoire(0, 2)-1)*ENM[i].speed;
+    }
 }
 
 void menuavantjeux(int *startmenu, int *restartgame, int *continuer)

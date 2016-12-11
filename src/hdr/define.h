@@ -3,4 +3,4 @@
 #define TCASE 32 // Taille case en pixel
 #define WCASE WWIN/TCASE // Nombre case Largeur
 #define HCASE HWIN/TCASE // Nombre case Hauteur
-
+#define ENNEMY_MAX 1000 // Nombre ennemie max
