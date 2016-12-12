@@ -17,9 +17,8 @@
 	with :
 
 	-gcc
-	-Codeblock 16.01 for dbg, git gui, managing project, linker, 
-	-onclick run etc ...
-	-Atom (With the help of pkg linter, linter-gcc) for coding
+	-Codeblock 16.01 for dbg, managing project, linker, 
+	onclick run etc ...
 	-Gimp
 	-sfxr
 
@@ -35,6 +34,4 @@
 	tileset : from http://opengameart.org/content/dungeon-crawl-32x32-tiles I edited it a bit
 
 	thank's to Scorbutics for the help in dev!
-	
-	![alt tag](http://www.coldragon.fr/data/upload/screen01.png)
 	
