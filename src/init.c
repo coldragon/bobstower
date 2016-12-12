@@ -15,6 +15,8 @@ leBob bob_init(leBob BOB, SDL_Renderer *render)
     BOB.speed = 3;
     BOB.money = 0;
     BOB.luck= 1;
+    BOB.attackspeed=410;
+    BOB.distattack=30;
     BOB.pos.x = WWIN / 2 - BOB.skin->w / 2;
     BOB.pos.y = HWIN / 2 - BOB.skin->h / 2;
     BOB.pos.w = BOB.skin->w;
@@ -33,10 +35,12 @@ leBob enm_init(leBob BOB, leMap *MAP, SDL_Renderer *render)
     BOB.level = 1;
     BOB.hpMax = 10;
     BOB.hp = BOB.hpMax/2;
-    BOB.speed = 2;
+    BOB.speed = 3;
     BOB.money = 0;
     BOB.luck= 1;
     BOB.fov=150;
+    BOB.attackspeed=410;
+    BOB.distattack=30;
     BOB.pos.x = aleatoire(0, WWIN-TCASE);
     BOB.pos.y = aleatoire(0, HWIN-TCASE);
 

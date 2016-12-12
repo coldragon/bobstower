@@ -65,6 +65,7 @@ int main(int argc, char* args[])
 
     while(restartgame)
     {
+        inputInit(&INPUT);
         startmenu=1;
         continuer=1;
         TextureRender(render, screentitle, 0, 0, NULL);
@@ -116,6 +117,7 @@ int main(int argc, char* args[])
                 collision(&BOB0, &MAP1);
                 collisionEnm(ENM, &MAP1);
                 objetcollision(&MAP1, &BOB0, &JEU);
+                attackcac_enm(ENM, &BOB0, &JEU);
                 AfficherMap_layer1(render, tileset, MAP1);
                 AfficherObj(render, objset, MAP1);
                 AfficherBob(render, &BOB0);

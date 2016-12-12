@@ -19,8 +19,13 @@ struct leBob
     int level;
     int luck;
     int fov;
+    int attack;
+    int attackspeed;
+    int distattack;
     long tempsDeplacement;
     long tempsInitialDeplacement;
+    long tempsAttack;
+    long tempsInitialAttack;
 };
 typedef struct leBob leBob;
 
