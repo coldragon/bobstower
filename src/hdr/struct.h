@@ -18,6 +18,7 @@ struct leBob
     int money;
     int level;
     int luck;
+    int fov;
     long tempsDeplacement;
     long tempsInitialDeplacement;
 };

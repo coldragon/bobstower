@@ -25,7 +25,7 @@ leBob bob_init(leBob BOB, SDL_Renderer *render)
 
 leBob enm_init(leBob BOB, leMap *MAP, SDL_Renderer *render)
 {
-    BOB.skin=TextureCreate(render, "res/bob2.png", 255, 0, 255, 255);
+    BOB.skin=TextureCreate(render, "res/gob1.png", 255, 0, 255, 255);
     BOB.skinPos.x=0;
     BOB.skinPos.y=0;
     BOB.skinPos.w=TCASE;
@@ -33,10 +33,10 @@ leBob enm_init(leBob BOB, leMap *MAP, SDL_Renderer *render)
     BOB.level = 1;
     BOB.hpMax = 10;
     BOB.hp = BOB.hpMax/2;
-    BOB.speed = 3;
+    BOB.speed = 2;
     BOB.money = 0;
     BOB.luck= 1;
-
+    BOB.fov=130;
     BOB.pos.x = aleatoire(0, WWIN);
     BOB.pos.y = aleatoire(0, HWIN);
 
