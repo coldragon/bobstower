@@ -22,6 +22,7 @@ struct leBob
     int attack;
     int attackspeed;
     int distattack;
+    int collision;
     long tempsDeplacement;
     long tempsInitialDeplacement;
     long tempsAttack;

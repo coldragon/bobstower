@@ -118,7 +118,7 @@ void mov_enm(SDL_Renderer *render, leBob *ENM, leBob *BOB)
     }
 }
 
-void menuavantjeux(int *startmenu, int *restartgame, int *continuer)
+void menuavantjeux(leInput *INPUT, int *startmenu, int *restartgame, int *continuer)
 {
     SDL_Event event;
 

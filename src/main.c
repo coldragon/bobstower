@@ -38,6 +38,7 @@ int main(int argc, char* args[])
     Texture *objset;
     Texture *guiset;
     Texture *screentitle;
+    Texture *loose;
 
     // SDL Init
     SDL_Init(SDL_INIT_VIDEO);
@@ -46,7 +47,7 @@ int main(int argc, char* args[])
     TTF_Init();
 
     window = SDL_CreateWindow(
-                 "Bob's tower",      // window title
+                 "Bob's tower Alpha",      // window title
                  SDL_WINDOWPOS_UNDEFINED,   // initial x position
                  SDL_WINDOWPOS_UNDEFINED,   // initial y position
                  WWIN,                      // width, in pixels
@@ -59,12 +60,14 @@ int main(int argc, char* args[])
     objset=TextureCreate(render, "res/objset.png", 255, 0, 255, 255);
     screentitle=TextureCreate(render, "res/screentitle.png", 255, 0, 255, 255);
     guiset=TextureCreate(render, "res/guiset.png", 255, 0, 255, 255);
-    musique = Mix_LoadMUS("snd/music.mp3");
-    musique2 = Mix_LoadMUS("snd/music2.mp3");
+    loose=TextureCreate(render, "res/loose.png", 255, 0, 255, 255);
     police = TTF_OpenFont("ttf/FiraSans-Medium.ttf", 12);
+
 
     while(restartgame)
     {
+        musique = Mix_LoadMUS("snd/music.mp3");
+        musique2 = Mix_LoadMUS("snd/music2.mp3");
         inputInit(&INPUT);
         startmenu=1;
         continuer=1;
@@ -75,7 +78,7 @@ int main(int argc, char* args[])
 
         while (startmenu)
         {
-            menuavantjeux(&startmenu, &restartgame, &continuer);
+            menuavantjeux(&INPUT, &startmenu, &restartgame, &continuer);
         }
 
         map_init(&MAP0);
@@ -115,7 +118,7 @@ int main(int argc, char* args[])
                 mouvement(&INPUT, render, &BOB0, &continuer, &restartgame);
                 mov_enm(render, ENM, &BOB0);
                 collision(&BOB0, &MAP1);
-                collisionEnm(ENM, &MAP1);
+                collisionEnm(ENM, &MAP1, &BOB0);
                 objetcollision(&MAP1, &BOB0, &JEU);
                 attackcac_enm(ENM, &BOB0, &JEU);
                 AfficherMap_layer1(render, tileset, MAP1);
@@ -127,7 +130,12 @@ int main(int argc, char* args[])
                     AfficherGui(render, guiset, &BOB0, police);
                 SDL_RenderPresent(render);
                 if (BOB0.hp<1)
+                {
                     continuer=0;
+                    TextureRender(render, loose, 0, 0, NULL);
+                    SDL_RenderPresent(render);
+                    SDL_Delay(5000);
+                }
                 t0=t;
                 hpTemp=BOB0.hp;
                 moneyTemp=BOB0.money;

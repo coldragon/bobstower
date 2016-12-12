@@ -3,6 +3,7 @@
 #include "struct.h"
 
 void collision(leBob *BOB, leMap *MAP);
+void collisionEnm(leBob *ENM, leMap *MAP, leBob *BOB);
 void objetcollision(leMap *MAP, leBob *BOB, leJeu *JEU);
 
 #endif
