@@ -36,17 +36,17 @@ leBob enm_init(leBob BOB, leMap *MAP, SDL_Renderer *render)
     BOB.speed = 2;
     BOB.money = 0;
     BOB.luck= 1;
-    BOB.fov=130;
-    BOB.pos.x = aleatoire(0, WWIN);
-    BOB.pos.y = aleatoire(0, HWIN);
+    BOB.fov=150;
+    BOB.pos.x = aleatoire(0, WWIN-TCASE);
+    BOB.pos.y = aleatoire(0, HWIN-TCASE);
 
     while ((MAP->col[(BOB.pos.y+23)/32][(BOB.pos.x+4)/32]== 1 || MAP->col[(BOB.pos.y+23)/32][(BOB.pos.x+28)/32]== 1 ||
             MAP->col[(BOB.pos.y+32)/32][(BOB.pos.x+4)/32]== 1 || MAP->col[(BOB.pos.y+32)/32][(BOB.pos.x+28)/32]== 1) ||
             (MAP->col[(BOB.pos.y)/32][(BOB.pos.x+4)/32]== 2 || MAP->col[(BOB.pos.y)/32][(BOB.pos.x+28)/32]== 2 ||
              MAP->col[(BOB.pos.y+10)/32][(BOB.pos.x+4)/32]== 2 || MAP->col[(BOB.pos.y+10)/32][(BOB.pos.x+28)/32]== 2))
     {
-        BOB.pos.x = aleatoire(0, WWIN);
-        BOB.pos.y = aleatoire(0, HWIN);
+        BOB.pos.x = aleatoire(0, WWIN-TCASE);
+        BOB.pos.y = aleatoire(0, HWIN-TCASE);
     }
 
     BOB.pos.w = BOB.skin->w;
