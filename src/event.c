@@ -69,31 +69,50 @@ void mouvement(leInput *INPUT, SDL_Renderer *render,leBob *BOB0, int *continuer,
     {
         inputInit(INPUT);
         if(menu_escape(render)==1)
-          {
+        {
             *continuer = 0;
             *restartgame = 0;
-          }
+        }
     }
-
     if (INPUT->key[SDL_SCANCODE_A])
     {
         if (BOB0->hp<BOB0->hpMax)
-        BOB0->hp+=5;
+            BOB0->hp+=5;
     }
-
     if (INPUT->key[SDL_SCANCODE_Z])
     {
         BOB0->hp-=5;
     }
 }
 
-void mov_enm(SDL_Renderer *render, leBob *ENM)
+void mov_enm(SDL_Renderer *render, leBob *ENM, leBob *BOB)
 {
     int i;
     for (i=0; i<ENNEMY_MAX; i++)
     {
-        ENM[i].pos.x+=(aleatoire(0, 2)-1)*ENM[i].speed;
-        ENM[i].pos.y+=(aleatoire(0, 2)-1)*ENM[i].speed;
+        if (ENM[i].tempsDeplacement-ENM[i].tempsInitialDeplacement >= 100)
+        {
+            ENM[i].posTemp.x=ENM[i].pos.x;
+            ENM[i].posTemp.y=ENM[i].pos.y;
+            //ENM[i].pos.x+=(aleatoire(0, 2)-1)*ENM[i].speed;
+            //ENM[i].pos.y+=(aleatoire(0, 2)-1)*ENM[i].speed;
+            int x, y;
+            x=ENM[i].pos.x-BOB->pos.x;
+            y=ENM[i].pos.y-BOB->pos.y;
+
+            if (x<-3)
+            ENM[i].pos.x+=ENM[i].speed;
+            if (x>3)
+            ENM[i].pos.x-=ENM[i].speed;
+
+            if (y<-3)
+            ENM[i].pos.y+=ENM[i].speed;
+            if (y>3)
+            ENM[i].pos.y-=ENM[i].speed;
+
+            ENM[i].tempsInitialDeplacement=ENM[i].tempsDeplacement;
+        }
+        ENM[i].tempsDeplacement=SDL_GetTicks();
     }
 }
 

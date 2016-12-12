@@ -16,17 +16,17 @@
 	
 	with :
 
-	gcc
-	NetBeans IDE 8.2 for dbg, git gui, managing project, linker, onclick run etc ...
-	Atom (With the help of pkg linter, linter-gcc) for coding
-	Gimp
-	sfxr
-	Audacity
+	-gcc
+	-Codeblock 16.01 for dbg, git gui, managing project, linker, 
+	-onclick run etc ...
+	-Atom (With the help of pkg linter, linter-gcc) for coding
+	-Gimp
+	-sfxr
 
 	build tryed on :
 
 	Xubuntu 16.04
-
+	Windows 10 with MVS2013
 
 	credit :
 	music : openning screen :: Rolemu - Neoakushon

@@ -23,6 +23,27 @@ void collision(leBob *BOB, leMap *MAP)
   }
 }
 
+void collisionEnm(leBob *ENM, leMap *MAP)
+{
+    int i;
+    for (i=0; i<ENNEMY_MAX; i++)
+    {
+    if (MAP->col[(ENM[i].pos.y+23)/32][(ENM[i].pos.x+4)/32]== 1 || MAP->col[(ENM[i].pos.y+23)/32][(ENM[i].pos.x+28)/32]== 1 ||
+    MAP->col[(ENM[i].pos.y+32)/32][(ENM[i].pos.x+4)/32]== 1 || MAP->col[(ENM[i].pos.y+32)/32][(ENM[i].pos.x+28)/32]== 1)
+    {
+      ENM[i].pos.x=ENM[i].posTemp.x;
+      ENM[i].pos.y=ENM[i].posTemp.y;
+    }
+
+    if (MAP->col[(ENM[i].pos.y)/32][(ENM[i].pos.x+4)/32]== 2 || MAP->col[(ENM[i].pos.y)/32][(ENM[i].pos.x+28)/32]== 2 ||
+    MAP->col[(ENM[i].pos.y+10)/32][(ENM[i].pos.x+4)/32]== 2 || MAP->col[(ENM[i].pos.y+10)/32][(ENM[i].pos.x+28)/32]== 2)
+    {
+      ENM[i].pos.x=ENM[i].posTemp.x;
+      ENM[i].pos.y=ENM[i].posTemp.y;
+    }
+    }
+}
+
 void objetcollision(leMap *MAP, leBob *BOB, leJeu *JEU)
 {
   if (BOB->pos.x != BOB->posTemp.x || BOB->pos.y != BOB->posTemp.y)

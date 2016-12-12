@@ -121,8 +121,7 @@ void AfficherGui(SDL_Renderer* render, Texture* guiset, leBob *BOB, TTF_Font *po
     SDL_FreeSurface(hpTxt);
 
     sprintf(&charTemp, "%d", BOB->money);
-    rect.x=224
-           ;
+    rect.x=224;
     rect.y=4;
     hpTxt = TTF_RenderText_Blended(police, &charTemp, WHITE);
 

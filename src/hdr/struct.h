@@ -18,6 +18,8 @@ struct leBob
     int money;
     int level;
     int luck;
+    long tempsDeplacement;
+    long tempsInitialDeplacement;
 };
 typedef struct leBob leBob;
 

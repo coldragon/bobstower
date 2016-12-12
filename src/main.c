@@ -82,7 +82,7 @@ int main(int argc, char* args[])
         map_init(&MAP2);
         BOB0=bob_init(BOB0, render);
         for (i=0; i<ENNEMY_MAX; i++)
-        ENM[i]=enm_init(ENM[i], render);
+        ENM[i]=enm_init(ENM[i], &MAP1, render);
 
         JEU.son1 = Mix_LoadWAV("snd/loot1.wav"); // loot1
         JEU.son2 = Mix_LoadWAV("snd/loot2.wav");  // loot2
@@ -112,8 +112,9 @@ int main(int argc, char* args[])
             {
                 inputReturn(&INPUT);
                 mouvement(&INPUT, render, &BOB0, &continuer, &restartgame);
-                mov_enm(render, ENM);
+                mov_enm(render, ENM, &BOB0);
                 collision(&BOB0, &MAP1);
+                collisionEnm(ENM, &MAP1);
                 objetcollision(&MAP1, &BOB0, &JEU);
                 AfficherMap_layer1(render, tileset, MAP1);
                 AfficherObj(render, objset, MAP1);
