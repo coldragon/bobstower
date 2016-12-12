@@ -7,7 +7,7 @@ int aleatoire(int min, int max)
     return (int)(coeff * (max - min +1) + min);
 }
 
-double distancepoint(int x1, int y1, int x2, int y2)
+int distancepoint(int x1, int y1, int x2, int y2)
 {
     double distance;
     distance=sqrt((x1-x2)*(x1-x2)+(y1-y2)*(y1-y2));
