@@ -88,6 +88,8 @@ void sortcollision(leMap *MAP, leBob *ENM, leJeu *JEU)
                     {
                         ENM[j].hp--;
                         JEU->sort1.projectiles[i].exist=0;
+                        if(ENM[j].hp<1)
+                        Mix_PlayChannel(2, JEU->son5, 0);
                     }
                 }
             }

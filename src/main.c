@@ -93,12 +93,16 @@ int main(int argc, char* args[])
         JEU.son2 = Mix_LoadWAV("snd/loot2.wav");  // loot2
         JEU.son3 = Mix_LoadWAV("snd/loot3.wav"); // loot3
         JEU.son4 = Mix_LoadWAV("snd/hit1.wav"); // hit1
+        JEU.son5 = Mix_LoadWAV("snd/mort1.wav"); // mort1
+
         JEU.etage = 0;
 
         sort_init(&JEU, render);
 
 
         Mix_Volume(1, 65);
+        Mix_Volume(2, 65);
+
 
         Mix_PlayMusic(musique2, -1);
         Mix_VolumeMusic(30);

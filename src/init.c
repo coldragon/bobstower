@@ -36,8 +36,8 @@ leBob enm_init(leBob BOB, leMap *MAP, SDL_Renderer *render)
     BOB.skinPos.w=TCASE;
     BOB.skinPos.h=TCASE;
     BOB.level = 1;
-    BOB.hpMax = 1;
-    BOB.hp = 1;
+    BOB.hpMax = 4;
+    BOB.hp = 4;
     BOB.speed = 3;
     BOB.money = 0;
     BOB.luck= 1;
@@ -71,7 +71,7 @@ void sort_init(leJeu *JEU, SDL_Renderer *render)
     JEU->sort1.power=5;
     JEU->sort1.scale=10;
     JEU->sort1.skin=1;
-    JEU->sort1.speed=5;
+    JEU->sort1.speed=3;
     JEU->sort1.distanceattaque=130;
     for (i=0; i<MAX_PROJECTILES_PAR_SORT; i++)
     {

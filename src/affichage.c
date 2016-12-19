@@ -19,7 +19,31 @@ void AfficherEnm(SDL_Renderer* render, leBob *ENM)
     for (i=0; i<ENNEMY_MAX; i++)
     {
         if(ENM[i].exist)
-            TextureRender(render, ENM[i].skin, ENM[i].pos.x, ENM[i].pos.y, &ENM[i].skinPos);
+        {
+            if(ENM[i].hp==4)
+            {
+                ENM[i].skinPos.x=0;
+                TextureRender(render, ENM[i].skin, ENM[i].pos.x, ENM[i].pos.y, &ENM[i].skinPos);
+            }
+
+            if(ENM[i].hp==3)
+            {
+                ENM[i].skinPos.x=TCASE;
+                TextureRender(render, ENM[i].skin, ENM[i].pos.x, ENM[i].pos.y, &ENM[i].skinPos);
+            }
+
+            if(ENM[i].hp==2)
+            {
+                ENM[i].skinPos.x=TCASE*2;
+                TextureRender(render, ENM[i].skin, ENM[i].pos.x, ENM[i].pos.y, &ENM[i].skinPos);
+            }
+
+            if(ENM[i].hp==1)
+            {
+                ENM[i].skinPos.x=TCASE*3;
+                TextureRender(render, ENM[i].skin, ENM[i].pos.x, ENM[i].pos.y, &ENM[i].skinPos);
+            }
+        }
     }
 }
 
