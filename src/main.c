@@ -18,8 +18,8 @@ const SDL_Color WHITE = {255,255,255};
 int main(int argc, char* args[])
 {
     leMap MAP0, MAP1, MAP2;
-	leBob BOB0 = { 0 };
-	leBob ENM[ENNEMY_MAX] = { 0 };
+    leBob BOB0 = { 0 };
+    leBob ENM[ENNEMY_MAX] = { 0 };
     leJeu JEU = { 0 };
     leInput INPUT = { 0 };
     int continuer = 1;
@@ -87,7 +87,7 @@ int main(int argc, char* args[])
 
         BOB0=bob_init(BOB0, render);
         for (i=0; i<ENNEMY_MAX; i++)
-        ENM[i]=enm_init(ENM[i], &MAP1, render);
+            ENM[i]=enm_init(ENM[i], &MAP1, render);
 
         JEU.son1 = Mix_LoadWAV("snd/loot1.wav"); // loot1
         JEU.son2 = Mix_LoadWAV("snd/loot2.wav");  // loot2
@@ -118,16 +118,25 @@ int main(int argc, char* args[])
 
             if (t-t0>TICKS)
             {
+                // Input
                 inputReturn(&INPUT);
+
+                // Mouvement
                 mouvement(&INPUT, render, &BOB0, &continuer, &restartgame);
                 mov_enm(render, ENM, &BOB0);
                 move_projectile(&JEU, &BOB0);
+
+                // Collision
                 collision(&BOB0, &MAP1);
                 collisionEnm(ENM, &MAP1, &BOB0);
                 sortcollision(&MAP1, ENM, &JEU);
                 objetcollision(&MAP1, &BOB0, &JEU);
+
+                // Attaque
                 attackcac_enm(ENM, &BOB0, &JEU);
-                attack_bob(&BOB0, ENM, &JEU, &INPUT);
+                attack_bob(&BOB0, &JEU, &INPUT);
+
+                // Affichage
                 AfficherMap_layer1(render, tileset, MAP1);
                 AfficherObj(render, objset, MAP1);
                 AfficherBob(render, &BOB0);
@@ -136,6 +145,8 @@ int main(int argc, char* args[])
                 AfficherMap_layer2(render, tileset, MAP1);
                 AfficherGui(render, guiset, &BOB0, police);
                 SDL_RenderPresent(render);
+
+                // Defaite
                 if (BOB0.hp<1)
                 {
                     continuer=0;
@@ -143,11 +154,16 @@ int main(int argc, char* args[])
                     SDL_RenderPresent(render);
                     SDL_Delay(5000);
                 }
+
+                // Ennemy mort
                 for (i=0; i<ENNEMY_MAX; i++)
                 {
                     if (ENM[i].hp<1)
-                    ENM[i].exist=0;
+                        ENM[i].exist=0;
                 }
+
+                for (i=0; i<ENNEMY_MAX; i++)
+
                 t0=t;
                 hpTemp=BOB0.hp;
                 moneyTemp=BOB0.money;

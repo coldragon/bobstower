@@ -87,30 +87,33 @@ void mov_enm(SDL_Renderer *render, leBob *ENM, leBob *BOB)
     int i;
     for (i=0; i<ENNEMY_MAX; i++)
     {
-        if (ENM[i].tmov.now-ENM[i].tmov.start >= 50)
+        if (ENM[i].exist)
         {
-            ENM[i].posTemp.x=ENM[i].pos.x;
-            ENM[i].posTemp.y=ENM[i].pos.y;
-
-            if (distancepoint(ENM[i].pos.x, ENM[i].pos.y, BOB->pos.x, BOB->pos.y)<ENM[i].fov)
+            if (ENM[i].tmov.now-ENM[i].tmov.start >= 50)
             {
-                int x, y;
-                x=ENM[i].pos.x-BOB->pos.x;
-                y=ENM[i].pos.y-BOB->pos.y;
+                ENM[i].posTemp.x=ENM[i].pos.x;
+                ENM[i].posTemp.y=ENM[i].pos.y;
 
-                if (x<-3)
-                    ENM[i].pos.x+=ENM[i].speed;
-                if (x>3)
-                    ENM[i].pos.x-=ENM[i].speed;
-                if (y<-3)
-                    ENM[i].pos.y+=ENM[i].speed;
-                if (y>3)
-                    ENM[i].pos.y-=ENM[i].speed;
+                if (distancepoint(ENM[i].pos.x, ENM[i].pos.y, BOB->pos.x, BOB->pos.y)<ENM[i].fov)
+                {
+                    int x, y;
+                    x=ENM[i].pos.x-BOB->pos.x;
+                    y=ENM[i].pos.y-BOB->pos.y;
+
+                    if (x<-3)
+                        ENM[i].pos.x+=ENM[i].speed;
+                    if (x>3)
+                        ENM[i].pos.x-=ENM[i].speed;
+                    if (y<-3)
+                        ENM[i].pos.y+=ENM[i].speed;
+                    if (y>3)
+                        ENM[i].pos.y-=ENM[i].speed;
+                }
+
+                ENM[i].tmov.start=ENM[i].tmov.now;
             }
-
-            ENM[i].tmov.start=ENM[i].tmov.now;
+            ENM[i].tmov.now=SDL_GetTicks();
         }
-        ENM[i].tmov.now=SDL_GetTicks();
     }
 }
 

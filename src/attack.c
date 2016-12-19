@@ -7,7 +7,7 @@ void attackcac_enm(leBob *ENM, leBob *BOB, leJeu *JEU)
     int i;
     for (i=0; i<ENNEMY_MAX; i++)
     {
-        if(ENM[i].exist=1)
+        if(ENM[i].exist)
         {
             if (ENM[i].tatt.now-ENM[i].tatt.start >= ENM[i].attackspeed)
             {
@@ -33,6 +33,8 @@ void create_projectile(leJeu *JEU, leBob *BOB)
 
     JEU->sort1.projectiles[JEU->sort1.last_use].pos.x=BOB->pos.x;
     JEU->sort1.projectiles[JEU->sort1.last_use].pos.y=BOB->pos.y;
+    JEU->sort1.projectiles[JEU->sort1.last_use].posOrigin.x=BOB->pos.x;
+    JEU->sort1.projectiles[JEU->sort1.last_use].posOrigin.y=BOB->pos.y;
 
     if (BOB->direction==0)
     {
@@ -73,7 +75,7 @@ void move_projectile(leJeu *JEU, leBob *BOB)
     }
 }
 
-void attack_bob(leBob *BOB, leBob *ENM, leJeu *JEU, leInput *INPUT)
+void attack_bob(leBob *BOB, leJeu *JEU, leInput *INPUT)
 {
     if(INPUT->key[SDL_SCANCODE_SPACE])
     {

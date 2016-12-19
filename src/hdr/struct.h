@@ -49,7 +49,7 @@ typedef struct leMap leMap;
 
 struct leProjectiles
 {
-    SDL_Rect pos;
+    SDL_Rect pos, posOrigin;
     SDL_Rect d;
     leTimer mov;
     int exist;
@@ -61,6 +61,7 @@ struct leSort
     leProjectiles projectiles[MAX_PROJECTILES_PAR_SORT];
     int skin;
     int last_use;
+    int distanceattaque;
     int scale;
     int power;
     int speed;

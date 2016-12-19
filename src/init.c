@@ -72,6 +72,7 @@ void sort_init(leJeu *JEU, SDL_Renderer *render)
     JEU->sort1.scale=10;
     JEU->sort1.skin=1;
     JEU->sort1.speed=5;
+    JEU->sort1.distanceattaque=130;
     for (i=0; i<MAX_PROJECTILES_PAR_SORT; i++)
     {
         JEU->sort1.projectiles[i].pos.x=0;
