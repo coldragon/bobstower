@@ -17,7 +17,10 @@ void AfficherEnm(SDL_Renderer* render, leBob *ENM)
 {
     int i;
     for (i=0; i<ENNEMY_MAX; i++)
-    TextureRender(render, ENM[i].skin, ENM[i].pos.x, ENM[i].pos.y, &ENM[i].skinPos);
+    {
+        if(ENM[i].exist==1)
+        TextureRender(render, ENM[i].skin, ENM[i].pos.x, ENM[i].pos.y, &ENM[i].skinPos);
+    }
 }
 
 void CleanScreen(SDL_Renderer* render, int r, int g, int b)
@@ -84,6 +87,17 @@ void AfficherObj(SDL_Renderer* render, Texture* objset, leMap MAP)
             posObj.y=TCASE*(MAP.obj[i][j]/(wobjset));
             TextureRender(render, objset, pos.x, pos.y, &posObj);
         }
+    }
+}
+
+void AfficherSort(SDL_Renderer* render, Texture* sortset, leJeu *JEU)
+{
+    int i;
+    SDL_Rect p; p.x=0; p.y=0; p.h=TCASE; p.w=TCASE;
+    for(i=0; i<MAX_PROJECTILES_PAR_SORT; i++)
+    {
+        if (JEU->sort1.projectiles[i].exist)
+        TextureRender(render, sortset, JEU->sort1.projectiles[i].pos.x, JEU->sort1.projectiles[i].pos.y, NULL);
     }
 }
 

@@ -50,21 +50,26 @@ void mouvement(leInput *INPUT, SDL_Renderer *render,leBob *BOB0, int *continuer,
     {
         BOB0->pos.y=BOB0->pos.y-BOB0->speed;
         BOB0->skinPos.x=TCASE;
+        BOB0->direction=0;
     }
     if  (INPUT->key[SDL_SCANCODE_DOWN])
     {
         BOB0->pos.y=BOB0->pos.y+BOB0->speed;
         BOB0->skinPos.x=0;
+        BOB0->direction=2;
     }
     if  (INPUT->key[SDL_SCANCODE_LEFT])
     {
         BOB0->pos.x=BOB0->pos.x-BOB0->speed;
         BOB0->skinPos.x=TCASE*2;
+        BOB0->direction=3;
+
     }
     if  (INPUT->key[SDL_SCANCODE_RIGHT])
     {
         BOB0->pos.x=BOB0->pos.x+BOB0->speed;
         BOB0->skinPos.x=TCASE*3;
+        BOB0->direction=1;
     }
     if  (INPUT->key[SDL_SCANCODE_ESCAPE])
     {
@@ -75,15 +80,6 @@ void mouvement(leInput *INPUT, SDL_Renderer *render,leBob *BOB0, int *continuer,
             *restartgame = 0;
         }
     }
-    if (INPUT->key[SDL_SCANCODE_A])
-    {
-        if (BOB0->hp<BOB0->hpMax)
-            BOB0->hp+=5;
-    }
-    if (INPUT->key[SDL_SCANCODE_Z])
-    {
-        BOB0->hp-=5;
-    }
 }
 
 void mov_enm(SDL_Renderer *render, leBob *ENM, leBob *BOB)
@@ -91,7 +87,7 @@ void mov_enm(SDL_Renderer *render, leBob *ENM, leBob *BOB)
     int i;
     for (i=0; i<ENNEMY_MAX; i++)
     {
-        if (ENM[i].tempsDeplacement-ENM[i].tempsInitialDeplacement >= 50)
+        if (ENM[i].tmov.now-ENM[i].tmov.start >= 50)
         {
             ENM[i].posTemp.x=ENM[i].pos.x;
             ENM[i].posTemp.y=ENM[i].pos.y;
@@ -112,9 +108,9 @@ void mov_enm(SDL_Renderer *render, leBob *ENM, leBob *BOB)
                     ENM[i].pos.y-=ENM[i].speed;
             }
 
-            ENM[i].tempsInitialDeplacement=ENM[i].tempsDeplacement;
+            ENM[i].tmov.start=ENM[i].tmov.now;
         }
-        ENM[i].tempsDeplacement=SDL_GetTicks();
+        ENM[i].tmov.now=SDL_GetTicks();
     }
 }
 

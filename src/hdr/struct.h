@@ -6,12 +6,21 @@
 #include <SDL2/SDL_mixer.h>
 #include <SDL2/SDL.h>
 
+struct leTimer
+{
+    long start;
+    long now;
+    long duration;
+};
+typedef struct leTimer leTimer;
+
 struct leBob
 {
     SDL_Rect pos, posTemp;
     Texture *skin;
     SDL_Rect skinPos;
     //caract
+    int direction;
     int speed;
     int hp;
     int hpMax;
@@ -23,10 +32,9 @@ struct leBob
     int attackspeed;
     int distattack;
     int collision;
-    long tempsDeplacement;
-    long tempsInitialDeplacement;
-    long tempsAttack;
-    long tempsInitialAttack;
+    int exist;
+    leTimer tmov;
+    leTimer tatt;
 };
 typedef struct leBob leBob;
 
@@ -36,10 +44,28 @@ struct leMap
     int tile2[HCASE][WCASE];
     int col[HCASE][WCASE];
     int obj[HCASE][WCASE];
-    int tpin[HCASE][WCASE];
-    int tpout[HCASE][WCASE];
 };
 typedef struct leMap leMap;
+
+struct leProjectiles
+{
+    SDL_Rect pos;
+    SDL_Rect d;
+    leTimer mov;
+    int exist;
+};
+typedef struct leProjectiles leProjectiles;
+
+struct leSort
+{
+    leProjectiles projectiles[MAX_PROJECTILES_PAR_SORT];
+    int skin;
+    int last_use;
+    int scale;
+    int power;
+    int speed;
+};
+typedef struct leSort leSort;
 
 struct leJeu
 {
@@ -56,6 +82,7 @@ struct leJeu
 
     // Etage
     int etage;
+    leSort sort1;
 };
 typedef struct leJeu leJeu;
 

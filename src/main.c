@@ -19,11 +19,9 @@ int main(int argc, char* args[])
 {
     leMap MAP0, MAP1, MAP2;
 	leBob BOB0 = { 0 };
-
 	leBob ENM[ENNEMY_MAX] = { 0 };
-
-    leJeu JEU;
-    leInput INPUT = {0};
+    leJeu JEU = { 0 };
+    leInput INPUT = { 0 };
     int continuer = 1;
     int restartgame = 1;
     int startmenu =1;
@@ -37,6 +35,7 @@ int main(int argc, char* args[])
     Texture *tileset;
     Texture *objset;
     Texture *guiset;
+    Texture *sortset;
     Texture *screentitle;
     Texture *loose;
 
@@ -59,6 +58,7 @@ int main(int argc, char* args[])
     tileset=TextureCreate(render, "res/tileset.png", 255, 0, 255, 255);
     objset=TextureCreate(render, "res/objset.png", 255, 0, 255, 255);
     screentitle=TextureCreate(render, "res/screentitle.png", 255, 0, 255, 255);
+    sortset=TextureCreate(render, "res/sortset.png", 255, 0, 255, 255);
     guiset=TextureCreate(render, "res/guiset.png", 255, 0, 255, 255);
     loose=TextureCreate(render, "res/loose.png", 255, 0, 255, 255);
     police = TTF_OpenFont("ttf/FiraSans-Medium.ttf", 12);
@@ -84,6 +84,7 @@ int main(int argc, char* args[])
         map_init(&MAP0);
         map_init(&MAP1);
         map_init(&MAP2);
+
         BOB0=bob_init(BOB0, render);
         for (i=0; i<ENNEMY_MAX; i++)
         ENM[i]=enm_init(ENM[i], &MAP1, render);
@@ -93,6 +94,9 @@ int main(int argc, char* args[])
         JEU.son3 = Mix_LoadWAV("snd/loot3.wav"); // loot3
         JEU.son4 = Mix_LoadWAV("snd/hit1.wav"); // hit1
         JEU.etage = 0;
+
+        sort_init(&JEU, render);
+
 
         Mix_Volume(1, 65);
 
@@ -117,17 +121,20 @@ int main(int argc, char* args[])
                 inputReturn(&INPUT);
                 mouvement(&INPUT, render, &BOB0, &continuer, &restartgame);
                 mov_enm(render, ENM, &BOB0);
+                move_projectile(&JEU, &BOB0);
                 collision(&BOB0, &MAP1);
                 collisionEnm(ENM, &MAP1, &BOB0);
+                sortcollision(&MAP1, ENM, &JEU);
                 objetcollision(&MAP1, &BOB0, &JEU);
                 attackcac_enm(ENM, &BOB0, &JEU);
+                attack_bob(&BOB0, ENM, &JEU, &INPUT);
                 AfficherMap_layer1(render, tileset, MAP1);
                 AfficherObj(render, objset, MAP1);
                 AfficherBob(render, &BOB0);
                 AfficherEnm(render, ENM);
+                AfficherSort(render, sortset, &JEU);
                 AfficherMap_layer2(render, tileset, MAP1);
-                if (moneyTemp!=BOB0.money || hpTemp!=BOB0.hp)
-                    AfficherGui(render, guiset, &BOB0, police);
+                AfficherGui(render, guiset, &BOB0, police);
                 SDL_RenderPresent(render);
                 if (BOB0.hp<1)
                 {
@@ -135,6 +142,11 @@ int main(int argc, char* args[])
                     TextureRender(render, loose, 0, 0, NULL);
                     SDL_RenderPresent(render);
                     SDL_Delay(5000);
+                }
+                for (i=0; i<ENNEMY_MAX; i++)
+                {
+                    if (ENM[i].hp<1)
+                    ENM[i].exist=0;
                 }
                 t0=t;
                 hpTemp=BOB0.hp;

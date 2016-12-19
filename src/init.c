@@ -15,6 +15,7 @@ leBob bob_init(leBob BOB, SDL_Renderer *render)
     BOB.speed = 3;
     BOB.money = 0;
     BOB.luck= 1;
+    BOB.direction=2;
     BOB.collision = 20;
     BOB.attackspeed=410;
     BOB.distattack=30;
@@ -23,6 +24,7 @@ leBob bob_init(leBob BOB, SDL_Renderer *render)
     BOB.pos.w = BOB.skin->w;
     BOB.pos.h = BOB.skin->h;
     BOB.posTemp=BOB.pos;
+    BOB.exist=1;
     return BOB;
 }
 
@@ -34,8 +36,8 @@ leBob enm_init(leBob BOB, leMap *MAP, SDL_Renderer *render)
     BOB.skinPos.w=TCASE;
     BOB.skinPos.h=TCASE;
     BOB.level = 1;
-    BOB.hpMax = 10;
-    BOB.hp = BOB.hpMax/2;
+    BOB.hpMax = 1;
+    BOB.hp = 1;
     BOB.speed = 3;
     BOB.money = 0;
     BOB.luck= 1;
@@ -43,6 +45,7 @@ leBob enm_init(leBob BOB, leMap *MAP, SDL_Renderer *render)
     BOB.fov=150; // Distance de vue
     BOB.attackspeed=410; // Vitesse entre chaque attaque
     BOB.distattack=30; // Distance d'attaque cac
+    BOB.exist=1;
     BOB.pos.x = aleatoire(0, WWIN-TCASE);
     BOB.pos.y = aleatoire(0, HWIN-TCASE);
 
@@ -59,6 +62,27 @@ leBob enm_init(leBob BOB, leMap *MAP, SDL_Renderer *render)
     BOB.pos.h = BOB.skin->h;
     BOB.posTemp=BOB.pos;
     return BOB;
+}
+
+void sort_init(leJeu *JEU, SDL_Renderer *render)
+{
+    int i;
+    JEU->sort1.last_use=0;
+    JEU->sort1.power=5;
+    JEU->sort1.scale=10;
+    JEU->sort1.skin=1;
+    JEU->sort1.speed=5;
+    for (i=0; i<MAX_PROJECTILES_PAR_SORT; i++)
+    {
+        JEU->sort1.projectiles[i].pos.x=0;
+        JEU->sort1.projectiles[i].pos.y=0;
+        JEU->sort1.projectiles[i].d.x=0;
+        JEU->sort1.projectiles[i].d.y=0;
+        JEU->sort1.projectiles[i].mov.duration=0;
+        JEU->sort1.projectiles[i].mov.now=0;
+        JEU->sort1.projectiles[i].mov.start=0;
+        JEU->sort1.projectiles[i].exist=0;
+    }
 }
 
 void map_init(leMap *MAP)
