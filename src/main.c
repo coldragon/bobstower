@@ -52,10 +52,9 @@ int main(int argc, char* args[])
                  SDL_WINDOWPOS_UNDEFINED,   // initial y position
                  WWIN,                      // width, in pixels
                  HWIN,                      // height, in pixels
-                 SDL_WINDOW_OPENGL          // flags - see below
+                 SDL_WINDOW_OPENGL        // flags - see below
              );
     render = SDL_CreateRenderer(window, -1, SDL_RENDERER_ACCELERATED | SDL_RENDERER_PRESENTVSYNC);
-
     tileset=TextureCreate(render, "res/tileset.png", 255, 0, 255, 255);
     objset=TextureCreate(render, "res/objset.png", 255, 0, 255, 255);
     screentitle=TextureCreate(render, "res/screentitle.png", 255, 0, 255, 255);

@@ -53,7 +53,7 @@ void mouvement(leInput *INPUT, SDL_Renderer *render,leBob *BOB, leMap *MAP, int 
     if  (INPUT->key[SDL_SCANCODE_UP])
     {
         BOB->pos.y=BOB->pos.y-BOB->speed;
-        if (collisionmap(&BOB->pos, MAP, 1, 16, 0, 4, 4) || collisionmap(&BOB->pos, MAP, 2, 0, 16, 4, 4))
+        if (collisionmap(&BOB->pos, MAP, 1, 32, 0, 4, 4) || collisionmap(&BOB->pos, MAP, 2, 0, 32, 4, 4))
             BOB->pos.y=BOB->posTemp.y;
         BOB->skinPos.x=TCASE;
         BOB->direction=0;
@@ -61,7 +61,7 @@ void mouvement(leInput *INPUT, SDL_Renderer *render,leBob *BOB, leMap *MAP, int 
     if  (INPUT->key[SDL_SCANCODE_DOWN])
     {
         BOB->pos.y=BOB->pos.y+BOB->speed;
-        if (collisionmap(&BOB->pos, MAP, 1, 16, 0, 4, 4) || collisionmap(&BOB->pos, MAP, 2, 0, 16, 4, 4))
+        if (collisionmap(&BOB->pos, MAP, 1, 32, 0, 4, 4) || collisionmap(&BOB->pos, MAP, 2, 0, 32, 4, 4))
             BOB->pos.y=BOB->posTemp.y;
         BOB->skinPos.x=0;
         BOB->direction=2;
@@ -69,7 +69,7 @@ void mouvement(leInput *INPUT, SDL_Renderer *render,leBob *BOB, leMap *MAP, int 
     if  (INPUT->key[SDL_SCANCODE_LEFT])
     {
         BOB->pos.x=BOB->pos.x-BOB->speed;
-        if (collisionmap(&BOB->pos, MAP, 1, 16, 0, 4, 4) || collisionmap(&BOB->pos, MAP, 2, 0, 16, 4, 4))
+        if (collisionmap(&BOB->pos, MAP, 1, 32, 0, 4, 4) || collisionmap(&BOB->pos, MAP, 2, 0, 32, 4, 4))
             BOB->pos.x=BOB->posTemp.x;
         BOB->skinPos.x=TCASE*2;
         BOB->direction=3;
@@ -78,7 +78,7 @@ void mouvement(leInput *INPUT, SDL_Renderer *render,leBob *BOB, leMap *MAP, int 
     if  (INPUT->key[SDL_SCANCODE_RIGHT])
     {
         BOB->pos.x=BOB->pos.x+BOB->speed;
-        if (collisionmap(&BOB->pos, MAP, 1, 16, 0, 4, 4) || collisionmap(&BOB->pos, MAP, 2, 0, 16, 4, 4))
+        if (collisionmap(&BOB->pos, MAP, 1, 32, 0, 4, 4) || collisionmap(&BOB->pos, MAP, 2, 0, 32, 4, 4))
             BOB->pos.x=BOB->posTemp.x;
         BOB->skinPos.x=TCASE*3;
         BOB->direction=1;

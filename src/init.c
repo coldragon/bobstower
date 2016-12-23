@@ -8,8 +8,8 @@ leBob bob_init(leBob BOB, SDL_Renderer *render)
     BOB.skin=TextureCreate(render, "res/bob.png", 255, 0, 255, 255);
     BOB.skinPos.x=0;
     BOB.skinPos.y=0;
-    BOB.skinPos.w=TCASE;
-    BOB.skinPos.h=TCASE;
+    BOB.skinPos.w=BOB.skin->w/4;
+    BOB.skinPos.h=BOB.skin->h;
     BOB.level = 1;
     BOB.hpMax = 10;
     BOB.hp = BOB.hpMax;
@@ -22,8 +22,8 @@ leBob bob_init(leBob BOB, SDL_Renderer *render)
     BOB.distattack=30;
     BOB.pos.x = WWIN / 2 - BOB.skin->w / 2;
     BOB.pos.y = HWIN / 2 - BOB.skin->h / 2;
-    BOB.pos.w = TCASE;
-    BOB.pos.h = TCASE;
+    BOB.pos.w = BOB.skin->w/4;
+    BOB.pos.h = BOB.skin->h;
     BOB.posTemp=BOB.pos;
     BOB.exist=1;
     return BOB;

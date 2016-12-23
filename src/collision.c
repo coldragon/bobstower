@@ -17,16 +17,6 @@ int collisionmap(SDL_Rect *rect, leMap *MAP, int type, int haut, int bas, int ga
         return 0;
 }
 
-void collision(leBob *BOB, leMap *MAP)
-{
-    if (BOB->pos.x != BOB->posTemp.x || BOB->pos.y != BOB->posTemp.y)
-        if(collisionmap(&BOB->pos, MAP, 1, 16, 0, 4, 4) || collisionmap(&BOB->pos, MAP, 2, 0, 16, 4, 4))
-        {
-            BOB->pos.x=BOB->posTemp.x;
-            BOB->pos.y=BOB->posTemp.y;
-        }
-}
-
 void collisionEnm(leBob *ENM, leMap *MAP, leBob *BOB)
 {
     int i, j;
@@ -87,7 +77,7 @@ void sortcollision(leMap *MAP, leBob *ENM, leJeu *JEU)
             }
         }
 
-        if(collisionmap(&JEU->sort1.projectiles[i].pos, MAP, 1, 16, 0, 10, 10) || collisionmap(&JEU->sort1.projectiles[i].pos, MAP, 2, 0, 16, 10, 10))
+        if(collisionmap(&JEU->sort1.projectiles[i].pos, MAP, 1, 32, 0, 10, 10) || collisionmap(&JEU->sort1.projectiles[i].pos, MAP, 2, 0, 32, 10, 10))
         {
             JEU->sort1.projectiles[i].exist=0;
         }
