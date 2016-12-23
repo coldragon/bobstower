@@ -127,6 +127,7 @@ void AfficherSort(SDL_Renderer* render, Texture* sortset, leJeu *JEU)
 void AfficherGui(SDL_Renderer* render, Texture* guiset, leBob *BOB, TTF_Font *police)
 {
     char charTemp[50]= {0};
+    int i;
     SDL_Surface* hpTxt;
     SDL_Texture* hpTexture;
     SDL_Rect rect;

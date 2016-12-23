@@ -137,6 +137,9 @@ int main(int argc, char* args[])
                 attackcac_enm(ENM, &BOB0, &JEU);
                 attack_bob(&BOB0, &JEU, &INPUT);
 
+
+                if (BOB0.hp < 0)
+                    BOB0.hp=0;
                 // Affichage
                 AfficherMap_layer1(render, tileset, MAP1);
                 AfficherObj(render, objset, MAP1);

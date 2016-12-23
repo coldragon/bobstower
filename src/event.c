@@ -45,6 +45,11 @@ void mouvement(leInput *INPUT, SDL_Renderer *render,leBob *BOB, leMap *MAP, int 
         *continuer = 0;
         *restartgame = 0;
     }
+    if  (INPUT->key[SDL_SCANCODE_W])
+    {
+        *continuer = 0;
+        *restartgame = 0;
+    }
     if  (INPUT->key[SDL_SCANCODE_UP])
     {
         BOB->pos.y=BOB->pos.y-BOB->speed;
