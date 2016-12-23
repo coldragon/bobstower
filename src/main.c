@@ -66,7 +66,7 @@ int main(int argc, char* args[])
 
     while(restartgame)
     {
-        musique = Mix_LoadMUS("snd/music.mp3");
+        musique = Mix_LoadMUS("snd/music.ogg");
         musique2 = Mix_LoadMUS("snd/music2.mp3");
         inputInit(&INPUT);
         startmenu=1;

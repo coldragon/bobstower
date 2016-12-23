@@ -32,7 +32,7 @@ void callbackActionObject(int* objectType, leBob* BOB, leMap* MAP, leJeu* JEU)
         BOB->money+=(aleatoire(2, 10)*BOB->level)+(aleatoire(2, 10)*BOB->luck);
 
         *objectType = 4;
-        Mix_PlayChannel(2, JEU->son1, 0);
+        Mix_PlayChannel(5, JEU->son1, 0);
         break;
 
     case 7:
