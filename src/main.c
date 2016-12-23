@@ -12,6 +12,7 @@
 #include "hdr/event.h"
 #include "hdr/collision.h"
 #include "hdr/define.h"
+#include "hdr/attack.h"
 
 const SDL_Color WHITE = {255,255,255};
 
@@ -94,6 +95,10 @@ int main(int argc, char* args[])
         JEU.son3 = Mix_LoadWAV("snd/loot3.wav"); // loot3
         JEU.son4 = Mix_LoadWAV("snd/hit1.wav"); // hit1
         JEU.son5 = Mix_LoadWAV("snd/mort1.wav"); // mort1
+        JEU.son6 = Mix_LoadWAV("snd/fireball1.wav"); // hit1
+        JEU.son7 = Mix_LoadWAV("snd/attackenm.wav"); // hit1
+
+
 
         JEU.etage = 0;
 
@@ -102,12 +107,13 @@ int main(int argc, char* args[])
 
         Mix_Volume(1, 65);
         Mix_Volume(2, 65);
+        Mix_Volume(3, 65);
+        Mix_Volume(4, 65);
+
 
 
         Mix_PlayMusic(musique2, -1);
-        Mix_VolumeMusic(30);
-
-        int hpTemp = 0, moneyTemp = 0;
+        Mix_VolumeMusic(25);
 
         long
         t = 0,
@@ -169,8 +175,6 @@ int main(int argc, char* args[])
                 for (i=0; i<ENNEMY_MAX; i++)
 
                 t0=t;
-                hpTemp=BOB0.hp;
-                moneyTemp=BOB0.money;
             }
             else
             {

@@ -36,8 +36,6 @@ void inputInit(leInput *INPUT)
 
 void mouvement(leInput *INPUT, SDL_Renderer *render,leBob *BOB0, int *continuer, int *restartgame)
 {
-    SDL_Event event;
-
     BOB0->posTemp.x=BOB0->pos.x;
     BOB0->posTemp.y=BOB0->pos.y;
 

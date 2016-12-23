@@ -14,7 +14,7 @@ void attackcac_enm(leBob *ENM, leBob *BOB, leJeu *JEU)
                 if (distancepoint(ENM[i].pos.x+16, ENM[i].pos.y+16, BOB->pos.x+16, BOB->pos.y+16)<ENM[i].distattack)
                 {
                     BOB->hp--;
-                    Mix_PlayChannel(1, JEU->son4, 0);
+                    Mix_PlayChannel(4, JEU->son7, 0);
                 }
                 ENM[i].tatt.start=ENM[i].tatt.now;
             }
@@ -83,7 +83,7 @@ void attack_bob(leBob *BOB, leJeu *JEU, leInput *INPUT)
         {
 
             create_projectile(JEU, BOB);
-            Mix_PlayChannel(1, JEU->son4, 0);
+            Mix_PlayChannel(3, JEU->son6, 0);
 
             BOB->tatt.start=BOB->tatt.now;
         }

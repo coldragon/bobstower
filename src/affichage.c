@@ -117,11 +117,6 @@ void AfficherObj(SDL_Renderer* render, Texture* objset, leMap MAP)
 void AfficherSort(SDL_Renderer* render, Texture* sortset, leJeu *JEU)
 {
     int i;
-    SDL_Rect p;
-    p.x=0;
-    p.y=0;
-    p.h=TCASE;
-    p.w=TCASE;
     for(i=0; i<MAX_PROJECTILES_PAR_SORT; i++)
     {
         if (JEU->sort1.projectiles[i].exist)
@@ -148,17 +143,17 @@ void AfficherGui(SDL_Renderer* render, Texture* guiset, leBob *BOB, TTF_Font *po
 
     // HP / HPMAX
     sprintf(charTemp, "LVL : %d -- HP : %d/%d", BOB->level, BOB->hp, BOB->hpMax);
-    hpTxt = TTF_RenderText_Blended(police, &charTemp, WHITE);
+    hpTxt = TTF_RenderText_Blended(police, charTemp, WHITE);
     rect.x=5; rect.y=0;
     rect.h=hpTxt->h; rect.w=hpTxt->w;
     hpTexture = SDL_CreateTextureFromSurface(render, hpTxt);
     SDL_RenderCopy(render, hpTexture, NULL, &rect);
     SDL_FreeSurface(hpTxt);
 
-    sprintf(&charTemp, "%d", BOB->money);
+    sprintf(charTemp, "%d", BOB->money);
     rect.x=224;
     rect.y=4;
-    hpTxt = TTF_RenderText_Blended(police, &charTemp, WHITE);
+    hpTxt = TTF_RenderText_Blended(police, charTemp, WHITE);
 
     rect.h=hpTxt->h;
     rect.w=hpTxt->w;

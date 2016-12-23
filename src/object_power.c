@@ -1,6 +1,7 @@
-#include "hdr/struct.h"
 #include <SDL2/SDL_mixer.h>
 #include <time.h>
+#include "hdr/struct.h"
+#include "hdr/basic.h"
 
 void callbackActionObject(int* objectType, leBob* BOB, leMap* MAP, leJeu* JEU)
 {
