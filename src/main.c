@@ -153,7 +153,7 @@ int main(int argc, char* args[])
                     continuer=0;
                     TextureRender(render, loose, 0, 0, NULL);
                     SDL_RenderPresent(render);
-                    SDL_Delay(5000);
+                    SDL_Delay(2500);
                 }
 
                 // Ennemy mort
