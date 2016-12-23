@@ -132,12 +132,12 @@ int main(int argc, char* args[])
                 inputReturn(&INPUT);
 
                 // Mouvement
-                mouvement(&INPUT, render, &BOB0, &continuer, &restartgame);
+                mouvement(&INPUT, render, &BOB0, &MAP1, &continuer, &restartgame);
                 mov_enm(render, ENM, &BOB0);
                 move_projectile(&JEU, &BOB0);
 
                 // Collision
-                collision(&BOB0, &MAP1);
+                //collision(&BOB0, &MAP1);
                 collisionEnm(ENM, &MAP1, &BOB0);
                 sortcollision(&MAP1, ENM, &JEU);
                 objetcollision(&MAP1, &BOB0, &JEU);

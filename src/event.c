@@ -34,10 +34,11 @@ void inputInit(leInput *INPUT)
 }
 
 
-void mouvement(leInput *INPUT, SDL_Renderer *render,leBob *BOB0, int *continuer, int *restartgame)
+void mouvement(leInput *INPUT, SDL_Renderer *render,leBob *BOB, leMap *MAP, int *continuer, int *restartgame)
 {
-    BOB0->posTemp.x=BOB0->pos.x;
-    BOB0->posTemp.y=BOB0->pos.y;
+    // Deplacement
+    BOB->posTemp.x=BOB->pos.x;
+    BOB->posTemp.y=BOB->pos.y;
 
     if  (INPUT->quit)
     {
@@ -46,28 +47,36 @@ void mouvement(leInput *INPUT, SDL_Renderer *render,leBob *BOB0, int *continuer,
     }
     if  (INPUT->key[SDL_SCANCODE_UP])
     {
-        BOB0->pos.y=BOB0->pos.y-BOB0->speed;
-        BOB0->skinPos.x=TCASE;
-        BOB0->direction=0;
+        BOB->pos.y=BOB->pos.y-BOB->speed;
+        if (collisionmap(&BOB->pos, MAP, 1, 16, 0, 4, 4) || collisionmap(&BOB->pos, MAP, 2, 0, 16, 4, 4))
+            BOB->pos.y=BOB->posTemp.y;
+        BOB->skinPos.x=TCASE;
+        BOB->direction=0;
     }
     if  (INPUT->key[SDL_SCANCODE_DOWN])
     {
-        BOB0->pos.y=BOB0->pos.y+BOB0->speed;
-        BOB0->skinPos.x=0;
-        BOB0->direction=2;
+        BOB->pos.y=BOB->pos.y+BOB->speed;
+        if (collisionmap(&BOB->pos, MAP, 1, 16, 0, 4, 4) || collisionmap(&BOB->pos, MAP, 2, 0, 16, 4, 4))
+            BOB->pos.y=BOB->posTemp.y;
+        BOB->skinPos.x=0;
+        BOB->direction=2;
     }
     if  (INPUT->key[SDL_SCANCODE_LEFT])
     {
-        BOB0->pos.x=BOB0->pos.x-BOB0->speed;
-        BOB0->skinPos.x=TCASE*2;
-        BOB0->direction=3;
+        BOB->pos.x=BOB->pos.x-BOB->speed;
+        if (collisionmap(&BOB->pos, MAP, 1, 16, 0, 4, 4) || collisionmap(&BOB->pos, MAP, 2, 0, 16, 4, 4))
+            BOB->pos.x=BOB->posTemp.x;
+        BOB->skinPos.x=TCASE*2;
+        BOB->direction=3;
 
     }
     if  (INPUT->key[SDL_SCANCODE_RIGHT])
     {
-        BOB0->pos.x=BOB0->pos.x+BOB0->speed;
-        BOB0->skinPos.x=TCASE*3;
-        BOB0->direction=1;
+        BOB->pos.x=BOB->pos.x+BOB->speed;
+        if (collisionmap(&BOB->pos, MAP, 1, 16, 0, 4, 4) || collisionmap(&BOB->pos, MAP, 2, 0, 16, 4, 4))
+            BOB->pos.x=BOB->posTemp.x;
+        BOB->skinPos.x=TCASE*3;
+        BOB->direction=1;
     }
     if  (INPUT->key[SDL_SCANCODE_ESCAPE])
     {
