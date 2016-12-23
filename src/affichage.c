@@ -131,20 +131,17 @@ void AfficherGui(SDL_Renderer* render, Texture* guiset, leBob *BOB, TTF_Font *po
     SDL_Texture* hpTexture;
     SDL_Rect rect;
 
-    rect.y=42; rect.x=0;
+    rect.y=0; rect.x=0;
     rect.h=32; rect.w=800;
     TextureRender(render, guiset, rect.y, rect.x, &rect);
-    rect.y=0;
-    rect.h=TCASE; rect.w=211;
-    TextureRender(render, guiset, 0, 0, &rect);
     rect.y=TCASE; rect.x=0;
     rect.h=10; rect.w=4+((BOB->hp*201)/BOB->hpMax);
-    TextureRender(render, guiset, 0, 16, &rect);
+    TextureRender(render, guiset, 0, 19, &rect);
 
     // HP / HPMAX
-    sprintf(charTemp, "LVL : %d -- HP : %d/%d", BOB->level, BOB->hp, BOB->hpMax);
+    sprintf(charTemp, "%d/%d", BOB->hp, BOB->hpMax);
     hpTxt = TTF_RenderText_Blended(police, charTemp, WHITE);
-    rect.x=5; rect.y=0;
+    rect.x=16; rect.y=2;
     rect.h=hpTxt->h; rect.w=hpTxt->w;
     hpTexture = SDL_CreateTextureFromSurface(render, hpTxt);
     SDL_RenderCopy(render, hpTexture, NULL, &rect);
@@ -152,7 +149,7 @@ void AfficherGui(SDL_Renderer* render, Texture* guiset, leBob *BOB, TTF_Font *po
 
     sprintf(charTemp, "%d", BOB->money);
     rect.x=224;
-    rect.y=4;
+    rect.y=18;
     hpTxt = TTF_RenderText_Blended(police, charTemp, WHITE);
 
     rect.h=hpTxt->h;

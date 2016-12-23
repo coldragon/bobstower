@@ -62,7 +62,7 @@ int main(int argc, char* args[])
     sortset=TextureCreate(render, "res/sortset.png", 255, 0, 255, 255);
     guiset=TextureCreate(render, "res/guiset.png", 255, 0, 255, 255);
     loose=TextureCreate(render, "res/loose.png", 255, 0, 255, 255);
-    police = TTF_OpenFont("ttf/FiraSans-Medium.ttf", 12);
+    police = TTF_OpenFont("ttf/FiraSans-Medium.ttf", 10);
 
 
     while(restartgame)
@@ -98,27 +98,19 @@ int main(int argc, char* args[])
         JEU.son6 = Mix_LoadWAV("snd/fireball1.wav"); // hit1
         JEU.son7 = Mix_LoadWAV("snd/attackenm.wav"); // hit1
 
-
-
         JEU.etage = 0;
 
         sort_init(&JEU, render);
-
 
         Mix_Volume(1, 65);
         Mix_Volume(2, 65);
         Mix_Volume(3, 65);
         Mix_Volume(4, 65);
 
-
-
         Mix_PlayMusic(musique2, -1);
         Mix_VolumeMusic(25);
 
-        long
-        t = 0,
-        t0 = 0;
-
+        long t = 0, t0 = 0;
         static const int FPS = 60;
         int TICKS = 1000 / FPS;
 
@@ -137,7 +129,6 @@ int main(int argc, char* args[])
                 move_projectile(&JEU, &BOB0);
 
                 // Collision
-                //collision(&BOB0, &MAP1);
                 collisionEnm(ENM, &MAP1, &BOB0);
                 sortcollision(&MAP1, ENM, &JEU);
                 objetcollision(&MAP1, &BOB0, &JEU);

@@ -11,7 +11,7 @@ leBob bob_init(leBob BOB, SDL_Renderer *render)
     BOB.skinPos.w=TCASE;
     BOB.skinPos.h=TCASE;
     BOB.level = 1;
-    BOB.hpMax = 100;
+    BOB.hpMax = 10;
     BOB.hp = BOB.hpMax;
     BOB.speed = 3;
     BOB.money = 0;
