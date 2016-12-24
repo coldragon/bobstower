@@ -96,6 +96,7 @@ int main(int argc, char* args[])
         JEU.son5 = Mix_LoadWAV("snd/mort1.wav"); // mort1
         JEU.son6 = Mix_LoadWAV("snd/fireball1.wav"); // hit1
         JEU.son7 = Mix_LoadWAV("snd/attackenm.wav"); // hit1
+        JEU.son8 = Mix_LoadWAV("snd/hit3.ogg");
 
         JEU.etage = 0;
 
@@ -131,7 +132,7 @@ int main(int argc, char* args[])
 
                 // Collision
                 collisionEnm(ENM, &MAP1, &BOB0);
-                sortcollision(&MAP1, ENM, &JEU);
+                sortcollision(&MAP1, ENM, &JEU, &BOB0);
                 objetcollision(&MAP1, &BOB0, &JEU);
 
                 // Attaque

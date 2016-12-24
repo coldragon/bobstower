@@ -23,7 +23,7 @@ void collisionEnm(leBob *ENM, leMap *MAP, leBob *BOB)
     int c[ENNEMY_MAX]= {0};
     for (i=0; i<ENNEMY_MAX; i++)
     {
-        if(collisionmap(&ENM[i].pos, MAP, 1, 16, 0, 4, 4) || collisionmap(&ENM[i].pos, MAP, 2, 16, 0, 4, 4))
+        if(collisionmap(&ENM[i].pos, MAP, 1, 16, 0, 4, 4) || collisionmap(&ENM[i].pos, MAP, 2, 0, 16, 4, 4))
             c[i]=1;
 
         if (distancepoint(ENM[i].pos.x+16, ENM[i].pos.y+16, BOB->pos.x+16, BOB->pos.y+16)<ENM[i].collision)
@@ -58,7 +58,7 @@ void objetcollision(leMap *MAP, leBob *BOB, leJeu *JEU)
     }
 }
 
-void sortcollision(leMap *MAP, leBob *ENM, leJeu *JEU)
+void sortcollision(leMap *MAP, leBob *ENM, leJeu *JEU, leBob *BOB)
 {
     int i, j;
     for (i=0; i<MAX_PROJECTILES_PAR_SORT; i++)
@@ -75,7 +75,21 @@ void sortcollision(leMap *MAP, leBob *ENM, leJeu *JEU)
                         Mix_PlayChannel(2, JEU->son5, 0);
                 }
             }
+
+            if (distancepoint(BOB->pos.x, BOB->pos.y, JEU->sort1_enm.projectiles[i].pos.x, JEU->sort1_enm.projectiles[i].pos.y)<=JEU->sort1_enm.scale+(BOB->collision/2))
+            {
+                if (JEU->sort1_enm.projectiles[i].exist)
+                {
+                    BOB->hp--;
+                    Mix_PlayChannel(8, JEU->son8, 0);
+                    JEU->sort1_enm.projectiles[i].exist=0;
+                    if(BOB->hp<1)
+                        Mix_PlayChannel(2, JEU->son5, 0);
+                }
+            }
         }
+
+
 
         if(collisionmap(&JEU->sort1.projectiles[i].pos, MAP, 1, 32, 0, 10, 10) || collisionmap(&JEU->sort1.projectiles[i].pos, MAP, 2, 0, 32, 10, 10))
         {

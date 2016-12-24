@@ -50,12 +50,12 @@ leBob enm_init(leBob BOB, leBob BOB0, leMap *MAP, SDL_Renderer *render)
     BOB.pos.x = aleatoire(0, WWIN-TCASE);
     BOB.pos.y = aleatoire(0, HWIN-TCASE);
 
-    while ((MAP->col[(BOB.pos.y+23)/32][(BOB.pos.x+4)/32]== 1 || MAP->col[(BOB.pos.y+23)/32][(BOB.pos.x+28)/32]== 1 ||
-            MAP->col[(BOB.pos.y+32)/32][(BOB.pos.x+4)/32]== 1 || MAP->col[(BOB.pos.y+32)/32][(BOB.pos.x+28)/32]== 1) ||
-            (MAP->col[(BOB.pos.y)/32][(BOB.pos.x+4)/32]== 2 || MAP->col[(BOB.pos.y)/32][(BOB.pos.x+28)/32]== 2 ||
-             MAP->col[(BOB.pos.y+10)/32][(BOB.pos.x+4)/32]== 2 || MAP->col[(BOB.pos.y+10)/32][(BOB.pos.x+28)/32]== 2) || distancepoint(BOB0.pos.x, BOB0.pos.y, BOB.pos.x, BOB.pos.y)<BOB.fov
-
-             )
+    while
+    (
+        collisionmap(&BOB.pos, MAP, 1, 16, 0, 4, 4) ||
+        collisionmap(&BOB.pos, MAP, 2, 0, 16, 4, 4) ||
+        distancepoint(BOB0.pos.x, BOB0.pos.y, BOB.pos.x, BOB.pos.y)<BOB.fov
+    )
     {
         BOB.pos.x = aleatoire(0, WWIN-TCASE);
         BOB.pos.y = aleatoire(0, HWIN-TCASE);
@@ -94,7 +94,7 @@ void sort_init(leJeu *JEU, SDL_Renderer *render)
     JEU->sort1_enm.power=5;
     JEU->sort1_enm.scale=10;
     JEU->sort1_enm.skin=2;
-    JEU->sort1_enm.speed=3;
+    JEU->sort1_enm.speed=4;
     JEU->sort1_enm.distanceattaque=130;
     for (i=0; i<MAX_PROJECTILES_PAR_SORT; i++)
     {

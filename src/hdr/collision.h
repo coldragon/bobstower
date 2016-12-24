@@ -6,6 +6,6 @@ int collisionmap(SDL_Rect *rect, leMap *MAP, int type, int haut, int bas, int ga
 void collision(leBob *BOB, leMap *MAP);
 void collisionEnm(leBob *ENM, leMap *MAP, leBob *BOB);
 void objetcollision(leMap *MAP, leBob *BOB, leJeu *JEU);
-void sortcollision(leMap *MAP, leBob *ENM, leJeu *JEU);
+void sortcollision(leMap *MAP, leBob *ENM, leJeu *JEU, leBob *BOB);
 
 #endif
