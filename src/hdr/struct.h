@@ -84,6 +84,7 @@ struct leJeu
     // Etage
     int etage;
     leSort sort1;
+    leSort sort1_enm;
 };
 typedef struct leJeu leJeu;
 

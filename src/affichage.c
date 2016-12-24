@@ -117,10 +117,19 @@ void AfficherObj(SDL_Renderer* render, Texture* objset, leMap MAP)
 void AfficherSort(SDL_Renderer* render, Texture* sortset, leJeu *JEU)
 {
     int i;
+    SDL_Rect rect;
     for(i=0; i<MAX_PROJECTILES_PAR_SORT; i++)
     {
         if (JEU->sort1.projectiles[i].exist)
-            TextureRender(render, sortset, JEU->sort1.projectiles[i].pos.x, JEU->sort1.projectiles[i].pos.y, NULL);
+        {
+            rect.x=0; rect.y=0; rect.w=TCASE; rect.h=TCASE;
+            TextureRender(render, sortset, JEU->sort1.projectiles[i].pos.x, JEU->sort1.projectiles[i].pos.y, &rect);
+        }
+        if (JEU->sort1_enm.projectiles[i].exist)
+        {
+            rect.x=TCASE; rect.y=0; rect.w=TCASE; rect.h=TCASE;
+            TextureRender(render, sortset, JEU->sort1_enm.projectiles[i].pos.x, JEU->sort1_enm.projectiles[i].pos.y, &rect);
+        }
     }
 }
 

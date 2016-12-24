@@ -127,6 +127,7 @@ int main(int argc, char* args[])
                 mov_enm(render, ENM, &BOB0);
                 move_projectile(&JEU, &BOB0);
 
+
                 // Collision
                 collisionEnm(ENM, &MAP1, &BOB0);
                 sortcollision(&MAP1, ENM, &JEU);

@@ -39,11 +39,11 @@ leBob enm_init(leBob BOB, leMap *MAP, SDL_Renderer *render)
     BOB.level = 1;
     BOB.hpMax = 4;
     BOB.hp = 4;
-    BOB.speed = 4;
-    BOB.money = 0;
+    BOB.speed = 2;
+    BOB.money = 10;
     BOB.luck= 1;
     BOB.collision = 20;
-    BOB.fov=150; // Distance de vue
+    BOB.fov=225; // Distance de vue
     BOB.attackspeed=410; // Vitesse entre chaque attaque
     BOB.distattack=30; // Distance d'attaque cac
     BOB.exist=1;
@@ -86,6 +86,26 @@ void sort_init(leJeu *JEU, SDL_Renderer *render)
         JEU->sort1.projectiles[i].mov.now=0;
         JEU->sort1.projectiles[i].mov.start=0;
         JEU->sort1.projectiles[i].exist=0;
+    }
+
+    JEU->sort1_enm.last_use=0;
+    JEU->sort1_enm.power=5;
+    JEU->sort1_enm.scale=10;
+    JEU->sort1_enm.skin=2;
+    JEU->sort1_enm.speed=3;
+    JEU->sort1_enm.distanceattaque=130;
+    for (i=0; i<MAX_PROJECTILES_PAR_SORT; i++)
+    {
+        JEU->sort1_enm.projectiles[i].pos.x=0;
+        JEU->sort1_enm.projectiles[i].pos.y=0;
+        JEU->sort1_enm.projectiles[i].pos.h=TCASE;
+        JEU->sort1_enm.projectiles[i].pos.w=TCASE;
+        JEU->sort1_enm.projectiles[i].d.x=0;
+        JEU->sort1_enm.projectiles[i].d.y=0;
+        JEU->sort1_enm.projectiles[i].mov.duration=0;
+        JEU->sort1_enm.projectiles[i].mov.now=0;
+        JEU->sort1_enm.projectiles[i].mov.start=0;
+        JEU->sort1_enm.projectiles[i].exist=0;
     }
 }
 

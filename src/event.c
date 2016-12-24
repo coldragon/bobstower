@@ -113,13 +113,25 @@ void mov_enm(SDL_Renderer *render, leBob *ENM, leBob *BOB)
                     y=ENM[i].pos.y-BOB->pos.y;
 
                     if (x<-3)
+                    {
                         ENM[i].pos.x+=ENM[i].speed;
+                        ENM[i].direction=1;
+                    }
                     if (x>3)
+                    {
                         ENM[i].pos.x-=ENM[i].speed;
+                        ENM[i].direction=3;
+                    }
                     if (y<-3)
+                    {
                         ENM[i].pos.y+=ENM[i].speed;
+                        ENM[i].direction=2;
+                    }
                     if (y>3)
+                    {
                         ENM[i].pos.y-=ENM[i].speed;
+                        ENM[i].direction=0;
+                    }
                 }
 
                 ENM[i].tmov.start=ENM[i].tmov.now;

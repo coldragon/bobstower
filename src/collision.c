@@ -82,9 +82,14 @@ void sortcollision(leMap *MAP, leBob *ENM, leJeu *JEU)
             JEU->sort1.projectiles[i].exist=0;
         }
 
-        if (distancepoint(JEU->sort1.projectiles[i].pos.x, JEU->sort1.projectiles[i].pos.y, JEU->sort1.projectiles[i].posOrigin.x, JEU->sort1.projectiles[i].posOrigin.y)>=JEU->sort1.distanceattaque)
+        /*if (distancepoint(JEU->sort1.projectiles[i].pos.x, JEU->sort1.projectiles[i].pos.y, JEU->sort1.projectiles[i].posOrigin.x, JEU->sort1.projectiles[i].posOrigin.y)>=JEU->sort1.distanceattaque)
         {
             JEU->sort1.projectiles[i].exist=0;
+        }*/
+
+        if(collisionmap(&JEU->sort1_enm.projectiles[i].pos, MAP, 1, 32, 0, 10, 10) || collisionmap(&JEU->sort1_enm.projectiles[i].pos, MAP, 2, 0, 32, 10, 10))
+        {
+            JEU->sort1_enm.projectiles[i].exist=0;
         }
 
     }
