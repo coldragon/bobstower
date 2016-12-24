@@ -17,25 +17,25 @@ void attackcac_enm(leBob *ENM, leBob *BOB, leJeu *JEU)
                     Mix_PlayChannel(4, JEU->son7, 0);
                 }
 
-                if (ENM[i].pos.x-BOB->pos.x>=0 && ENM[i].pos.x-BOB->pos.x<4)
+                if (ENM[i].pos.x-BOB->pos.x>=0 && ENM[i].pos.x-BOB->pos.x<8)
                 {
                     create_projectile(JEU, &JEU->sort1_enm, &ENM[i]);
                     Mix_PlayChannel(4, JEU->son7, 0);
                 }
 
-                if (ENM[i].pos.x-BOB->pos.x<=0 && ENM[i].pos.x-BOB->pos.x>-4)
+                if (ENM[i].pos.x-BOB->pos.x<=0 && ENM[i].pos.x-BOB->pos.x>-8)
                 {
                     create_projectile(JEU, &JEU->sort1_enm, &ENM[i]);
                     Mix_PlayChannel(4, JEU->son7, 0);
                 }
 
-                if (ENM[i].pos.y-BOB->pos.y>=0 && ENM[i].pos.y-BOB->pos.y<4)
+                if (ENM[i].pos.y-BOB->pos.y>=0 && ENM[i].pos.y-BOB->pos.y<8)
                 {
                     create_projectile(JEU, &JEU->sort1_enm, &ENM[i]);
                     Mix_PlayChannel(4, JEU->son7, 0);
                 }
 
-                if (ENM[i].pos.y-BOB->pos.y<=0 && ENM[i].pos.y-BOB->pos.y>-4)
+                if (ENM[i].pos.y-BOB->pos.y<=0 && ENM[i].pos.y-BOB->pos.y>-8)
                 {
                     create_projectile(JEU, &JEU->sort1_enm, &ENM[i]);
                     Mix_PlayChannel(4, JEU->son7, 0);
@@ -96,7 +96,7 @@ void move_projectile(leJeu *JEU, leBob *BOB)
             JEU->sort1.projectiles[i].pos.x+=JEU->sort1.projectiles[i].d.x*JEU->sort1.speed;
             JEU->sort1.projectiles[i].pos.y+=JEU->sort1.projectiles[i].d.y*JEU->sort1.speed;
         }
-    }
+        }
 
     for (i=0; i<MAX_PROJECTILES_PAR_SORT; i++)
     {

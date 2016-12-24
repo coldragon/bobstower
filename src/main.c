@@ -67,7 +67,7 @@ int main(int argc, char* args[])
     while(restartgame)
     {
         musique = Mix_LoadMUS("snd/music.ogg");
-        musique2 = Mix_LoadMUS("snd/music2.mp3");
+        musique2 = Mix_LoadMUS("");
         inputInit(&INPUT);
         startmenu=1;
         continuer=1;
@@ -87,7 +87,7 @@ int main(int argc, char* args[])
 
         BOB0=bob_init(BOB0, render);
         for (i=0; i<ENNEMY_MAX; i++)
-            ENM[i]=enm_init(ENM[i], &MAP1, render);
+            ENM[i]=enm_init(ENM[i], BOB0, &MAP1, render);
 
         JEU.son1 = Mix_LoadWAV("snd/loot1.wav"); // loot1
         JEU.son2 = Mix_LoadWAV("snd/loot2.wav");  // loot2
@@ -108,6 +108,7 @@ int main(int argc, char* args[])
 
         Mix_PlayMusic(musique2, -1);
         Mix_VolumeMusic(25);
+        Mix_PauseMusic();
 
         long t = 0, t0 = 0;
         static const int FPS = 60;
@@ -162,8 +163,11 @@ int main(int argc, char* args[])
                 // Ennemy mort
                 for (i=0; i<ENNEMY_MAX; i++)
                 {
-                    if (ENM[i].hp<1)
+                    if (ENM[i].hp<1 && ENM[i].exist==1)
+                    {
                         ENM[i].exist=0;
+                        BOB0.money+=ENM[i].money;
+                    }
                 }
 
                 for (i=0; i<ENNEMY_MAX; i++)

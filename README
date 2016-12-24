@@ -24,14 +24,14 @@
 
 	build tryed on :
 
-	Xubuntu 16.04
-	Windows 10 with MVS2013
+	Xubuntu 16.04 with gcc
+	Windows 10 with MVS2013 and MinGW
 
 	credit :
-	music : openning screen :: Rolemu - Neoakushon
-		ambient 1 :: Visager - Inside the Tower [Loop] from "Songs From An Unmade World 2"
+	music : openning screen :: SawnINK - Bones (CLIP) (Personal music)
+		ambient 1 :: 
 	
-	tileset : from http://opengameart.org/content/dungeon-crawl-32x32-tiles I edited it a bit
+	tileset : personal
 
 	thank's to Scorbutics for the help in dev!
 	

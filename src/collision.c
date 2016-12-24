@@ -65,7 +65,7 @@ void sortcollision(leMap *MAP, leBob *ENM, leJeu *JEU)
     {
         for (j=0; j<ENNEMY_MAX; j++)
         {
-            if (distancepoint(ENM[j].pos.x, ENM[j].pos.y, JEU->sort1.projectiles[i].pos.x, JEU->sort1.projectiles[i].pos.y)<=JEU->sort1.scale+(ENM[i].collision/2) && ENM[j].exist)
+            if (distancepoint(ENM[j].pos.x, ENM[j].pos.y, JEU->sort1.projectiles[i].pos.x, JEU->sort1.projectiles[i].pos.y)<=JEU->sort1.scale+(ENM[j].collision/2) && ENM[j].exist)
             {
                 if (JEU->sort1.projectiles[i].exist)
                 {
