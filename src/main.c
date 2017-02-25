@@ -30,8 +30,8 @@ int main(int argc, char* args[])
     srand((unsigned int)time(NULL));
     // Variable de SDL
     SDL_Window *window;
-    SDL_Renderer* render;
-    TTF_Font *police = NULL;
+    SDL_Renderer* render = {0};
+	TTF_Font *police = { 0 };
     Mix_Music *musique, *musique2;
     Texture *tileset;
     Texture *objset;
@@ -52,9 +52,9 @@ int main(int argc, char* args[])
                  SDL_WINDOWPOS_UNDEFINED,   // initial y position
                  WWIN,                      // width, in pixels
                  HWIN,                      // height, in pixels
-                 SDL_WINDOW_OPENGL        // flags - see below
+                 0 // flags - see below
              );
-    render = SDL_CreateRenderer(window, -1, SDL_RENDERER_ACCELERATED | SDL_RENDERER_PRESENTVSYNC);
+    render = SDL_CreateRenderer(window, -1, SDL_RENDERER_ACCELERATED);
     tileset=TextureCreate(render, "res/tileset.png", 255, 0, 255, 255);
     objset=TextureCreate(render, "res/objset.png", 255, 0, 255, 255);
     screentitle=TextureCreate(render, "res/screentitle.png", 255, 0, 255, 255);
@@ -62,7 +62,6 @@ int main(int argc, char* args[])
     guiset=TextureCreate(render, "res/guiset.png", 255, 0, 255, 255);
     loose=TextureCreate(render, "res/loose.png", 255, 0, 255, 255);
     police = TTF_OpenFont("ttf/FiraSans-Medium.ttf", 10);
-
 
     while(restartgame)
     {
@@ -111,7 +110,7 @@ int main(int argc, char* args[])
         Mix_VolumeMusic(25);
         Mix_PauseMusic();
 
-        long t = 0, t0 = 0;
+        long t, t0 = 0;
         static const int FPS = 60;
         int TICKS = 1000 / FPS;
 
@@ -129,7 +128,6 @@ int main(int argc, char* args[])
                 mov_enm(render, ENM, &BOB0);
                 move_projectile(&JEU, &BOB0);
 
-
                 // Collision
                 collisionEnm(ENM, &MAP1, &BOB0);
                 sortcollision(&MAP1, ENM, &JEU, &BOB0);
@@ -139,9 +137,6 @@ int main(int argc, char* args[])
                 attackcac_enm(ENM, &BOB0, &JEU);
                 attack_bob(&BOB0, &JEU, &INPUT);
 
-
-                if (BOB0.hp < 0)
-                    BOB0.hp=0;
                 // Affichage
                 AfficherMap_layer1(render, tileset, MAP1);
                 AfficherObj(render, objset, MAP1);
@@ -155,6 +150,9 @@ int main(int argc, char* args[])
                 // Defaite
                 if (BOB0.hp<1)
                 {
+					if (BOB0.hp < 0)
+						BOB0.hp = 0;
+
                     continuer=0;
                     TextureRender(render, loose, 0, 0, NULL);
                     SDL_RenderPresent(render);
@@ -170,9 +168,6 @@ int main(int argc, char* args[])
                         BOB0.money+=ENM[i].money;
                     }
                 }
-
-                for (i=0; i<ENNEMY_MAX; i++)
-
                 t0=t;
             }
             else

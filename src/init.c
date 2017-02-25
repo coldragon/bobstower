@@ -1,7 +1,7 @@
 #include "hdr/texture.h"
-#include "hdr/define.h"
 #include "hdr/struct.h"
 #include "hdr/basic.h"
+#include "hdr/collision.h"
 
 leBob bob_init(leBob BOB, SDL_Renderer *render)
 {

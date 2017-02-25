@@ -1,7 +1,10 @@
 #include <SDL2/SDL.h>
+#include <string.h>
 #include "hdr/other_screen.h"
 #include "hdr/struct.h"
 #include "hdr/basic.h"
+#include "hdr/collision.h"
+
 
 void inputReturn(leInput *INPUT)
 {
@@ -45,11 +48,6 @@ void mouvement(leInput *INPUT, SDL_Renderer *render,leBob *BOB, leMap *MAP, int 
         *continuer = 0;
         *restartgame = 0;
     }
-    if  (INPUT->key[SDL_SCANCODE_W])
-    {
-        *continuer = 0;
-        *restartgame = 0;
-    }
     if  (INPUT->key[SDL_SCANCODE_UP])
     {
         BOB->pos.y=BOB->pos.y-BOB->speed;
@@ -85,8 +83,7 @@ void mouvement(leInput *INPUT, SDL_Renderer *render,leBob *BOB, leMap *MAP, int 
     }
     if  (INPUT->key[SDL_SCANCODE_ESCAPE])
     {
-        inputInit(INPUT);
-        if(menu_escape(render)==1)
+        if(menu_escape(render, INPUT)==1)
         {
             *continuer = 0;
             *restartgame = 0;

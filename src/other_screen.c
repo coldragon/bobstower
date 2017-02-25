@@ -1,16 +1,15 @@
-#include <stdio.h>
 #include <SDL2/SDL.h>
 #include "hdr/struct.h"
 #include "hdr/texture.h"
 #include "hdr/event.h"
 
-int menu_escape(SDL_Renderer *render)
+int menu_escape(SDL_Renderer *render, leInput *INPUT)
 {
+	inputInit(INPUT);
     Texture *img;
     SDL_Event event;
     int action = 0;
     int boucle = 1;
-    printf("Escape Menu OK");
     img=TextureCreate(render, "res/escapetitle.png", 255, 0, 255, 255);
     TextureRender(render, img, 0, 0, NULL);
     SDL_RenderPresent(render);
@@ -23,6 +22,7 @@ int menu_escape(SDL_Renderer *render)
         {
         case SDL_QUIT:
             boucle = 0;
+			action = 1;
 
             break;
 
@@ -38,5 +38,6 @@ int menu_escape(SDL_Renderer *render)
         }
     }
     Mix_ResumeMusic();
+	TextureFree(img);
     return action;
 }

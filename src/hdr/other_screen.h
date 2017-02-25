@@ -1,6 +1,9 @@
 #ifndef HEADER_INCLUDED_OTHER_SCREEN
 #define HEADER_INCLUDED_OTHER_SCREEN
 
-int menu_escape(SDL_Renderer *render);
+#include <SDL2/SDL.h>
+#include "struct.h"
+
+int menu_escape(SDL_Renderer *render, leInput *INPUT);
 
 #endif

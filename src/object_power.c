@@ -1,5 +1,4 @@
 #include <SDL2/SDL_mixer.h>
-#include <time.h>
 #include "hdr/struct.h"
 #include "hdr/basic.h"
 

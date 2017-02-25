@@ -1,9 +1,9 @@
+#include <stdio.h>
 #include <SDL2/SDL.h>
 #include <SDL2/SDL_ttf.h>
-#include <SDL2/SDL_image.h>
-#include "hdr/define.h"
 #include "hdr/texture.h"
 #include "hdr/struct.h"
+
 
 extern const SDL_Color WHITE;
 
@@ -110,7 +110,7 @@ void AfficherObj(SDL_Renderer* render, Texture* objset, leMap MAP)
             posObj.x=TCASE*(MAP.obj[i][j]%(wobjset));
             posObj.y=TCASE*(MAP.obj[i][j]/(wobjset));
             TextureRender(render, objset, pos.x, pos.y, &posObj);
-        }
+        } 
     }
 }
 
@@ -136,7 +136,6 @@ void AfficherSort(SDL_Renderer* render, Texture* sortset, leJeu *JEU)
 void AfficherGui(SDL_Renderer* render, Texture* guiset, leBob *BOB, TTF_Font *police)
 {
     char charTemp[50]= {0};
-    int i;
     SDL_Surface* hpTxt;
     SDL_Texture* hpTexture;
     SDL_Rect rect;
@@ -149,6 +148,7 @@ void AfficherGui(SDL_Renderer* render, Texture* guiset, leBob *BOB, TTF_Font *po
     TextureRender(render, guiset, 0, 19, &rect);
 
     // HP / HPMAX
+
     sprintf(charTemp, "%d/%d", BOB->hp, BOB->hpMax);
     hpTxt = TTF_RenderText_Blended(police, charTemp, WHITE);
     rect.x=16; rect.y=2;
@@ -160,12 +160,14 @@ void AfficherGui(SDL_Renderer* render, Texture* guiset, leBob *BOB, TTF_Font *po
     sprintf(charTemp, "%d", BOB->money);
     rect.x=224;
     rect.y=18;
+	SDL_FreeSurface(hpTxt);
     hpTxt = TTF_RenderText_Blended(police, charTemp, WHITE);
-
     rect.h=hpTxt->h;
     rect.w=hpTxt->w;
+	SDL_DestroyTexture(hpTexture);
     hpTexture = SDL_CreateTextureFromSurface(render, hpTxt);
 
     SDL_RenderCopy(render, hpTexture, NULL, &rect);
     SDL_FreeSurface(hpTxt);
+	SDL_DestroyTexture(hpTexture);
 }
