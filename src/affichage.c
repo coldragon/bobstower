@@ -160,7 +160,6 @@ void AfficherGui(SDL_Renderer* render, Texture* guiset, leBob *BOB, TTF_Font *po
     sprintf(charTemp, "%d", BOB->money);
     rect.x=224;
     rect.y=18;
-	SDL_FreeSurface(hpTxt);
     hpTxt = TTF_RenderText_Blended(police, charTemp, WHITE);
     rect.h=hpTxt->h;
     rect.w=hpTxt->w;
