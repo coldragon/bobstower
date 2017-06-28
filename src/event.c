@@ -157,7 +157,9 @@ void menuavantjeux(leInput *INPUT, int *startmenu, int *restartgame, int *contin
         case SDLK_RETURN:
             *startmenu=0;
             break;
+        default: ;
         }
         break;
+    default: ;
     }
 }

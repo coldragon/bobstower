@@ -20,7 +20,7 @@ const SDL_Color WHITE = {255,255,255};
 
 int main(int argc, char* args[])
 {
-    leMap MAP0, MAP1, MAP2;
+	leMap MAP1;
     leBob BOB0 = { 0 };
     leBob ENM[ENNEMY_MAX] = { 0 };
     leJeu JEU = { 0 };
@@ -82,12 +82,16 @@ int main(int argc, char* args[])
         {
             menuavantjeux(&INPUT, &startmenu, &restartgame, &continuer);
         }
-
-        map_init(&MAP0);
-        map_init(&MAP1);
-        map_init(&MAP2);
+		
+		map_init(&MAP1);
+		map_load(&MAP1);
 
         BOB0=bob_init(BOB0, render);
+		BOB0.pos.x = MAP1.sx;
+		BOB0.pos.y = MAP1.sy;
+		BOB0.posTemp.x = MAP1.sx;
+		BOB0.posTemp.y = MAP1.sy;
+
         for (i=0; i<ENNEMY_MAX; i++)
             ENM[i]=enm_init(ENM[i], BOB0, &MAP1, render);
 		int enmTotal = ENNEMY_MAX;
@@ -177,11 +181,15 @@ int main(int argc, char* args[])
 				if (enmTotal<1)
 				{
 					changemap_screen(render);
-					next_map_load();
+					map_load(&MAP1);
+					BOB0.pos.x = MAP1.sx;
+					BOB0.pos.y = MAP1.sy;
+					BOB0.posTemp.x = MAP1.sx;
+					BOB0.posTemp.y = MAP1.sy;
+
 					for (i = 0; i<ENNEMY_MAX; i++)
 						ENM[i] = enm_init(ENM[i], BOB0, &MAP1, render);
 					enmTotal = ENNEMY_MAX;
-					map_init2(&MAP1);
 				}
 
                 t0=t;

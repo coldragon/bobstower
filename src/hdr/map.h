@@ -3,6 +3,6 @@
 
 #include "hdr/struct.h"
 
-void next_map_load();
+void map_load(leMap *MAP);
 
 #endif

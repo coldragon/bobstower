@@ -44,6 +44,7 @@ struct leMap
     int tile2[HCASE][WCASE];
     int col[HCASE][WCASE];
     int obj[HCASE][WCASE];
+	int sx, sy;
 };
 typedef struct leMap leMap;
 
