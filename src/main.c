@@ -13,6 +13,8 @@
 #include "hdr/collision.h"
 #include "hdr/define.h"
 #include "hdr/attack.h"
+#include "hdr/map.h"
+#include "hdr/other_screen.h"
 
 const SDL_Color WHITE = {255,255,255};
 
@@ -54,6 +56,7 @@ int main(int argc, char* args[])
                  HWIN,                      // height, in pixels
                  0 // flags - see below
              );
+
     render = SDL_CreateRenderer(window, -1, SDL_RENDERER_ACCELERATED);
     tileset=TextureCreate(render, "res/tileset.png", 255, 0, 255, 255);
     objset=TextureCreate(render, "res/objset.png", 255, 0, 255, 255);
@@ -87,6 +90,7 @@ int main(int argc, char* args[])
         BOB0=bob_init(BOB0, render);
         for (i=0; i<ENNEMY_MAX; i++)
             ENM[i]=enm_init(ENM[i], BOB0, &MAP1, render);
+		int enmTotal = ENNEMY_MAX;
 
         JEU.son1 = Mix_LoadWAV("snd/loot1.wav"); // loot1
         JEU.son2 = Mix_LoadWAV("snd/loot2.wav");  // loot2
@@ -166,8 +170,20 @@ int main(int argc, char* args[])
                     {
                         ENM[i].exist=0;
                         BOB0.money+=ENM[i].money;
+						enmTotal--;
                     }
                 }
+
+				if (enmTotal<1)
+				{
+					changemap_screen(render);
+					next_map_load();
+					for (i = 0; i<ENNEMY_MAX; i++)
+						ENM[i] = enm_init(ENM[i], BOB0, &MAP1, render);
+					enmTotal = ENNEMY_MAX;
+					map_init2(&MAP1);
+				}
+
                 t0=t;
             }
             else

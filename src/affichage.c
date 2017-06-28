@@ -15,8 +15,7 @@ void AfficherBob(SDL_Renderer* render, leBob *BOB)
 
 void AfficherEnm(SDL_Renderer* render, leBob *ENM)
 {
-    int i;
-    for (i=0; i<ENNEMY_MAX; i++)
+    for (int i=0; i<ENNEMY_MAX; i++)
     {
         if(ENM[i].exist)
         {
@@ -58,11 +57,12 @@ void AfficherMap_layer1(SDL_Renderer* render, Texture* tileset, leMap MAP)
     SDL_Rect pos, posTile;
     posTile.w=TCASE;
     posTile.h=TCASE;
-    int i, j;
+
     const int wtileset = tileset->w/TCASE;
-    for (i=0; i<HCASE; i++)
+
+    for (int i=0; i<HCASE; i++)
     {
-        for (j=0; j<WCASE; j++)
+        for (int j=0; j<WCASE; j++)
         {
             pos.x=j*TCASE;
             pos.y=i*TCASE;
@@ -116,9 +116,8 @@ void AfficherObj(SDL_Renderer* render, Texture* objset, leMap MAP)
 
 void AfficherSort(SDL_Renderer* render, Texture* sortset, leJeu *JEU)
 {
-    int i;
     SDL_Rect rect;
-    for(i=0; i<MAX_PROJECTILES_PAR_SORT; i++)
+    for(int i=0; i<MAX_PROJECTILES_PAR_SORT; i++)
     {
         if (JEU->sort1.projectiles[i].exist)
         {
@@ -160,7 +159,6 @@ void AfficherGui(SDL_Renderer* render, Texture* guiset, leBob *BOB, TTF_Font *po
     sprintf(charTemp, "%d", BOB->money);
     rect.x=224;
     rect.y=18;
-	SDL_FreeSurface(hpTxt);
     hpTxt = TTF_RenderText_Blended(police, charTemp, WHITE);
     rect.h=hpTxt->h;
     rect.w=hpTxt->w;
