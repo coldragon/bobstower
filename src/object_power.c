@@ -40,7 +40,8 @@ void callbackActionObject(int* objectType, leBob* BOB, leMap* MAP, leJeu* JEU)
         *objectType = 8;
         Mix_PlayChannel(1, JEU->son4, 0);
         break;
-
+	case 9: // Exit
+		MAP->quitfloor = 1;
     default:
         break;
     }

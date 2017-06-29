@@ -13,9 +13,7 @@ void map_load(leMap *MAP)
 	tfFILE *allFiles = malloc(0);
 	int i = 0, j = 0;
 
-#if defined( _WIN32 )
 	tfDirNext(&dir); tfDirNext(&dir);
-#endif
 
 	while (dir.has_next)
 	{
@@ -80,6 +78,11 @@ void map_load(leMap *MAP)
 		// spawn
 		fgetc(fichier);
 		fscanf(fichier, "#S#%d,%d", &MAP->sx, &MAP->sy);
+
+		// exit
+		fgetc(fichier);
+		fscanf(fichier, "#E#%d,%d", &MAP->ex, &MAP->ey);
+		printf("ex = %d / ey = %d", MAP->ex, MAP->ey);
 
 		fclose(fichier);
 	}

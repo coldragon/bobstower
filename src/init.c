@@ -115,7 +115,7 @@ void map_init(leMap *MAP)
 {
  
 	int i, j;
-
+	MAP->quitfloor = 0;
     for (i=0; i<HCASE; i++)
     {
         for (j=0; j<WCASE; j++)

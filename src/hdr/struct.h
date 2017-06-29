@@ -44,7 +44,9 @@ struct leMap
     int tile2[HCASE][WCASE];
     int col[HCASE][WCASE];
     int obj[HCASE][WCASE];
-	int sx, sy;
+	int sx, sy; // Spawn position in PIXEL !!
+	int ex, ey; // Exit position in CASE !!
+	int quitfloor;
 };
 typedef struct leMap leMap;
 
