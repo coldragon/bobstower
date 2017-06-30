@@ -51,7 +51,7 @@
 #define TF_MAC		2
 #define TF_UNIX		3
 
-#if defined( _WIN32 ) || defined ( _WIN64 )
+#if defined( _WIN32 )
 	#define TF_PLATFORM TF_WINDOWS
 #elif defined( __APPLE__ )
 	#define TF_PLATFORM TF_MAC
@@ -363,4 +363,3 @@ void tfTraverse( const char* path, tfCallback cb, void* udata )
 	     be misrepresented as being the original software.
 	  3. This notice may not be removed or altered from any source distribution.
 */
-// I just added WIN64 on the original tinyfiles

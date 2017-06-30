@@ -8,17 +8,16 @@
 	..SDL_ttf
 	..SDL_mixer
 
-	Header not included : (look for the path in map.c)
-	..Tinyfile from Tinyheader
+	Header (now) included :
+	..Tinyfile from Tinyheader (https://github.com/RandyGaul/tinyheaders)
 	
 	made on :
 	
-	Xubuntu 16.04
+	Win10 and Xubuntu/Ubuntu Budgie
 	
 	with :
 
-	-gcc
-	-cmake
+	-MVSC2015/2017 and gcc/cmake
 	-gimp
 	-sfxr
 
@@ -29,10 +28,10 @@
 	Windows 10 with MVS2013, MVS2015, MinGW
 
 	credit :
-	music : openning screen :: SawnINK - Bones (CLIP) (Personal music)
+		music : openning screen :: SawnINK - Bones (CLIP) (Personal music)
 		ambient 1 :: 
 	
-	tileset : personal
+		tileset :: personal
 
-	thank's to Scorbutics for the help in dev!
+	thank's to Scorbutics for the help and hint for dev!
 	

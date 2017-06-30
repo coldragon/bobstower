@@ -42,21 +42,9 @@ int main(int argc, char* args[])
 	Texture *screentitle;
 	Texture *loose;
 
-	// SDL Init
-	SDL_Init(SDL_INIT_VIDEO);
-	Mix_OpenAudio(44100, MIX_DEFAULT_FORMAT, MIX_DEFAULT_CHANNELS, 1024);
-	Mix_AllocateChannels(10);
-	TTF_Init();
+	open_sdl_shit();
 
-	window = SDL_CreateWindow(
-		"Bob's tower Alpha",      // window title
-		SDL_WINDOWPOS_UNDEFINED,   // initial x position
-		SDL_WINDOWPOS_UNDEFINED,   // initial y position
-		WWIN,                      // width, in pixels
-		HWIN,                      // height, in pixels
-		0 // flags - see below
-	);
-
+	window = SDL_CreateWindow("Bob's tower Alpha",SDL_WINDOWPOS_UNDEFINED,SDL_WINDOWPOS_UNDEFINED,WWIN,HWIN,0);
 	render = SDL_CreateRenderer(window, -1, SDL_RENDERER_ACCELERATED);
 	tileset = TextureCreate(render, "res/tileset.png", 255, 0, 255, 255);
 	objset = TextureCreate(render, "res/objset.png", 255, 0, 255, 255);
@@ -95,7 +83,7 @@ int main(int argc, char* args[])
 		for (i = 0; i < ENNEMY_MAX; i++)
 			ENM[i] = enm_init(ENM[i], BOB0, &MAP1, render);
 		int enmTotal = ENNEMY_MAX;
-		int quitfloor = 0; int endtrigger = 0;
+		int endtrigger = 0;
 		JEU.son1 = Mix_LoadWAV("snd/loot1.wav"); // loot1
 		JEU.son2 = Mix_LoadWAV("snd/loot2.wav");  // loot2
 		JEU.son3 = Mix_LoadWAV("snd/loot3.wav"); // loot3
@@ -207,9 +195,8 @@ int main(int argc, char* args[])
 		}
 		Mix_PauseMusic();
 	}
-	// Closing
-	TTF_Quit();
-	Mix_CloseAudio();
-	SDL_Quit();
+
+	close_sdl_shit();
+
 	return 0;
 }

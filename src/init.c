@@ -2,6 +2,22 @@
 #include "hdr/struct.h"
 #include "hdr/basic.h"
 #include "hdr/collision.h"
+#include <SDL2/SDL_ttf.h>
+
+void open_sdl_shit()
+{
+	SDL_Init(SDL_INIT_VIDEO);
+	Mix_OpenAudio(44100, MIX_DEFAULT_FORMAT, MIX_DEFAULT_CHANNELS, 1024);
+	Mix_AllocateChannels(10);
+	TTF_Init();
+}
+
+void close_sdl_shit()
+{
+	TTF_Quit();
+	Mix_CloseAudio();
+	SDL_Quit();
+}
 
 leBob bob_init(leBob BOB, SDL_Renderer *render)
 {
