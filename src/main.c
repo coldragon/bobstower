@@ -109,7 +109,8 @@ int main(int argc, char* args[])
 		long t, t0 = 0;
 		static const int FPS = 60;
 		int TICKS = 1000 / FPS;
-
+		BOB0.pos.x = MAP1.sy;
+		BOB0.pos.y = MAP1.sx;
 		while (continuer)
 		{
 			t = SDL_GetTicks();
