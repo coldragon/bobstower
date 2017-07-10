@@ -52,7 +52,7 @@ void CleanScreen(SDL_Renderer* render, int r, int g, int b)
     SDL_RenderClear(render);
 }
 
-void AfficherMap_layer1(SDL_Renderer* render, Texture* tileset, leMap MAP)
+void AfficherMap_layer1(SDL_Renderer* render, Texture* tileset, leMap *MAP)
 {
     SDL_Rect pos, posTile;
     posTile.w=TCASE;
@@ -66,14 +66,14 @@ void AfficherMap_layer1(SDL_Renderer* render, Texture* tileset, leMap MAP)
         {
             pos.x=j*TCASE;
             pos.y=i*TCASE;
-            posTile.x=TCASE*(MAP.tile[i][j]%(wtileset));
-            posTile.y=TCASE*(MAP.tile[i][j]/(wtileset));
+            posTile.x=TCASE*(MAP->tile[i][j]%(wtileset));
+            posTile.y=TCASE*(MAP->tile[i][j]/(wtileset));
             TextureRender(render, tileset, pos.x, pos.y, &posTile);
         }
     }
 }
 
-void AfficherMap_layer2(SDL_Renderer* render, Texture* tileset, leMap MAP)
+void AfficherMap_layer2(SDL_Renderer* render, Texture* tileset, leMap *MAP)
 {
     SDL_Rect pos, posTile;
     posTile.w=TCASE;
@@ -86,15 +86,15 @@ void AfficherMap_layer2(SDL_Renderer* render, Texture* tileset, leMap MAP)
         {
             pos.x=j*TCASE;
             pos.y=i*TCASE;
-            posTile.x=TCASE*(MAP.tile2[i][j]%(wtileset));
-            posTile.y=TCASE*(MAP.tile2[i][j]/(wtileset));
-            if (MAP.tile2[i][j])
+            posTile.x=TCASE*(MAP->tile2[i][j]%(wtileset));
+            posTile.y=TCASE*(MAP->tile2[i][j]/(wtileset));
+            if (MAP->tile2[i][j])
                 TextureRender(render, tileset, pos.x, pos.y, &posTile);
         }
     }
 }
 
-void AfficherObj(SDL_Renderer* render, Texture* objset, leMap MAP)
+void AfficherObj(SDL_Renderer* render, Texture* objset, leMap *MAP)
 {
     SDL_Rect pos, posObj;
     posObj.w=TCASE;
@@ -107,14 +107,14 @@ void AfficherObj(SDL_Renderer* render, Texture* objset, leMap MAP)
         {
             pos.x=j*TCASE+2;
             pos.y=i*TCASE+1;
-            posObj.x=TCASE*(MAP.obj[i][j]%(wobjset));
-            posObj.y=TCASE*(MAP.obj[i][j]/(wobjset));
+            posObj.x=TCASE*(MAP->obj[i][j]%(wobjset));
+            posObj.y=TCASE*(MAP->obj[i][j]/(wobjset));
             TextureRender(render, objset, pos.x, pos.y, &posObj);
         } 
     }
 }
 
-void AfficherSort(SDL_Renderer* render, Texture* sortset, leJeu *JEU)
+void AfficherSort(SDL_Renderer* render, Texture* sortset, leAudio *JEU)
 {
     SDL_Rect rect;
     for(int i=0; i<MAX_PROJECTILES_PAR_SORT; i++)
@@ -168,4 +168,16 @@ void AfficherGui(SDL_Renderer* render, Texture* guiset, leBob *BOB, TTF_Font *po
     SDL_RenderCopy(render, hpTexture, NULL, &rect);
     SDL_FreeSurface(hpTxt);
 	SDL_DestroyTexture(hpTexture);
+}
+
+void AFFICHAGE(leCore *CORE, leBob *ENM, leBob *BOB0)
+{
+	AfficherMap_layer1(CORE->RENDER, CORE->TEXPACK.tileset, CORE->MAP);
+	AfficherObj(CORE->RENDER, CORE->TEXPACK.objset, CORE->MAP);
+	AfficherBob(CORE->RENDER, BOB0);
+	AfficherEnm(CORE->RENDER, ENM);
+	AfficherSort(CORE->RENDER, CORE->TEXPACK.sortset, &CORE->AUDIO);
+	AfficherMap_layer2(CORE->RENDER, CORE->TEXPACK.tileset, CORE->MAP);
+	AfficherGui(CORE->RENDER, CORE->TEXPACK.guiset, BOB0, CORE->FONT);
+	SDL_RenderPresent(CORE->RENDER);
 }

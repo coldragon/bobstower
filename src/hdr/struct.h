@@ -5,16 +5,17 @@
 #include "texture.h"
 #include <SDL2/SDL_mixer.h>
 #include <SDL2/SDL.h>
+#include <SDL2/SDL_ttf.h>
 
-struct leTimer
+typedef struct
 {
     long start;
     long now;
     long duration;
-};
-typedef struct leTimer leTimer;
 
-struct leBob
+}leTimer;
+
+typedef struct
 {
     SDL_Rect pos, posTemp;
     Texture *skin;
@@ -35,10 +36,10 @@ struct leBob
     int exist;
     leTimer tmov;
     leTimer tatt;
-};
-typedef struct leBob leBob;
 
-struct leMap
+}leBob;
+
+typedef struct
 {
     int tile[HCASE][WCASE];
     int tile2[HCASE][WCASE];
@@ -47,19 +48,19 @@ struct leMap
 	int sx, sy; // Spawn position in PIXEL !!
 	int ex, ey; // Exit position in CASE !!
 	int quitfloor;
-};
-typedef struct leMap leMap;
 
-struct leProjectiles
+}leMap;
+
+typedef struct
 {
     SDL_Rect pos, posOrigin;
     SDL_Rect d;
     leTimer mov;
     int exist;
-};
-typedef struct leProjectiles leProjectiles;
 
-struct leSort
+}leProjectiles;
+
+typedef struct
 {
     leProjectiles projectiles[MAX_PROJECTILES_PAR_SORT];
     int skin;
@@ -68,34 +69,62 @@ struct leSort
     int scale;
     int power;
     int speed;
-};
-typedef struct leSort leSort;
 
-struct leJeu
+}leSort;
+
+typedef struct 
 {
-    // Son
-    Mix_Chunk *son1;
-    Mix_Chunk *son2;
-    Mix_Chunk *son3;
-    Mix_Chunk *son4;
-    Mix_Chunk *son5;
-    Mix_Chunk *son6;
-    Mix_Chunk *son7;
-    Mix_Chunk *son8;
-    Mix_Chunk *son9;
+	// Son
+	Mix_Chunk *sound1, *sound2, *sound3, *sound4, *sound5, *sound6, *sound7, *sound8, *sound9;
+	Mix_Music *music1, *music2;
+	// Etage
+	int etage;
+	leSort sort1;
+	leSort sort1_enm;
 
-    // Etage
-    int etage;
-    leSort sort1;
-    leSort sort1_enm;
-};
-typedef struct leJeu leJeu;
+}leAudio;
 
-struct leInput
+typedef struct
 {
     char key[SDL_NUM_SCANCODES];
     int quit;
-};
-typedef struct leInput leInput;
+
+}leInput;
+
+
+typedef struct
+{
+	long last;
+	long actual;
+	int activated;
+
+} leLimiter;
+
+typedef struct
+{
+	Texture *tileset;
+	Texture *objset;
+	Texture *guiset;
+	Texture *sortset;
+	Texture *screentitle;
+	Texture *loose;
+
+} leTexPack;
+
+
+typedef struct
+{
+	leBob BOB;
+	leBob ENM[ENNEMY_MAX];
+	leAudio AUDIO;
+	TTF_Font *FONT;
+	SDL_Window *WINDOW;
+	SDL_Renderer *RENDER;
+	leMap *MAP;
+	leInput *INPUT;
+	leTexPack TEXPACK;
+	leLimiter LIMITER;
+
+} leCore;
 
 #endif

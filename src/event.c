@@ -163,3 +163,8 @@ void menuavantjeux(leInput *INPUT, int *startmenu, int *restartgame, int *contin
     default: ;
     }
 }
+
+void LOGICAL(leCore *CORE)
+{
+	
+}

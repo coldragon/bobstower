@@ -2,7 +2,7 @@
 #include "hdr/basic.h"
 #include "hdr/struct.h"
 
-void attackcac_enm(leBob *ENM, leBob *BOB, leJeu *JEU)
+void attackcac_enm(leBob *ENM, leBob *BOB, leAudio *JEU)
 {
     int i;
     for (i=0; i<ENNEMY_MAX; i++)
@@ -14,31 +14,31 @@ void attackcac_enm(leBob *ENM, leBob *BOB, leJeu *JEU)
                 if (distancepoint(ENM[i].pos.x+16, ENM[i].pos.y+16, BOB->pos.x+16, BOB->pos.y+16)<ENM[i].distattack)
                 {
                     BOB->hp--;
-                    Mix_PlayChannel(4, JEU->son7, 0);
+                    Mix_PlayChannel(4, JEU->sound7, 0);
                 }
 
                 if (ENM[i].pos.x-BOB->pos.x>=0 && ENM[i].pos.x-BOB->pos.x<8)
                 {
                     create_projectile(JEU, &JEU->sort1_enm, &ENM[i]);
-                    Mix_PlayChannel(4, JEU->son7, 0);
+                    Mix_PlayChannel(4, JEU->sound7, 0);
                 }
 
                 if (ENM[i].pos.x-BOB->pos.x<=0 && ENM[i].pos.x-BOB->pos.x>-8)
                 {
                     create_projectile(JEU, &JEU->sort1_enm, &ENM[i]);
-                    Mix_PlayChannel(4, JEU->son7, 0);
+                    Mix_PlayChannel(4, JEU->sound7, 0);
                 }
 
                 if (ENM[i].pos.y-BOB->pos.y>=0 && ENM[i].pos.y-BOB->pos.y<8)
                 {
                     create_projectile(JEU, &JEU->sort1_enm, &ENM[i]);
-                    Mix_PlayChannel(4, JEU->son7, 0);
+                    Mix_PlayChannel(4, JEU->sound7, 0);
                 }
 
                 if (ENM[i].pos.y-BOB->pos.y<=0 && ENM[i].pos.y-BOB->pos.y>-8)
                 {
                     create_projectile(JEU, &JEU->sort1_enm, &ENM[i]);
-                    Mix_PlayChannel(4, JEU->son7, 0);
+                    Mix_PlayChannel(4, JEU->sound7, 0);
                 }
                 ENM[i].tatt.start=ENM[i].tatt.now;
             }
@@ -47,7 +47,7 @@ void attackcac_enm(leBob *ENM, leBob *BOB, leJeu *JEU)
     }
 }
 
-void create_projectile(leJeu *JEU, leSort *SORT, leBob *BOB)
+void create_projectile(leAudio *JEU, leSort *SORT, leBob *BOB)
 {
     if (SORT->last_use>=MAX_PROJECTILES_PAR_SORT)
         SORT->last_use=0;
@@ -86,7 +86,7 @@ void create_projectile(leJeu *JEU, leSort *SORT, leBob *BOB)
     SORT->last_use++;
 }
 
-void move_projectile(leJeu *JEU, leBob *BOB)
+void move_projectile(leAudio *JEU, leBob *BOB)
 {
     int i;
     for (i=0; i<MAX_PROJECTILES_PAR_SORT; i++)
@@ -108,14 +108,14 @@ void move_projectile(leJeu *JEU, leBob *BOB)
     }
 }
 
-void attack_bob(leBob *BOB, leJeu *JEU, leInput *INPUT)
+void attack_bob(leBob *BOB, leAudio *JEU, leInput *INPUT)
 {
     if(INPUT->key[SDL_SCANCODE_SPACE])
     {
         if (BOB->tatt.now-BOB->tatt.start >= BOB->attackspeed)
         {
             create_projectile(JEU, &JEU->sort1, BOB);
-            Mix_PlayChannel(3, JEU->son6, 0);
+            Mix_PlayChannel(3, JEU->sound6, 0);
 
             BOB->tatt.start=BOB->tatt.now;
         }
