@@ -8,5 +8,7 @@
 #define HCASE HWIN/TCASE // Nombre case Hauteur
 #define ENNEMY_MAX 8 // Nombre ennemie max
 #define MAX_PROJECTILES_PAR_SORT 25 // Nombre max de projectiles par sorts
+#define LOGICAL_FPS_LIMITER 60
+#define LOGICAL_TICKS_LIMITER 1000/LOGICAL_FPS_LIMITER
 
 #endif

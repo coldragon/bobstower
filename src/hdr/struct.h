@@ -111,11 +111,26 @@ typedef struct
 
 } leTexPack;
 
-
 typedef struct
 {
 	leBob BOB;
 	leBob ENM[ENNEMY_MAX];
+
+} leEntityPack;
+
+typedef struct
+{
+	int game_is_running;
+	int game_restarter;
+	int startmenu;
+	int endtrigger;
+	int enmTotal;
+
+} leState;
+
+typedef struct
+{
+	leState STATE;
 	leAudio AUDIO;
 	TTF_Font *FONT;
 	SDL_Window *WINDOW;
@@ -124,6 +139,7 @@ typedef struct
 	leInput *INPUT;
 	leTexPack TEXPACK;
 	leLimiter LIMITER;
+	leEntityPack ENTITYPACK;
 
 } leCore;
 

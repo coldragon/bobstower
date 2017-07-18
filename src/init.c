@@ -61,6 +61,14 @@ void coreInit(leCore *CORE)
 	Mix_Volume(4, 65);
 	Mix_VolumeMusic(25);
 
+	// STATE
+	CORE->STATE.game_is_running=1;
+	CORE->STATE.game_restarter=1;
+	CORE->STATE.startmenu=1;
+	CORE->STATE.endtrigger=1;
+	CORE->STATE.enmTotal = ENNEMY_MAX;
+
+
 	// MAP
 	CORE->MAP = calloc(1, sizeof(leMap));
 
@@ -74,30 +82,33 @@ void coreFree(leCore *CORE)
 	
 }
 
-leBob bob_init(leBob BOB, SDL_Renderer *render)
+void bob_init(leBob *BOB, SDL_Renderer *render, leMap *MAP)
 {
-    BOB.skin=TextureCreate(render, "res/bob.png", 255, 0, 255, 255);
-    BOB.skinPos.x=0;
-    BOB.skinPos.y=0;
-    BOB.skinPos.w=BOB.skin->w/4;
-    BOB.skinPos.h=BOB.skin->h;
-    BOB.level = 1;
-    BOB.hpMax = 100;
-    BOB.hp = BOB.hpMax;
-    BOB.speed = 3;
-    BOB.money = 0;
-    BOB.luck= 1;
-    BOB.direction=2;
-    BOB.collision = 20;
-    BOB.attackspeed=410;
-    BOB.distattack=30;
-    BOB.pos.x = WWIN / 2 - BOB.skin->w / 2;
-    BOB.pos.y = HWIN / 2 - BOB.skin->h / 2;
-    BOB.pos.w = BOB.skin->w/4;
-    BOB.pos.h = BOB.skin->h;
-    BOB.posTemp=BOB.pos;
-    BOB.exist=1;
-    return BOB;
+    BOB->skin=TextureCreate(render, "res/bob.png", 255, 0, 255, 255);
+    BOB->skinPos.x=0;
+    BOB->skinPos.y=0;
+    BOB->skinPos.w=BOB->skin->w/4;
+    BOB->skinPos.h=BOB->skin->h;
+    BOB->level = 1;
+    BOB->hpMax = 100;
+    BOB->hp = BOB->hpMax;
+    BOB->speed = 3;
+    BOB->money = 0;
+    BOB->luck= 1;
+    BOB->direction=2;
+    BOB->collision = 20;
+    BOB->attackspeed=410;
+    BOB->distattack=30;
+    BOB->pos.x = WWIN / 2 - BOB->skin->w / 2;
+    BOB->pos.y = HWIN / 2 - BOB->skin->h / 2;
+    BOB->pos.w = BOB->skin->w/4;
+    BOB->pos.h = BOB->skin->h;
+    BOB->posTemp=BOB->pos;
+    BOB->exist=1;
+	BOB->pos.x = MAP->sx;
+	BOB->pos.y = MAP->sy;
+	BOB->posTemp.x = MAP->sx;
+	BOB->posTemp.y = MAP->sy;
 }
 
 leBob enm_init(leBob BOB, leBob BOB0, leMap *MAP, SDL_Renderer *render)
@@ -195,132 +206,43 @@ void map_init(leMap *MAP)
 
 void main_loop(leCore *CORE)
 {
-	leBob BOB0 = { 0 };
-	leBob ENM[ENNEMY_MAX] = { 0 };
-	leInput INPUT = { 0 };
-	int continuer = 1;
-	int restartgame = 1;
-	int startmenu = 1;
-	int i;
-	while (restartgame)
+	while (CORE->STATE.game_restarter)
 	{
+		CORE->STATE.startmenu = 1;
+		CORE->STATE.game_is_running = 1;
 		
-		inputInit(&INPUT);
-		startmenu = 1;
-		continuer = 1;
 		TextureRender(CORE->RENDER, CORE->TEXPACK.screentitle, 0, 0, NULL);
 		SDL_RenderPresent(CORE->RENDER);
 		Mix_PlayMusic(CORE->AUDIO.music1, -1);
 		Mix_VolumeMusic(MIX_MAX_VOLUME / 2);
 
-		while (startmenu)
-		{
-			menuavantjeux(&INPUT, &startmenu, &restartgame, &continuer);
-		}
+		start_menu(CORE->INPUT, &CORE->STATE);
 
+		//Map Init
 		map_load(CORE->MAP);
-
-		BOB0 = bob_init(BOB0, CORE->RENDER);
-		BOB0.pos.x = CORE->MAP->sx;
-		BOB0.pos.y = CORE->MAP->sy;
-		BOB0.posTemp.x = CORE->MAP->sx;
-		BOB0.posTemp.y = CORE->MAP->sy;
-
-		for (i = 0; i < ENNEMY_MAX; i++)
-			ENM[i] = enm_init(ENM[i], BOB0, CORE->MAP, CORE->RENDER);
-		int enmTotal = ENNEMY_MAX;
-		int endtrigger = 0;
-
-
-		CORE->AUDIO.etage = 1;
-
+		bob_init(&CORE->ENTITYPACK.BOB, CORE->RENDER, CORE->MAP);
+		for (int i = 0; i < ENNEMY_MAX; i++)
+			CORE->ENTITYPACK.ENM[i] = enm_init(CORE->ENTITYPACK.ENM[i], CORE->ENTITYPACK.BOB, CORE->MAP, CORE->RENDER);
 		sort_init(&CORE->AUDIO, CORE->RENDER);
+		Mix_FadeOutMusic(1000);
 
-		Mix_PlayMusic(CORE->AUDIO.music2, -1);
-
-		Mix_PauseMusic();
-
-		long t, t0 = 0;
-		static const int FPS = 60;
-		int TICKS = 1000 / FPS;
-		BOB0.pos.x = CORE->MAP->sy;
-		BOB0.pos.y = CORE->MAP->sx;
-		while (continuer)
+		inputInit(CORE->INPUT);
+		while (CORE->STATE.game_is_running)
 		{
-			t = SDL_GetTicks();
+			CORE->LIMITER.actual = SDL_GetTicks();
 
-			if (t - t0 > TICKS)
+			if (CORE->LIMITER.actual - CORE->LIMITER.last > LOGICAL_TICKS_LIMITER)
 			{
-				// Input
-				inputReturn(&INPUT);
 
-				// Mouvement
-				mouvement(&INPUT, CORE->RENDER, &BOB0, CORE->MAP, &continuer, &restartgame);
-				mov_enm(CORE->RENDER, ENM, &BOB0);
-				move_projectile(&CORE->AUDIO, &BOB0);
+				//  //  //  //
+				LOGICAL(CORE);
+				AFFICHAGE(CORE, CORE->ENTITYPACK.ENM, &CORE->ENTITYPACK.BOB);
+				//  //  //  //
 
-				// Collision
-				collisionEnm(ENM, CORE->MAP, &BOB0);
-				sortcollision(CORE->MAP, ENM, &CORE->AUDIO, &BOB0);
-				objetcollision(CORE->MAP, &BOB0, &CORE->AUDIO);
-
-				// Attaque
-				attackcac_enm(ENM, &BOB0, &CORE->AUDIO);
-				attack_bob(&BOB0, &CORE->AUDIO, &INPUT);
-
-				// Affichage
-				AFFICHAGE(CORE, ENM, &BOB0);
-
-				// Defaite
-				if (BOB0.hp < 1)
-				{
-					if (BOB0.hp < 0)
-						BOB0.hp = 0;
-
-					continuer = 0;
-					TextureRender(CORE->RENDER, CORE->TEXPACK.loose, 0, 0, NULL);
-					SDL_RenderPresent(CORE->RENDER);
-					SDL_Delay(2500);
-				}
-
-				// Ennemy mort
-				for (i = 0; i < ENNEMY_MAX; i++)
-				{
-					if (ENM[i].hp < 1 && ENM[i].exist == 1)
-					{
-						ENM[i].exist = 0;
-						BOB0.money += ENM[i].money;
-						enmTotal--;
-					}
-				}
-
-				if (enmTotal < 1 && !endtrigger)
-				{
-					CORE->MAP->obj[CORE->MAP->ey][CORE->MAP->ex] = 9;
-					endtrigger = 1;
-				}
-				if (CORE->MAP->quitfloor)
-				{
-					changemap_screen(CORE->RENDER);
-					map_load(CORE->MAP);
-					BOB0.pos.x = CORE->MAP->sx;
-					BOB0.pos.y = CORE->MAP->sy;
-					BOB0.posTemp.x = CORE->MAP->sx;
-					BOB0.posTemp.y = CORE->MAP->sy;
-					CORE->AUDIO.etage++;
-					for (i = 0; i < ENNEMY_MAX; i++)
-						ENM[i] = enm_init(ENM[i], BOB0, CORE->MAP, CORE->RENDER);
-					enmTotal = ENNEMY_MAX;
-					CORE->MAP->quitfloor = 0; endtrigger = 0;
-				}
-
-				t0 = t;
+				CORE->LIMITER.last = CORE->LIMITER.actual;
 			}
 			else
-			{
-				SDL_Delay(TICKS - (t - t0));
-			}
+				SDL_Delay(LOGICAL_TICKS_LIMITER - (CORE->LIMITER.actual - CORE->LIMITER.last));
 		}
-		Mix_PauseMusic();
 	}
 }
