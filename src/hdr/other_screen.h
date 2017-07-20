@@ -5,5 +5,6 @@
 #include "struct.h"
 
 int menu_escape(SDL_Renderer *render, leInput *INPUT);
+void changemap_screen(SDL_Renderer *render);
 
 #endif

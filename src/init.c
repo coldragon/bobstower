@@ -1,32 +1,114 @@
 #include "hdr/texture.h"
-#include "hdr/struct.h"
+
 #include "hdr/basic.h"
 #include "hdr/collision.h"
+#include <SDL2/SDL_ttf.h>
+#include <string.h>
+#include <time.h>
+#include <stdlib.h> 
+#include "hdr/map.h"
+#include "hdr/other_screen.h"
+#include "hdr/affichage.h"
+#include "hdr/attack.h"
+#include "hdr/event.h"
 
-leBob bob_init(leBob BOB, SDL_Renderer *render)
+void open_sdl_shit()
 {
-    BOB.skin=TextureCreate(render, "res/bob.png", 255, 0, 255, 255);
-    BOB.skinPos.x=0;
-    BOB.skinPos.y=0;
-    BOB.skinPos.w=BOB.skin->w/4;
-    BOB.skinPos.h=BOB.skin->h;
-    BOB.level = 1;
-    BOB.hpMax = 10;
-    BOB.hp = BOB.hpMax;
-    BOB.speed = 3;
-    BOB.money = 0;
-    BOB.luck= 1;
-    BOB.direction=2;
-    BOB.collision = 20;
-    BOB.attackspeed=410;
-    BOB.distattack=30;
-    BOB.pos.x = WWIN / 2 - BOB.skin->w / 2;
-    BOB.pos.y = HWIN / 2 - BOB.skin->h / 2;
-    BOB.pos.w = BOB.skin->w/4;
-    BOB.pos.h = BOB.skin->h;
-    BOB.posTemp=BOB.pos;
-    BOB.exist=1;
-    return BOB;
+	SDL_Init(SDL_INIT_VIDEO);
+	Mix_OpenAudio(44100, MIX_DEFAULT_FORMAT, MIX_DEFAULT_CHANNELS, 1024);
+	Mix_AllocateChannels(10);
+	TTF_Init();
+}
+
+void close_sdl_shit()
+{
+	TTF_Quit();
+	Mix_CloseAudio();
+	SDL_Quit();
+}
+
+void coreInit(leCore *CORE)
+{
+	srand((unsigned int)time(NULL));
+
+	CORE->WINDOW = SDL_CreateWindow("Bob's tower Alpha", SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED, WWIN, HWIN, 0);
+	CORE->RENDER = SDL_CreateRenderer(CORE->WINDOW, -1, SDL_RENDERER_ACCELERATED);
+
+	// TEXTURE AND GUI
+	CORE->TEXPACK.tileset = TextureCreate(CORE->RENDER, "res/tileset.png", 255, 0, 255, 255);
+	CORE->TEXPACK.objset = TextureCreate(CORE->RENDER, "res/objset.png", 255, 0, 255, 255);
+	CORE->TEXPACK.screentitle = TextureCreate(CORE->RENDER, "res/screentitle.png", 255, 0, 255, 255);
+	CORE->TEXPACK.sortset = TextureCreate(CORE->RENDER, "res/sortset.png", 255, 0, 255, 255);
+	CORE->TEXPACK.guiset = TextureCreate(CORE->RENDER, "res/guiset.png", 255, 0, 255, 255);
+	CORE->TEXPACK.loose = TextureCreate(CORE->RENDER, "res/loose.png", 255, 0, 255, 255);
+	CORE->FONT = TTF_OpenFont("ttf/FiraSans-Medium.ttf", 10);
+
+	// AUDIO
+	CORE->AUDIO.sound1 = Mix_LoadWAV("snd/loot1.wav"); // loot1
+	CORE->AUDIO.sound2 = Mix_LoadWAV("snd/loot2.wav");  // loot2
+	CORE->AUDIO.sound3 = Mix_LoadWAV("snd/loot3.wav"); // loot3
+	CORE->AUDIO.sound4 = Mix_LoadWAV("snd/hit1.wav"); // hit1
+	CORE->AUDIO.sound5 = Mix_LoadWAV("snd/mort1.wav"); // mort1
+	CORE->AUDIO.sound6 = Mix_LoadWAV("snd/fireball1.wav"); // hit1
+	CORE->AUDIO.sound7 = Mix_LoadWAV("snd/attackenm.wav"); // hit1
+	CORE->AUDIO.sound8 = Mix_LoadWAV("snd/hit3.ogg");
+	CORE->AUDIO.music1 = Mix_LoadMUS("snd/music.ogg");
+	CORE->AUDIO.music2 = Mix_LoadMUS("");
+
+	Mix_Volume(1, 65);
+	Mix_Volume(2, 65);
+	Mix_Volume(3, 65);
+	Mix_Volume(4, 65);
+	Mix_VolumeMusic(25);
+
+	// STATE
+	CORE->STATE.game_is_running=1;
+	CORE->STATE.game_restarter=1;
+	CORE->STATE.startmenu=1;
+	CORE->STATE.endtrigger=1;
+	CORE->STATE.enmTotal = ENNEMY_MAX;
+
+
+	// MAP
+	CORE->MAP = calloc(1, sizeof(leMap));
+
+	// INPUT
+	CORE->INPUT = calloc(1, sizeof(leInput));
+
+}
+
+void coreFree(leCore *CORE)
+{
+	
+}
+
+void bob_init(leBob *BOB, SDL_Renderer *render, leMap *MAP)
+{
+    BOB->skin=TextureCreate(render, "res/bob.png", 255, 0, 255, 255);
+    BOB->skinPos.x=0;
+    BOB->skinPos.y=0;
+    BOB->skinPos.w=BOB->skin->w/4;
+    BOB->skinPos.h=BOB->skin->h;
+    BOB->level = 1;
+    BOB->hpMax = 100;
+    BOB->hp = BOB->hpMax;
+    BOB->speed = 3;
+    BOB->money = 0;
+    BOB->luck= 1;
+    BOB->direction=2;
+    BOB->collision = 20;
+    BOB->attackspeed=410;
+    BOB->distattack=30;
+    BOB->pos.x = WWIN / 2 - BOB->skin->w / 2;
+    BOB->pos.y = HWIN / 2 - BOB->skin->h / 2;
+    BOB->pos.w = BOB->skin->w/4;
+    BOB->pos.h = BOB->skin->h;
+    BOB->posTemp=BOB->pos;
+    BOB->exist=1;
+	BOB->pos.x = MAP->sx;
+	BOB->pos.y = MAP->sy;
+	BOB->posTemp.x = MAP->sx;
+	BOB->posTemp.y = MAP->sy;
 }
 
 leBob enm_init(leBob BOB, leBob BOB0, leMap *MAP, SDL_Renderer *render)
@@ -37,7 +119,7 @@ leBob enm_init(leBob BOB, leBob BOB0, leMap *MAP, SDL_Renderer *render)
     BOB.skinPos.w=TCASE;
     BOB.skinPos.h=TCASE;
     BOB.level = 1;
-    BOB.hpMax = 4;
+    BOB.hpMax = 1;
     BOB.hp = 4;
     BOB.speed = 2;
     BOB.money = 10;
@@ -67,7 +149,7 @@ leBob enm_init(leBob BOB, leBob BOB0, leMap *MAP, SDL_Renderer *render)
     return BOB;
 }
 
-void sort_init(leJeu *JEU, SDL_Renderer *render)
+void sort_init(leAudio *JEU, SDL_Renderer *render)
 {
     int i;
     JEU->sort1.last_use=0;
@@ -113,108 +195,54 @@ void sort_init(leJeu *JEU, SDL_Renderer *render)
 
 void map_init(leMap *MAP)
 {
-    int i, j;
-    int initTile[HCASE][WCASE] =
-    {
-        {7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7},
-        {3, 2, 2, 3, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 3},
-        {3, 1, 1, 3, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 3},
-        {3, 0, 0, 3, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 3},
-        {3, 0, 0, 3, 0, 0, 0, 0, 0, 0, 2, 0, 2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 3},
-        {3, 0, 0, 3, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 3, 2, 0, 2, 3},
-        {3, 0, 0, 3, 0, 0, 0, 0, 0, 0, 2, 0, 2, 0, 0, 0, 0, 0, 0, 0, 3, 1, 9, 1, 3},
-        {3, 2, 9, 2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 3, 0, 0, 0, 3},
-        {3, 1, 9, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 3, 0, 0, 0, 3},
-        {3, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 3, 0, 0, 0, 3},
-        {3, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 3, 0, 0, 0, 3},
-        {3, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 3, 0, 0, 0, 3},
-        {3, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 3, 0, 0, 0, 3},
-        {3, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 3, 0, 0, 0, 3},
-        {3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3},
-    };
-    for (i=0; i<HCASE; i++)
-    {
-        for (j=0; j<WCASE; j++)
-        {
-            MAP->tile[i][j]=initTile[i][j];
-        }
-    }
+	MAP->quitfloor = 0;
+	memset(MAP->tile, 0, sizeof(MAP->tile));
+	memset(MAP->tile2, 0, sizeof(MAP->tile2));
+	memset(MAP->obj, 0, sizeof(MAP->obj));
+	memset(MAP->col, 0, sizeof(MAP->col));
+	MAP->ey = 0; MAP->ex = 0;
+	MAP->sy = 0; MAP->sx = 0;
+}
 
-    int initTile2[HCASE][WCASE] =
-    {
-        {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
-        {0, 6, 6, 3, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
-        {0, 6, 6, 3, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
-        {0, 6, 6, 3, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
-        {0, 6, 6, 3, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
-        {0, 6, 6, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 3, 2, 10,2, 3},
-        {0, 6, 6, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
-        {0, 2,10, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
-        {0, 0, 7, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
-        {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
-        {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
-        {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
-        {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
-        {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
-        {0, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 0},
-    };
-    for (i=0; i<HCASE; i++)
-    {
-        for (j=0; j<WCASE; j++)
-        {
-            MAP->tile2[i][j]=initTile2[i][j];
-        }
-    }
+void main_loop(leCore *CORE)
+{
+	while (CORE->STATE.game_restarter)
+	{
+		CORE->STATE.startmenu = 1;
+		CORE->STATE.game_is_running = 1;
+		
+		TextureRender(CORE->RENDER, CORE->TEXPACK.screentitle, 0, 0, NULL);
+		SDL_RenderPresent(CORE->RENDER);
+		Mix_PlayMusic(CORE->AUDIO.music1, -1);
+		Mix_VolumeMusic(MIX_MAX_VOLUME / 2);
 
-    int initObj[HCASE][WCASE] =
-    {
-        {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
-        {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
-        {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
-        {0, 0, 3, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
-        {0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 7, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
-        {0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 7, 3, 7, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
-        {0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 7, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
-        {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
-        {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
-        {0, 0, 7, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2, 0, 0},
-        {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2, 0, 0},
-        {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2, 0, 0},
-        {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
-        {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
-        {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
-    };
-    for (i=0; i<HCASE; i++)
-    {
-        for (j=0; j<WCASE; j++)
-        {
-            MAP->obj[i][j]=initObj[i][j];
-        }
-    }
+		start_menu(CORE->INPUT, &CORE->STATE);
 
-    int initCol[HCASE][WCASE] =
-    {
-        {1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1},
-        {1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1},
-        {1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1},
-        {1, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1},
-        {1, 0, 0, 1, 0, 0, 0, 0, 0, 0, 1, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1},
-        {1, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2, 2, 0, 2, 1},
-        {1, 0, 0, 1, 0, 0, 0, 0, 0, 0, 1, 0, 1, 0, 0, 0, 0, 0, 0, 0, 1, 1, 0, 1, 1},
-        {1, 2, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 1},
-        {1, 1, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 1},
-        {1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 1},
-        {1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 1},
-        {1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 1},
-        {1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 1},
-        {1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 1},
-        {1, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 1},
-    };
-    for (i=0; i<HCASE; i++)
-    {
-        for (j=0; j<WCASE; j++)
-        {
-            MAP->col[i][j]=initCol[i][j];
-        }
-    }
+		//Map Init
+		map_load(CORE->MAP);
+		bob_init(&CORE->ENTITYPACK.BOB, CORE->RENDER, CORE->MAP);
+		for (int i = 0; i < ENNEMY_MAX; i++)
+			CORE->ENTITYPACK.ENM[i] = enm_init(CORE->ENTITYPACK.ENM[i], CORE->ENTITYPACK.BOB, CORE->MAP, CORE->RENDER);
+		sort_init(&CORE->AUDIO, CORE->RENDER);
+		Mix_FadeOutMusic(1000);
+
+		inputInit(CORE->INPUT);
+		while (CORE->STATE.game_is_running)
+		{
+			CORE->LIMITER.actual = SDL_GetTicks();
+
+			if (CORE->LIMITER.actual - CORE->LIMITER.last > LOGICAL_TICKS_LIMITER)
+			{
+
+				//  //  //  //
+				LOGICAL(CORE);
+				AFFICHAGE(CORE, CORE->ENTITYPACK.ENM, &CORE->ENTITYPACK.BOB);
+				//  //  //  //
+
+				CORE->LIMITER.last = CORE->LIMITER.actual;
+			}
+			else
+				SDL_Delay(LOGICAL_TICKS_LIMITER - (CORE->LIMITER.actual - CORE->LIMITER.last));
+		}
+	}
 }

@@ -50,7 +50,7 @@ void collisionEnm(leBob *ENM, leMap *MAP, leBob *BOB)
     }
 }
 
-void objetcollision(leMap *MAP, leBob *BOB, leJeu *JEU)
+void objetcollision(leMap *MAP, leBob *BOB, leAudio *JEU)
 {
     if (BOB->pos.x != BOB->posTemp.x || BOB->pos.y != BOB->posTemp.y)
     {
@@ -58,7 +58,7 @@ void objetcollision(leMap *MAP, leBob *BOB, leJeu *JEU)
     }
 }
 
-void sortcollision(leMap *MAP, leBob *ENM, leJeu *JEU, leBob *BOB)
+void sortcollision(leMap *MAP, leBob *ENM, leAudio *JEU, leBob *BOB)
 {
     int i, j;
     for (i=0; i<MAX_PROJECTILES_PAR_SORT; i++)
@@ -72,7 +72,7 @@ void sortcollision(leMap *MAP, leBob *ENM, leJeu *JEU, leBob *BOB)
                     ENM[j].hp--;
                     JEU->sort1.projectiles[i].exist=0;
                     if(ENM[j].hp<1)
-                        Mix_PlayChannel(2, JEU->son5, 0);
+                        Mix_PlayChannel(2, JEU->sound5, 0);
                 }
             }
 
@@ -81,10 +81,10 @@ void sortcollision(leMap *MAP, leBob *ENM, leJeu *JEU, leBob *BOB)
                 if (JEU->sort1_enm.projectiles[i].exist)
                 {
                     BOB->hp--;
-                    Mix_PlayChannel(8, JEU->son8, 0);
+                    Mix_PlayChannel(8, JEU->sound8, 0);
                     JEU->sort1_enm.projectiles[i].exist=0;
                     if(BOB->hp<1)
-                        Mix_PlayChannel(2, JEU->son5, 0);
+                        Mix_PlayChannel(2, JEU->sound5, 0);
                 }
             }
         }
