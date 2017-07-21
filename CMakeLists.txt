@@ -34,7 +34,8 @@ add_executable(bobstower
         src/hdr/object_power.h
         src/hdr/other_screen.h
         src/hdr/struct.h
-        src/hdr/texture.h)
+        src/hdr/texture.h
+        src/hdr/tinyfiles.h)
 
 target_link_libraries(bobstower
         ${SDL2_LIBRARY}
