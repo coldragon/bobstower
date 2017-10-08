@@ -1,4 +1,8 @@
-		Readme... Bob's Tower
+	Status : Playable, but "trash" and the map loading is broke on linux, 
+	I'm working on a 2D C game engine with all I learnt from this game and 2inside with even more.
+	
+	
+	Readme... Bob's Tower
 
 	dependency : 
 	
@@ -16,13 +20,9 @@
 	Win10 and Xubuntu/Ubuntu Budgie
 	
 	with :
-
-<<<<<<< HEAD
 	-gcc
 	-cmake
-=======
 	-MVSC2015/2017 and gcc/cmake
->>>>>>> master
 	-gimp
 	-sfxr
 
