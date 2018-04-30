@@ -1,0 +1,57 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="src">
+      <UniqueIdentifier>{6502532f-2a8e-4a12-a204-df27caf69c7f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\hdr">
+      <UniqueIdentifier>{fe56c406-2639-4801-8555-cbea59efe095}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="src\affichage.c">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\event.c">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\init.c">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\main.c">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\map.c">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\texture.c">
+      <Filter>src</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="src\hdr\affichage.h">
+      <Filter>src\hdr</Filter>
+    </ClInclude>
+    <ClInclude Include="src\hdr\define.h">
+      <Filter>src\hdr</Filter>
+    </ClInclude>
+    <ClInclude Include="src\hdr\event.h">
+      <Filter>src\hdr</Filter>
+    </ClInclude>
+    <ClInclude Include="src\hdr\init.h">
+      <Filter>src\hdr</Filter>
+    </ClInclude>
+    <ClInclude Include="src\hdr\map.h">
+      <Filter>src\hdr</Filter>
+    </ClInclude>
+    <ClInclude Include="src\hdr\struct.h">
+      <Filter>src\hdr</Filter>
+    </ClInclude>
+    <ClInclude Include="src\hdr\texture.h">
+      <Filter>src\hdr</Filter>
+    </ClInclude>
+    <ClInclude Include="src\hdr\stb_image.h">
+      <Filter>src\hdr</Filter>
+    </ClInclude>
+  </ItemGroup>
+</Project>

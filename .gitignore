@@ -1,13 +1,8 @@
 
-*.vcxproj
-
-*.filters
-
 *.user
 
 Debug/
 
-<<<<<<< HEAD
 *.iml
 
 \.idea/misc\.xml
@@ -19,8 +14,7 @@ Debug/
 \.idea/workspace\.xml
 
 cmake-build-debug/
-=======
+
 Release/
->>>>>>> master
 
 bobstower
