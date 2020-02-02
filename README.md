@@ -1,8 +1,7 @@
 	Status : Playable, but "trash" and the map loading is broke on linux, 
 	I'm working on a 2D C game engine with all I learnt from this game and 2inside with even more.
 	
-	
-	Readme... Bob's Tower
+	# Bob's Tower
 
 	dependency : 
 	
